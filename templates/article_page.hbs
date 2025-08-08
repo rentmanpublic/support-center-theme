@@ -1,63 +1,22 @@
-<div class="container-divider"></div>
-<div class="container">
-  <div class="sub-nav">
-    {{breadcrumbs}}
-    <div class="search-container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
-      </svg>
-      {{search scoped=settings.scoped_kb_search submit=false}}
+<section class="hero hero--left" data-hero-unit>
+  <div class="hero-inner">
+    <div class="breadcrumbs-wrapper">
+      {{breadcrumbs}}
     </div>
-  </div>
-
-  <div class="article-container" id="article-container">
-    <aside class="article-sidebar" aria-labelledby="section-articles-title">
-      {{#if settings.show_articles_in_section}}
-        <div class="collapsible-sidebar">
-          <button type="button" class="collapsible-sidebar-toggle" aria-labelledby="section-articles-title" aria-expanded="false">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon chevron-icon">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true" class="collapsible-sidebar-toggle-icon x-icon">
-              <path stroke="currentColor" stroke-linecap="round" d="M3 9l6-6m0 6L3 3"/>
-            </svg>
-          </button>
-          <span id="section-articles-title" class="collapsible-sidebar-title sidenav-title">
-            {{t 'articles_in_section'}}
-          </span>
-          <div class="collapsible-sidebar-body">
-            <ul>
-              {{#each section.articles}}
-                <li>
-                  <a href="{{url}}" 
-                     class="sidenav-item {{#is id ../article.id}}current-article{{/is}}"
-                     {{#is id ../article.id}}aria-current="page"{{/is}}>
-                       {{title}}
-                  </a>
-                </li>
-              {{/each}}
-            </ul>
-            {{#if section.more_articles}}
-              <a href="{{section.url}}" class="article-sidebar-item">{{t 'see_more'}}</a>
-            {{/if}}
-          </div>
-        </div>
-      {{/if}}
-    </aside>
-
-    <article id="main-content" class="article">
-      <header class="article-header">
-        <h1 title="{{article.title}}" class="article-title">
-          {{article.title}}
-          {{#if article.internal}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
-              <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
-              <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
-            </svg>
-          {{/if}}
-        </h1>
-
+    
+    <h1 class="hero__title">
+      {{#if article.internal}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+          <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+          <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+        </svg>
+      {{/if}} 
+      
+      {{article.title}}
+    </h1>
+    
+    {{#if false}}
+      <div class="article-meta-container">
         <div class="article-author">
           {{#if settings.show_article_author}}
             <div class="avatar article-avatar">
@@ -86,29 +45,125 @@
             </div>
           </div>
         </div>
-
+      
         {{#if settings.show_follow_article}}
           <div class="article-subscribe">{{subscribe}}</div>
         {{/if}}
-      </header>
+      {{/if}}
+        
+      {{#if article.labels}}
+        <div class="required-licenses-container">
+        
+          {{#each (filter article.labels on="identifier" starts_with="lic_")}}
+            {{#is identifier 'lic_nolicense'}}
+                <span class="required-license">
+                  <span class="required-license__icon Biglegacy"></span>
+                  <span class="required-license__label">{{dc'sc_label_no_license'}}</span>
+                </span>
+            {{/is}}
 
+            {{#is identifier 'lic_platform'}}
+                <span class="required-license">
+                  <span class="required-license__icon Bigsuite"></span>
+                  <span class="required-license__label">{{dc'hp_-_platform'}}</span>
+                </span>
+            {{/is}}
+
+            {{#is identifier 'lic_equipmentTracking'}} 
+                <span class="required-license required-license--with-tiers">
+                  <span class="required-license__icon BigequipT"></span>
+                  <span class="required-license__label">{{dc'hp_-_equipment_tracking'}}</span>
+                  <span class="required-license__tiers">
+                    <span>Add-on</span>
+                  </span>
+                </span>
+            {{/is}}
+
+            {{#is identifier 'lic_warehouse'}} 
+                <span class="required-license required-license--with-tiers">
+                  <span class="required-license__icon BigwHouse"></span>
+                  <span class="required-license__label">{{dc'hp_-_additional_warehouse'}}</span>
+                  <span class="required-license__tiers">
+                    <span>Add-on</span>
+                  </span>
+                </span>
+            {{/is}}
+
+            {{#is identifier 'lic_qouteInvoice'}} 
+                <span class="required-license required-license--with-tiers">
+                  <span class="required-license__icon Biginv"></span>
+                  <span class="required-license__label">{{dc'hp_-_quoting_invoicing'}}</span>
+                  <span class="required-license__tiers">
+                    <span>Add-on</span>
+                  </span>
+                </span>
+            {{/is}}
+
+            {{#contains (concat 'lic_equipmentSchedule_S' 'lic_equipmentSchedule_P') identifier}}
+                <span class="required-license required-license--with-tiers">
+                  <span class="required-license__icon BigequipS"></span>
+                  <span class="required-license__label">{{dc'hp_-_equipmentscheduling'}}</span>
+                  <span class="required-license__tiers">
+                    {{#is identifier 'lic_equipmentSchedule_S'}}
+                    	<span>Standard</span>
+                    {{/is}}
+
+                    {{#contains (concat 'lic_equipmentSchedule_S' 'lic_equipmentSchedule_P') identifier}}
+                      <span>Pro</span>
+                    {{/contains}}
+                  </span>
+                </span>
+            {{/contains}}
+
+            {{#contains (concat 'lic_crew_E' 'lic_crew_S' 'lic_crew_P') identifier}}
+                <span class="required-license required-license--with-tiers">
+                  <span class="required-license__icon Bigcrew"></span>
+                  <span class="required-license__label">{{dc'hp_-_crew_scheduling'}}</span>
+                  <span class="required-license__tiers">
+                    {{#is identifier 'lic_crew_E'}}
+                    	<span>Essential</span>
+                    {{/is}}
+
+                    {{#contains (concat 'lic_crew_E' 'lic_crew_S') identifier}}
+                      <span>Standard</span>
+                    {{/contains}}
+
+                    {{#contains (concat 'lic_crew_E' 'lic_crew_S' 'lic_crew_P') identifier}}
+                      <span>Pro</span>
+                    {{/contains}}
+                  </span>
+                </span>
+            {{/contains}}
+          {{/each}}
+        </div>
+    	{{/if}}
+    </div>
+  </div>
+</section>
+
+<div class="container-divider"></div>
+<div class="container">
+  <div class="article-container" id="article-container" data-article-page>
+    <article id="main-content" class="article" data-article>
       <section class="article-info">
         <div class="article-content">
           <div class="article-body">{{article.body}}</div>
 
-          {{#if (compare article.content_tags.length ">" 0)}}
-            <section class="content-tags">
-              <p>{{t 'content_tags_label'}}</p>
-              <ul class="content-tag-list">
-                {{#each article.content_tags}}
-                  <li class="content-tag-item" data-content-tag-id="{{id}}">
-                    {{#link "search_result" content_tag_id=id}}
-                      {{name}}
-                    {{/link}}
-                  </li>
-                {{/each}}
-              </ul>
-            </section>
+          {{#if false}}
+            {{#if (compare article.content_tags.length ">" 0)}}
+              <section class="content-tags">
+                <p>{{t 'content_tags_label'}}</p>
+                <ul class="content-tag-list">
+                  {{#each article.content_tags}}
+                    <li class="content-tag-item" data-content-tag-id="{{id}}">
+                      {{#link "search_result" content_tag_id=id}}
+                        {{name}}
+                      {{/link}}
+                    </li>
+                  {{/each}}
+                </ul>
+              </section>
+            {{/if}}
           {{/if}}
 
           {{#if attachments}}
@@ -151,7 +206,7 @@
           {{/if}}
         </div>
         {{#with article}}
-          <div class="article-votes">
+        	<div class="article-votes">
             <h2 class="article-votes-question" id="article-votes-label">{{t 'was_this_article_helpful'}}</h2>
             <div class="article-votes-controls" role="group" aria-labelledby="article-votes-label">
               {{vote 'up' class='button article-vote article-vote-up' selected_class="button-primary"}}
@@ -160,7 +215,50 @@
             <small class="article-votes-count">
               {{vote 'label' class='article-vote-label'}}
             </small>
-          </div>
+            
+            <div id="sq-article-feedback-form" style="padding-top: 12px; display: none;">
+         <div id="sq-article-feedback-prompt" style="text-align: center; margin-top: 12px; margin-bottom: 24px; font-weight: 600">
+            <div id="sq-article-feedback-prompt-down" style="display: none">
+               We're sorry to hear that. Can you tell us what went wrong?
+            </div> 
+            <div id="sq-article-feedback-prompt-up" style="display: none">
+               We're glad we could help! Is there anything you'd like to share with us?
+            </div>
+         </div>
+         <div id="sq-article-feedback-options" style="text-align: left; margin-bottom: 18px"> 
+            <div id="sq-article-feedback-options-down" style="text-align: left; margin-bottom: 18px; display: none"> 
+               <div style="margin-bottom: 6px">
+                  <input type="radio" id="sq-article-feedback-options-down-1" name="sq-article-feedback-options-down" value="1"/>
+                  <label for="sq-article-feedback-options-down-1" style="margin-left: 5px">This article didn't answer my question or solve my problem</label>
+               </div> 
+               <div style="margin-bottom: 6px">
+                  <input type="radio" id="sq-article-feedback-options-down-2" name="sq-article-feedback-options-down" value="2"/>
+                  <label for="sq-article-feedback-options-down-2" style="margin-left: 5px">I found this article confusing or difficult to read</label>
+               </div> 
+               <div style="margin-bottom: 6px">
+                  <input type="radio" id="sq-article-feedback-options-down-3" name="sq-article-feedback-options-down" value="3"/>
+                  <label for="sq-article-feedback-options-down-3" style="margin-left: 5px">I don't like the answer I found or how the feature works</label>
+               </div> 
+               <div style="margin-bottom: 6px">
+                  <input type="radio" id="sq-article-feedback-options-down-4" name="sq-article-feedback-options-down" value="4"/>
+                  <label for="sq-article-feedback-options-down-4" style="margin-left: 5px">Something else</label>
+               </div> 
+            </div>
+            
+            <div id="sq-article-feedback-options-up" style="text-align: left; margin-bottom: 18px; display: none"> 
+            </div>
+         </div>
+         <div id="sq-article-feedback-text" style="text-align: left">
+            <textarea id="sq-article-feedback-text-up" placeholder="Please provide any feedback you'd like to share" name="article-down-vote-reason" rows="4" cols="50" style="display: none" ></textarea>
+            <textarea id="sq-article-feedback-text-down" placeholder="Please provide any feedback you'd like to share" name="article-down-vote-reason" rows="4" cols="50" style="display: none"></textarea>
+            <div id="sq-article-feedback-note-up" style="font-size: small; color: grey">This form is for feedback only and you won't receive a reply. Please don't include any personal information about yourself or someone else.</div> 
+            <div id="sq-article-feedback-note-down" style="font-size: small; color: grey">This form is for feedback only and you won't receive a reply. Please don't include any personal information about yourself or someone else.</div>
+          <button id="sq-article-submit-feedback" class="button button-primary" style="margin-top: 12px;">Submit Feedback</button>
+         </div>
+         <div id="sq-article-feedback-confirm-up" style="display: none; color: green; margin-top: 10px">Thank you! Your feedback helps us improve this article for everyone.</div>
+         <div id="sq-article-feedback-confirm-down" style="display: none; color: green; margin-top: 10px">Thank you! Your feedback helps us improve this article for everyone.</div>
+      </div>
+          </div> 
         {{/with}}
 
         <div class="article-more-questions">
@@ -177,6 +275,29 @@
       </footer>
 
       <div class="article-relatives">
+        {{#if settings.show_articles_in_section}}
+          <section class="section-articles">
+            <span id="section-articles-title" class="related-articles-title">
+              {{t 'articles_in_section'}}
+            </span>
+            <ul class="section-articles-list">
+              {{#each section.articles}}
+                <li>
+                  <a 
+                   href="{{url}}" 
+                   class="sidenav-item {{#is id ../article.id}}current-article{{/is}}"
+                   {{#is id ../article.id}}aria-current="page"{{/is}}>
+
+                   {{title}}
+                  </a>
+                </li>
+              {{/each}}
+            </ul>
+            {{#if section.more_articles}}
+              <a href="{{section.url}}">{{t 'see_more'}}</a>
+            {{/if}}
+          </section>
+        {{/if}}
         {{#if settings.show_recently_viewed_articles}}
           {{recent_articles}}
         {{/if}}

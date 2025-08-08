@@ -1,6 +1,11 @@
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NTJMPRHZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 <a class="skip-navigation" tabindex="1" href="#main-content">{{t 'skip_navigation' }}</a>
 
-<header class="header">
+<header class="header" data-topbar>
   <div class="logo">
     {{#link 'help_center'}}
       <img src="{{settings.logo}}" alt="{{t 'home_page' name=help_center.name}}" />
@@ -10,11 +15,17 @@
     {{/link}}
   </div>
 
-  <div class="nav-wrapper-desktop">
+  <div class="header__search-container">
+		{{search instant=true}}
+  </div>
+  
+  <div class="nav-wrapper-desktop">  
     <nav class="user-nav" id="user-nav" aria-label="{{t 'user_navigation'}}">
       <ul class="user-nav-list">
-        <li>{{link 'community'}}</li>
-        <li>{{link 'new_request' class='submit-a-request'}}</li>
+        <li><a href="{{dc'hp_-_webinars_-_link'}}" class="topbar__link">{{dc'hp_-_webinars'}}</a></li>
+        <li><a href="{{dc'product_updates_link'}}" class="topbar__link">{{dc'product_updates'}}</a></li>
+        <li><a href="{{dc'sc_button_rentman_tester-link'}}" class="topbar__link">{{dc'sc_button_rentman_tester'}}</a></li>
+        <li>{{link 'new_request' class='topbar__link submit-a-request'}}</li>
         {{#unless signed_in}}
           <li>
             {{#link "sign_in" class="sign-in"}}
@@ -24,6 +35,28 @@
         {{/unless}}
       </ul>
     </nav>
+    
+    {{#if alternative_locales}}
+      <div class="dropdown footer__language-selector" aria-haspopup="true">
+        <a class="dropdown-toggle btn btn--language">
+          <span class="c-language__icon" style="padding-right: 6px;">
+            <svg width="15" height="14" xmlns="http://www.w3.org/2000/svg">
+    					<path fill="currentColor" d="M10.058 13.04c0 .349-.195.67-.509.839a1.013 1.013 0 0 1-1.001-.023l-3.766-2.268H.989c-.546 0-.989-.43-.989-.96V.96C0 .43.443 0 .989 0H14.01c.546 0 .989.43.989.96v9.668c0 .53-.443.96-.989.96H10.06l-.001 1.453zm-1.976-2.413c0-.53.443-.96.989-.96h3.951V1.921H1.978v7.746h3.086c.184 0 .364.05.52.144l2.497 1.504v-.688z" fill-rule="evenodd"></path>
+							</svg>
+          </span>
+          
+          {{current_locale.name}}
+        </a>
+        <span class="dropdown-menu dropdown-menu-end" role="menu">
+          {{#each alternative_locales}}
+            <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
+              {{name}}
+            </a>
+          {{/each}}
+        </span>
+      </div>
+    {{/if}}
+    
     {{#if signed_in}}
       <div class="user-info dropdown">
         <button class="dropdown-toggle" aria-haspopup="true">
@@ -82,10 +115,12 @@
           </li>
           <li class="nav-divider"></li>
         {{/if}}
-        <li class="item">{{link 'community' role="menuitem"}}</li>
+        <li class="item"><a href="{{dc'hp_-_webinars_-_link'}}" role="menuitem">{{dc'hp_-_webinars'}}</a></li>
+        <li class="item"><a href="{{dc'product_updates_link'}}" role="menuitem">{{dc'product_updates'}}</a></li>
+        <li class="item"><a href="{{dc'sc_button_rentman_tester-link'}}" role="menuitem">{{dc'sc_button_rentman_tester'}}</a></li>
         <li class="item">{{link 'new_request' role="menuitem" class='submit-a-request'}}</li>
-        <li class="nav-divider"></li>
         {{#if signed_in}}
+        	<li class="nav-divider"></li>
           <li class="item">
             {{link "sign_out" role="menuitem"}}
           </li>
@@ -93,5 +128,4 @@
       </ul>
     </nav>
   </div>
-
 </header>

@@ -1,0 +1,64 @@
+<!-- Custom hero section -->
+<section class="hero" data-hero-unit>
+  <div class="hero-inner">
+  	<h1 class="hero__title">{{dc 'sc_quickstart_guides'}}</h1>
+    <p class="hero__description">{{dc 'sc_quickstartguides-description'}}</p>
+  </div>
+</section>
+<!-- End custom hero section -->
+
+<div class="container-divider"></div>
+<div class="container">  
+  <div class="category-container">
+    <div class="category-content">
+      <div id="main-content" class="section-tree">
+        <section class="section">
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const mainSection = document.querySelector('#main-content > .section');
+  const url = `${window.location.origin}/api/v2/help_center/{{help_center.locale}}/articles?sort_by=title&sort_order=desc&label_names=quickstart`;
+  
+  fetch(url)
+  	.then(res => res.json())
+  	.then(
+  		res => {
+  			console.log(res);
+  
+  			if (res.articles.length === 0) {
+  				return;
+  			}
+  
+  			const fragment = document.createDocumentFragment();
+  			const ul = document.createElement('ul');
+  			ul.classList.add('article-list');
+  
+  			fragment.appendChild(ul);
+  			
+  			for (const article of res.articles) {
+  				const li = document.createElement('li');
+  				li.classList.add('article-list-item');
+  
+  				const a = document.createElement('a');
+  				a.classList.add('article-list-link');
+  				a.href = article.html_url;
+  				a.text = article.title;
+  
+  				li.appendChild(a);
+  				ul.appendChild(li);
+  			}
+  
+  			mainSection.appendChild(fragment);
+  		}
+  	)
+  	.catch(
+  		e => {
+  			mainSection.append("{{dc 'sc_loaderror'}}");
+  			console.error(e);
+  		},
+  	);
+</script>
