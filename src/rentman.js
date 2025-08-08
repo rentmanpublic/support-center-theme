@@ -574,3 +574,67 @@ function hcmanager(account_key, dataset_id, domain, script_url) {
 hcmanager('9c678b75ea3a2211d205d8da3899891d', '605da4e4b393066b59b657d4', 'https://hcmanager.swifteq.com', 'https://scripts.swifteq.com/hc_events.js');
 
 // End of helpcenter manager analytics script
+
+
+// Pre-fill Form & Hide Fields in request form - RS
+window.addEventListener("DOMContentLoaded", () => {
+	const container = document.getElementById("new-request-form");
+	if (container) {
+		// Wait for the form to render
+		const observer = new MutationObserver(() => {
+			const form = container.querySelector("form");
+			const formField = container.querySelector("input[name='request[ticket_form_id]']");
+
+			// Check if the form exists and contains the ticket form ID
+			if (form && formField) {
+				const subjectField = container.querySelector("input[name='request[subject]']");
+				const descriptionField = container.querySelector("textarea[name='request[description]']");
+
+				if (subjectField && descriptionField) {
+
+					if (formField.value === "20474319990034") {
+
+						// Pre-fill for form ID 0000000000000
+						subjectField.value = "Feedback ticket";
+						descriptionField.value = "Feedback ticket";
+
+						// Hide Subject, Description, Attachments fields and their labels/headers
+						subjectField.closest('div[data-garden-id=\'forms.field\']').style.display = "none";
+						descriptionField.closest('div[data-garden-id=\'forms.field\']').style.display = "none";
+
+						const goal = document.querySelector("textarea[name='request[custom_fields][20448704398610]']");
+						const problem = document.querySelector("textarea[name='request[custom_fields][20448776087954]']");
+
+						const goalTitle = container.querySelector("label[for='" + goal.id + "']");
+						const problemTitle = container.querySelector("label[for='" + problem.id + "']");
+						const updateDescription = function (event) {
+							let text = "<p></p><strong>" + goalTitle.innerText + "</strong><br>";
+							text += goal.value.replace(/\r?\n/g, "<br />") + "</p>";
+							text += "<p></p><strong>" + problemTitle.innerText + "</strong><br>";
+							text += problem.value.replace(/\r?\n/g, "<br />") + "</p>";
+
+							descriptionField.value = text;
+
+							//update ckeditor value
+							const domEditableElement = descriptionField.parentNode.querySelector('.ck-editor__editable');
+							const editorInstance = domEditableElement.ckeditorInstance;
+							editorInstance.setData(text);
+						};
+						goal.addEventListener('keyup', updateDescription);
+						problem.addEventListener('keyup', updateDescription);
+
+					}
+					// Disconnect observer after making changes
+					observer.disconnect();
+				}
+
+			}
+		});
+
+		// Observe the container for changes
+		observer.observe(container, {
+			childList: true,
+			subtree: true
+		});
+	}
+});
