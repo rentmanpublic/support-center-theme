@@ -148,6 +148,12 @@ var TableOfContents = {
   moveVotesToSidebar: function() {
     var $votes = $('#sidebar-article-votes');
     if ($votes.length && this.$list.length) {
+      // Wrap TOC items in a scrollable container
+      var $items = this.$list.find('.' + this.css.item);
+      var $scrollWrapper = $('<div class="table-of-contents__items-wrapper" />');
+      $items.wrapAll($scrollWrapper);
+
+      // Append votes after the scrollable wrapper
       $votes.appendTo(this.$list);
       $votes.addClass('sidebar-article-votes--in-sidebar');
     }

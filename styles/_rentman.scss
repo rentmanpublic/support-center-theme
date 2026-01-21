@@ -869,9 +869,15 @@ audio, canvas, iframe, img, svg, video {
 .table-of-contents__list {
   list-style: none;
   padding-left: 0;
-
+  display: flex;
+  flex-direction: column;
   max-height: 500px;
+}
+
+.table-of-contents__items-wrapper {
+  flex: 1 1 auto;
   overflow-y: auto;
+  min-height: 0;
 }
 
 @media (max-width: 1024px) {
@@ -1475,7 +1481,8 @@ table.licenses td:nth-child(odd) {
 
 .sidebar-article-votes--in-sidebar {
   display: block;
-  margin-top: 30px;
+  flex-shrink: 0;
+  margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid #e8e8e8;
 }
