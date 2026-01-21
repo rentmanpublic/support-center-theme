@@ -5570,13 +5570,17 @@ audio, canvas, iframe, img, svg, video {
   padding-left: 0;
   display: flex;
   flex-direction: column;
-  max-height: 500px;
 }
 
 .table-of-contents__items-wrapper {
   flex: 1 1 auto;
   overflow-y: auto;
   min-height: 0;
+}
+
+/* When fixed, height is set by JS to fill viewport */
+.table-of-contents__list.is-fixed {
+  max-height: none;
 }
 
 @media (max-width: 1024px) {

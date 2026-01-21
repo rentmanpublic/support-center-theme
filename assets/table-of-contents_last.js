@@ -165,7 +165,8 @@ var TableOfContents = {
         .css({
           position: 'fixed',
           top: this.WINDOW_PADDING_TOP + 'px',
-          width: this.SIDEBAR_WIDTH
+          width: this.SIDEBAR_WIDTH,
+          height: 'calc(100vh - ' + (this.WINDOW_PADDING_TOP + 20) + 'px)'
         })
         .addClass(this.css.fixed);
     } else {
