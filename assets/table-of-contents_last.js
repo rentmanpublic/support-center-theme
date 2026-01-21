@@ -68,9 +68,11 @@ var TableOfContents = {
 
     this.SIDEBAR_WIDTH = this.$box.outerWidth() - this.SIDEBAR_PADDING_LEFT;
     this.SIDEBAR_HEIGHT = this.$list.outerHeight();
+    this.VIEWPORT_SIDEBAR_HEIGHT = this.$window.outerHeight() - this.WINDOW_PADDING_TOP - 20;
     this.PARENT_TOP = this.$wrapper.offset().top - this.WINDOW_PADDING_TOP;
     this.PARENT_BOTTOM = this.$wrapper.offset().top - this.WINDOW_PADDING_TOP + this.$wrapper.outerHeight();
-    this.STICKY_LIST_BOTTOM = this.WINDOW_TOP + this.SIDEBAR_HEIGHT;
+    // Use viewport height for sticky calculation when sidebar would be fixed
+    this.STICKY_LIST_BOTTOM = this.WINDOW_TOP + this.VIEWPORT_SIDEBAR_HEIGHT;
   },
   createAnchors: function(h) {
     var dataAnchor = this.data.anchor;
@@ -181,7 +183,9 @@ var TableOfContents = {
           position: 'absolute',
           width: this.SIDEBAR_WIDTH,
           top: 'auto',
-          bottom: '0px'
+          bottom: '0px',
+          height: 'auto',
+          maxHeight: this.VIEWPORT_SIDEBAR_HEIGHT + 'px'
         })
         .addClass(this.css.fixed);
     }
