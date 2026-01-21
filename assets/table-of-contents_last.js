@@ -147,8 +147,8 @@ var TableOfContents = {
   },
   moveVotesToSidebar: function() {
     var $votes = $('#sidebar-article-votes');
-    if ($votes.length && this.$box.length) {
-      $votes.appendTo(this.$box);
+    if ($votes.length && this.$list.length) {
+      $votes.appendTo(this.$list);
       $votes.addClass('sidebar-article-votes--in-sidebar');
     }
   },
