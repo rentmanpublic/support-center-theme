@@ -29,6 +29,7 @@ var TableOfContents = {
     this.createAnchors(this.options.headers);
     this.createItems(this.anchors);
     this.addClasses(this.css);
+    this.moveVotesToSidebar();
     this.runScrollResize();
     this.$window.on('scroll resize', $.proxy(this.runScrollResize, this));
     this.makeActiveOnClick(this.$link);
@@ -143,6 +144,13 @@ var TableOfContents = {
     this.$list.addClass(c.list);
     this.$toggle.addClass(c.toggle);
     this.$item.first().addClass('is-active');
+  },
+  moveVotesToSidebar: function() {
+    var $votes = $('#sidebar-article-votes');
+    if ($votes.length && this.$box.length) {
+      $votes.appendTo(this.$box);
+      $votes.addClass('sidebar-article-votes--in-sidebar');
+    }
   },
   attachTOC: function(l) {
     if (this.WINDOW_TOP >= this.PARENT_TOP) {
