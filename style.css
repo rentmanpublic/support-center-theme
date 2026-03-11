@@ -6237,3 +6237,57 @@ table.licenses td:nth-child(odd) {
 .sidebar-article-votes #sq-article-feedback-note-down {
   font-size: 11px !important;
 }
+
+/* ── NOTIFICATION BAR ─────────────────────────────────────────────────────── */
+
+/* Base styles */
+.rm-notification-bar {
+  color: #fff;
+  padding: 10px 48px;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  background: #FF6729; /* default / major — Rentman orange */
+}
+
+/* Severity colour overrides */
+.rm-notification-bar--critical {
+  background: #dc2626; /* red — critical only */
+}
+
+.rm-notification-bar--major {
+  background: #FF6729; /* orange — Rentman brand, used for all non-critical */
+}
+
+/* Layout */
+.rm-notification-bar__inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.rm-notification-bar__icon {
+  flex-shrink: 0;
+}
+
+/* Links inside notification text */
+.rm-notification-bar__text a {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.rm-notification-bar__text a:hover {
+  opacity: 0.85;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rm-notification-bar {
+    padding: 10px 20px;
+  }
+}
