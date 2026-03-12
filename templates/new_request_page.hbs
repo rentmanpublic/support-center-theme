@@ -1,3 +1,89 @@
+{{!-- Custom Notification Mechanism - pulls for Status Page with optional manual override by dynamic content --}}
+
+{{!-- DC value stored in a plain text script tag — safe for quotes, special chars, any length --}}
+<script id="rm-manual-message" type="text/plain">{{dc 'support_center_notification'}}</script>
+
+<div id="rm-notification-bar" class="rm-notification-bar" style="display:none" role="alert">
+  <div class="rm-notification-bar__inner">
+    <span class="rm-notification-bar__icon" id="rm-notification-icon">⚠️</span>
+    <span class="rm-notification-bar__text" id="rm-notification-text"></span>
+  </div>
+</div>
+
+<script>
+(function () {
+
+  var STATUSPAGE_URL   = 'https://status.rentman.io/api/v2/incidents/unresolved.json';
+  var STATUS_PAGE_LINK = 'https://status.rentman.io';
+
+  var bar          = document.getElementById('rm-notification-bar');
+  var textEl       = document.getElementById('rm-notification-text');
+  var iconEl       = document.getElementById('rm-notification-icon');
+  var manualMsgEl  = document.getElementById('rm-manual-message');
+  if (!bar || !textEl || !manualMsgEl) return;
+
+  var MANUAL_MESSAGE = manualMsgEl.textContent.trim();
+
+  // Impact level → CSS modifier class + icon
+  // Manual override shows ⚠️ icon; Statuspage messages show no icon
+  var IMPACT_MAP = {
+    critical:    { cls: 'rm-notification-bar--critical', icon: '' },
+    major:       { cls: 'rm-notification-bar--major',    icon: '' },
+    minor:       { cls: 'rm-notification-bar--major',    icon: '' },
+    maintenance: { cls: 'rm-notification-bar--major',    icon: '' }
+  };
+
+  function showBar(message, impact) {
+    var cfg = IMPACT_MAP[impact] || IMPACT_MAP['major'];
+    bar.classList.add(cfg.cls);
+    iconEl.textContent = cfg.icon;
+    textEl.innerHTML   = message;
+    bar.style.display  = 'block';
+  }
+
+  // ── 1. Manual override via Dynamic Content ─────────────────────────────
+  if (MANUAL_MESSAGE && MANUAL_MESSAGE !== 'off') {
+    showBar(MANUAL_MESSAGE, 'major');
+    return;
+  }
+
+  // ── 2. Auto-detect from Statuspage API ────────────────────────────────
+  fetch(STATUSPAGE_URL)
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      var incidents = (data && data.incidents) || [];
+      if (!incidents.length) return;
+
+      // Sort by severity — most severe first
+      var priority = ['critical', 'major', 'minor', 'maintenance', 'none'];
+      incidents.sort(function (a, b) {
+        return priority.indexOf(a.impact) - priority.indexOf(b.impact);
+      });
+
+      var incident = incidents[0];
+      var impact   = incident.impact || 'major';
+      if (impact === 'none') return;
+
+      // Build message from incident name + latest update
+      var updates    = incident.incident_updates || [];
+      var latestBody = updates.length ? updates[0].body : '';
+      var name       = incident.name || 'We are currently experiencing an issue.';
+
+      var message = name;
+      if (latestBody) {
+        message += ' — ' + latestBody;
+      }
+      message += ' <a href="' + STATUS_PAGE_LINK + '" target="_blank">View status page →</a>';
+
+      showBar(message, impact);
+    })
+    .catch(function () {
+      // Fail silently — no bar shown if fetch fails
+    });
+
+})();
+</script>
+
 <div class="container-divider"></div>
 <div class="container">
   <div class="sub-nav">
