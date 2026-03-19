@@ -147,6 +147,63 @@
         <div class="article-content">
           <div class="article-body">{{article.body}}</div>
 
+          {{#with article}}
+          <div class="sidebar-article-votes" id="sidebar-article-votes">
+            <div class="sidebar-article-votes__inner">
+              <p class="sidebar-article-votes__question" id="sidebar-article-votes-label">{{t 'was_this_article_helpful'}}</p>
+              <div class="sidebar-article-votes__controls" role="group" aria-labelledby="sidebar-article-votes-label">
+                {{vote 'up' class='button article-vote article-vote-up' selected_class="button-primary"}}
+                {{vote 'down' class='button article-vote article-vote-down' selected_class="button-primary"}}
+              </div>
+              <small class="sidebar-article-votes__count">
+                {{vote 'label' class='article-vote-label'}}
+              </small>
+
+              <div id="sq-article-feedback-form" style="padding-top: 12px; display: none;">
+                <div id="sq-article-feedback-prompt" style="text-align: center; margin-top: 12px; margin-bottom: 24px; font-weight: 600">
+                  <div id="sq-article-feedback-prompt-down" style="display: none">
+                    We're sorry to hear that. Can you tell us what went wrong?
+                  </div>
+                  <div id="sq-article-feedback-prompt-up" style="display: none">
+                    We're glad we could help! Is there anything you'd like to share with us?
+                  </div>
+                </div>
+                <div id="sq-article-feedback-options" style="text-align: left; margin-bottom: 18px">
+                  <div id="sq-article-feedback-options-down" style="text-align: left; margin-bottom: 18px; display: none">
+                    <div style="margin-bottom: 6px">
+                      <input type="radio" id="sq-article-feedback-options-down-1" name="sq-article-feedback-options-down" value="1"/>
+                      <label for="sq-article-feedback-options-down-1" style="margin-left: 5px">This article didn't answer my question or solve my problem</label>
+                    </div>
+                    <div style="margin-bottom: 6px">
+                      <input type="radio" id="sq-article-feedback-options-down-2" name="sq-article-feedback-options-down" value="2"/>
+                      <label for="sq-article-feedback-options-down-2" style="margin-left: 5px">I found this article confusing or difficult to read</label>
+                    </div>
+                    <div style="margin-bottom: 6px">
+                      <input type="radio" id="sq-article-feedback-options-down-3" name="sq-article-feedback-options-down" value="3"/>
+                      <label for="sq-article-feedback-options-down-3" style="margin-left: 5px">I don't like the answer I found or how the feature works</label>
+                    </div>
+                    <div style="margin-bottom: 6px">
+                      <input type="radio" id="sq-article-feedback-options-down-4" name="sq-article-feedback-options-down" value="4"/>
+                      <label for="sq-article-feedback-options-down-4" style="margin-left: 5px">Something else</label>
+                    </div>
+                  </div>
+                  <div id="sq-article-feedback-options-up" style="text-align: left; margin-bottom: 18px; display: none">
+                  </div>
+                </div>
+                <div id="sq-article-feedback-text" style="text-align: left">
+                  <textarea id="sq-article-feedback-text-up" placeholder="Please provide any feedback you'd like to share" name="article-down-vote-reason" rows="4" cols="50" style="display: none"></textarea>
+                  <textarea id="sq-article-feedback-text-down" placeholder="Please provide any feedback you'd like to share" name="article-down-vote-reason" rows="4" cols="50" style="display: none"></textarea>
+                  <div id="sq-article-feedback-note-up" style="font-size: small; color: grey">This form is for feedback only and you won't receive a reply. Please don't include any personal information about yourself or someone else.</div>
+                  <div id="sq-article-feedback-note-down" style="font-size: small; color: grey">This form is for feedback only and you won't receive a reply. Please don't include any personal information about yourself or someone else.</div>
+                  <button id="sq-article-submit-feedback" class="button button-primary" style="margin-top: 12px;">Submit Feedback</button>
+                </div>
+                <div id="sq-article-feedback-confirm-up" style="display: none; color: green; margin-top: 10px">Thank you! Your feedback helps us improve this article for everyone.</div>
+                <div id="sq-article-feedback-confirm-down" style="display: none; color: green; margin-top: 10px">Thank you! Your feedback helps us improve this article for everyone.</div>
+              </div>
+            </div>
+          </div>
+          {{/with}}
+
           {{#if false}}
             {{#if (compare article.content_tags.length ">" 0)}}
               <section class="content-tags">
@@ -388,62 +445,5 @@
         </div>
       {{/if}}
     </article>
-
-    {{#with article}}
-    <div class="sidebar-article-votes" id="sidebar-article-votes">
-      <div class="sidebar-article-votes__inner">
-        <h2 class="sidebar-article-votes__question" id="sidebar-article-votes-label">{{t 'was_this_article_helpful'}}</h2>
-        <div class="sidebar-article-votes__controls" role="group" aria-labelledby="sidebar-article-votes-label">
-          {{vote 'up' class='button article-vote article-vote-up' selected_class="button-primary"}}
-          {{vote 'down' class='button article-vote article-vote-down' selected_class="button-primary"}}
-        </div>
-        <small class="sidebar-article-votes__count">
-          {{vote 'label' class='article-vote-label'}}
-        </small>
-
-        <div id="sq-article-feedback-form" style="padding-top: 12px; display: none;">
-          <div id="sq-article-feedback-prompt" style="text-align: center; margin-top: 12px; margin-bottom: 24px; font-weight: 600">
-            <div id="sq-article-feedback-prompt-down" style="display: none">
-              We're sorry to hear that. Can you tell us what went wrong?
-            </div>
-            <div id="sq-article-feedback-prompt-up" style="display: none">
-              We're glad we could help! Is there anything you'd like to share with us?
-            </div>
-          </div>
-          <div id="sq-article-feedback-options" style="text-align: left; margin-bottom: 18px">
-            <div id="sq-article-feedback-options-down" style="text-align: left; margin-bottom: 18px; display: none">
-              <div style="margin-bottom: 6px">
-                <input type="radio" id="sq-article-feedback-options-down-1" name="sq-article-feedback-options-down" value="1"/>
-                <label for="sq-article-feedback-options-down-1" style="margin-left: 5px">This article didn't answer my question or solve my problem</label>
-              </div>
-              <div style="margin-bottom: 6px">
-                <input type="radio" id="sq-article-feedback-options-down-2" name="sq-article-feedback-options-down" value="2"/>
-                <label for="sq-article-feedback-options-down-2" style="margin-left: 5px">I found this article confusing or difficult to read</label>
-              </div>
-              <div style="margin-bottom: 6px">
-                <input type="radio" id="sq-article-feedback-options-down-3" name="sq-article-feedback-options-down" value="3"/>
-                <label for="sq-article-feedback-options-down-3" style="margin-left: 5px">I don't like the answer I found or how the feature works</label>
-              </div>
-              <div style="margin-bottom: 6px">
-                <input type="radio" id="sq-article-feedback-options-down-4" name="sq-article-feedback-options-down" value="4"/>
-                <label for="sq-article-feedback-options-down-4" style="margin-left: 5px">Something else</label>
-              </div>
-            </div>
-            <div id="sq-article-feedback-options-up" style="text-align: left; margin-bottom: 18px; display: none">
-            </div>
-          </div>
-          <div id="sq-article-feedback-text" style="text-align: left">
-            <textarea id="sq-article-feedback-text-up" placeholder="Please provide any feedback you'd like to share" name="article-down-vote-reason" rows="4" cols="50" style="display: none"></textarea>
-            <textarea id="sq-article-feedback-text-down" placeholder="Please provide any feedback you'd like to share" name="article-down-vote-reason" rows="4" cols="50" style="display: none"></textarea>
-            <div id="sq-article-feedback-note-up" style="font-size: small; color: grey">This form is for feedback only and you won't receive a reply. Please don't include any personal information about yourself or someone else.</div>
-            <div id="sq-article-feedback-note-down" style="font-size: small; color: grey">This form is for feedback only and you won't receive a reply. Please don't include any personal information about yourself or someone else.</div>
-            <button id="sq-article-submit-feedback" class="button button-primary" style="margin-top: 12px;">Submit Feedback</button>
-          </div>
-          <div id="sq-article-feedback-confirm-up" style="display: none; color: green; margin-top: 10px">Thank you! Your feedback helps us improve this article for everyone.</div>
-          <div id="sq-article-feedback-confirm-down" style="display: none; color: green; margin-top: 10px">Thank you! Your feedback helps us improve this article for everyone.</div>
-        </div>
-      </div>
-    </div>
-    {{/with}}
   </div>
 </div>

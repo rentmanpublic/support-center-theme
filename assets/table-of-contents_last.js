@@ -71,7 +71,6 @@ var TableOfContents = {
     this.VIEWPORT_SIDEBAR_HEIGHT = this.$window.outerHeight() - this.WINDOW_PADDING_TOP - 20;
     this.PARENT_TOP = this.$wrapper.offset().top - this.WINDOW_PADDING_TOP;
     this.PARENT_BOTTOM = this.$wrapper.offset().top - this.WINDOW_PADDING_TOP + this.$wrapper.outerHeight();
-    // Use viewport height for sticky calculation when sidebar would be fixed
     this.STICKY_LIST_BOTTOM = this.WINDOW_TOP + this.VIEWPORT_SIDEBAR_HEIGHT;
   },
   createAnchors: function(h) {
@@ -148,27 +147,20 @@ var TableOfContents = {
     this.$item.first().addClass('is-active');
   },
   moveVotesToSidebar: function() {
-    var $votes = $('#sidebar-article-votes');
-    if ($votes.length && this.$list.length) {
-      // Wrap TOC items in a scrollable container
-      var $items = this.$list.find('.' + this.css.item);
-      var $scrollWrapper = $('<div class="table-of-contents__items-wrapper" />');
-      $items.wrapAll($scrollWrapper);
-
-      // Append votes after the scrollable wrapper
-      $votes.appendTo(this.$list);
-      $votes.addClass('sidebar-article-votes--in-sidebar');
-    }
+    // Votes stay in their original template position below the article.
+    // Moving them into the ToC box causes overlap issues when the list goes position:fixed.
   },
   attachTOC: function(l) {
     if (this.WINDOW_TOP >= this.PARENT_TOP) {
+      var isMobile = this.$window.outerWidth() <= this.options.mobileWidth;
       l
         .removeAttr('style')
         .css({
           position: 'fixed',
           top: this.WINDOW_PADDING_TOP + 'px',
           width: this.SIDEBAR_WIDTH,
-          height: 'calc(100vh - ' + (this.WINDOW_PADDING_TOP + 20) + 'px)'
+          // On mobile, don't set a fixed height — let the collapsed ToC be its natural size
+          height: isMobile ? 'auto' : 'calc(100vh - ' + (this.WINDOW_PADDING_TOP + 20) + 'px)'
         })
         .addClass(this.css.fixed);
     } else {
@@ -184,8 +176,7 @@ var TableOfContents = {
           width: this.SIDEBAR_WIDTH,
           top: 'auto',
           bottom: '0px',
-          height: 'auto',
-          maxHeight: this.VIEWPORT_SIDEBAR_HEIGHT + 'px'
+          height: this.VIEWPORT_SIDEBAR_HEIGHT + 'px'
         })
         .addClass(this.css.fixed);
     }
@@ -236,7 +227,6 @@ var TableOfContents = {
         500
       );
 
-      
       if(history.pushState) {
           history.pushState(null, null, $(this).attr('href'));
       }
@@ -244,8 +234,6 @@ var TableOfContents = {
           location.hash = $(this).attr('href');
       }
 
-      //window.location.hash = $(this).attr('href');
-    
       return false;
     });
   },
@@ -256,4 +244,4 @@ var TableOfContents = {
       this.$list.toggleClass('is-opened');
     }, this));
   }
-};  
+};
