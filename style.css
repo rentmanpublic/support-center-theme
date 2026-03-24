@@ -5646,10 +5646,11 @@ audio, canvas, iframe, img, svg, video {
   padding-top: 15px;
 }
 
-/* Hide Zendesk's auto-injected article-votes widget — we use #sidebar-article-votes instead */
+/* Hide Zendesk's auto-injected article-votes widget — we use #sidebar-article-votes instead 
 .article-votes {
   display: none;
 }
+*/
 
 /* Article votes (sidebar-article-votes block, now placed inline after article body) */
 .sidebar-article-votes {
