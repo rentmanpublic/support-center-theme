@@ -2366,6 +2366,8 @@ zd-autocomplete-breadcrumbs-multibrand {
   font-size: 13px !important;
   font-weight: 600 !important;
   padding: 10px 20px !important;
+  width: auto !important;
+  min-width: 0 !important;
   cursor: pointer !important;
   transition: background 0.12s !important;
 }
