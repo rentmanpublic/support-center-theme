@@ -1,25 +1,87 @@
-<footer class="footer">
-  <div class="footer-inner">
-    {{#link 'help_center'}}{{help_center.name}}{{/link}}
-
-    <div class="footer-language-selector">
+<footer class="rm-footer">
+  <div class="container">
+    <div class="rm-footer__grid">
+      <div class="rm-footer__brand">
+        <div class="rm-footer__logo-wrap">
+          <img src="{{asset 'rentman-logo-white.svg'}}" alt="Rentman" class="rm-footer__logo">
+        </div>
+        <p class="rm-footer__tagline">Equipment rental software for production and event companies.</p>
+        <p class="rm-footer__status">
+          <span class="rm-footer__status-dot" id="rm-status-dot"></span>
+          <a href="https://status.rentman.io" class="rm-footer__status-link" target="_blank" rel="noopener" id="rm-status-text">System status</a>
+        </p>
+      </div>
+      <div class="rm-footer__col">
+        <h4 class="rm-footer__col-title">{{dc 'footer_doc_heading'}}</h4>
+        <ul class="rm-footer__links">
+          <li><a href="/hc/categories/360002613739">{{dc 'footer_doc_rental'}}</a></li>
+          <li><a href="/hc/categories/360002613759">{{dc 'footer_doc_inventory'}}</a></li>
+          <li><a href="/hc/categories/360002601500">{{dc 'footer_doc_crew'}}</a></li>
+          <li><a href="/hc/categories/360002613699">{{dc 'footer_doc_settings'}}</a></li>
+          <li>{{dc 'footer_doc_api'}}</li>
+        </ul>
+      </div>
+      <div class="rm-footer__col">
+        <h4 class="rm-footer__col-title">{{dc 'footer_resources_heading'}}</h4>
+        <ul class="rm-footer__links">
+          <li><a href="https://rentman.io/webinars" target="_blank" rel="noopener">Webinars</a></li>
+          <li><a href="https://support.rentman.io/hc/en-us/articles/21998749265938-Rentman-Changelog-Explore-the-Latest-Updates">Changelog</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfDjRKskaF6jrRPFFRlfYBDz-ddG0oPKZAOtvtiFY4xHY7T_g/viewform" target="_blank" rel="noopener">Become a tester</a></li>
+        </ul>
+      </div>
+      <div class="rm-footer__col">
+        <h4 class="rm-footer__col-title">{{dc 'footer_support_heading'}}</h4>
+        <ul class="rm-footer__links">
+          <li>{{dc 'footer_support_submit'}}</li>
+          <li>{{dc 'footer_support_status'}}</li>
+          <li>{{dc 'footer_support_contact'}}</li>
+          <li><a href="https://rentman.io" target="_blank" rel="noopener">rentman.io</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rm-footer__bottom">
+      <p class="rm-footer__copy">© <span id="rm-footer-year"></span> Rentman B.V. All rights reserved.</p>
       {{#if alternative_locales}}
-        <div class="dropdown language-selector">
-          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-            {{current_locale.name}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon" aria-hidden="true">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+        <div class="dropdown rm-footer__lang-selector">
+          <a class="dropdown-toggle rm-footer__lang-toggle" aria-haspopup="true" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
+              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM1.5 8h13M8 1c-2 2-3 4.5-3 7s1 5 3 7M8 1c2 2 3 4.5 3 7s-1 5-3 7"/>
             </svg>
-          </button>
-          <span class="dropdown-menu dropdown-menu-end" role="menu">
+            {{current_locale.name}}
+          </a>
+          <span class="dropdown-menu" role="menu">
             {{#each alternative_locales}}
-              <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">
-                {{name}}
-              </a>
+              <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">{{name}}</a>
             {{/each}}
           </span>
         </div>
       {{/if}}
+      <nav class="rm-footer__legal" aria-label="Legal links">
+        <a href="https://rentman.io/privacy-policy" target="_blank" rel="noopener">Privacy</a>
+        <a href="https://rentman.io/terms-and-conditions" target="_blank" rel="noopener">Terms</a>
+        <a href="https://rentman.io/fair-use-policy" target="_blank" rel="noopener">Fair use</a>
+      </nav>
     </div>
   </div>
 </footer>
+<script>
+(function () {
+  var yr = document.getElementById('rm-footer-year');
+  if (yr) yr.textContent = new Date().getFullYear();
+  var dot  = document.getElementById('rm-status-dot');
+  var stxt = document.getElementById('rm-status-text');
+  if (dot && stxt) {
+    fetch('https://status.rentman.io/api/v2/status.json')
+      .then(function(r) { return r.json(); })
+      .then(function(d) {
+        var ok = d.status && d.status.indicator === 'none';
+        dot.className = 'rm-footer__status-dot ' + (ok ? 'rm-footer__status-dot--ok' : 'rm-footer__status-dot--issue');
+        stxt.textContent = ok ? 'All systems operational' : (d.status.description || 'Some systems affected');
+      })
+      .catch(function() {
+        if (dot) dot.className = 'rm-footer__status-dot rm-footer__status-dot--ok';
+        if (stxt) stxt.textContent = 'All systems operational';
+      });
+  }
+}());
+</script>
