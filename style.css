@@ -1947,6 +1947,13 @@ zd-autocomplete-breadcrumbs-multibrand {
   font-size: 14px !important;
   color: #202121 !important;
   padding: 14px 16px 14px 0 !important;
+  text-align: left !important;
+}
+
+/* Remove excessive top padding on Garden table wrapper */
+.container:has(.my-activities-header) #main-content > div:has([data-garden-id="tables.table"]) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 #main-content .article-body th {
   padding: 10px 16px !important;
