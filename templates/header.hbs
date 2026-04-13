@@ -1,101 +1,150 @@
 <a class="skip-navigation" tabindex="1" href="#main-content">{{t 'skip_navigation' }}</a>
+<header class="rm-header">
+  <div class="rm-header__inner" style="position: relative;">
 
-<header class="header">
-  <div class="logo">
-    {{#link 'help_center'}}
-      <img src="{{settings.logo}}" alt="{{t 'home_page' name=help_center.name}}" />
-      {{#if settings.show_brand_name}}
-        <span aria-hidden="true">{{help_center.name}}</span>
-      {{/if}}
-    {{/link}}
-  </div>
+    {{!-- Logo + Support Center label --}}
+    <div class="rm-header__brand">
+      {{#link 'help_center' class='rm-header__logo-link'}}
+        <img src="https://cdn.prod.website-files.com/680b7c8bdefaec9c53251168/6877620893893ba9994b2a11_rentman-logo.svg" alt="Rentman" class="rm-header__logo" />
+      {{/link}}
+      <span class="rm-header__divider" aria-hidden="true"></span>
+      <span class="rm-header__label">Support Center</span>
+    </div>
 
-  <div class="nav-wrapper-desktop">
-    <nav class="user-nav" id="user-nav" aria-label="{{t 'user_navigation'}}">
-      <ul class="user-nav-list">
-        <li>{{link 'community'}}</li>
-        <li>{{link 'service_catalog'}}</li>
-        <li>{{link 'new_request' class='submit-a-request'}}</li>
-        {{#unless signed_in}}
-          <li>
-            {{#link "sign_in" class="sign-in" role="link"}}
-              {{t 'sign_in'}}
-            {{/link}}
-          </li>
-        {{/unless}}
-      </ul>
-    </nav>
-    {{#if signed_in}}
-      <div class="user-info dropdown">
-        <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-          {{user_avatar class="user-avatar"}}
-          <span>
-            {{user_name}}
-            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon" aria-hidden="true">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
-            </svg>
+    {{!-- Right side: language + sign in + submit --}}
+    <div class="rm-header__actions">
+      {{!-- Search icon button --}}
+      <button class="rm-header__search-btn" id="rm-header-search-btn" aria-label="Search" aria-expanded="false" aria-controls="rm-header-search-overlay">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
+          <circle cx="6.5" cy="6.5" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M11 11l3 3"/>
+        </svg>
+      </button>
+      {{#if alternative_locales}}
+        <div class="dropdown footer__language-selector">
+          <a class="dropdown-toggle btn btn--language" aria-haspopup="true" aria-expanded="false">
+            <span class="c-language__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM1.5 8h13M8 1c-2 2-3 4.5-3 7s1 5 3 7M8 1c2 2 3 4.5 3 7s-1 5-3 7"/>
+              </svg>
+            </span>
+            {{current_locale.name}}
+          </a>
+          <span class="dropdown-menu dropdown-menu-end" role="menu">
+            {{#each alternative_locales}}
+              <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">{{name}}</a>
+            {{/each}}
           </span>
-        </button>
-        <div class="dropdown-menu" role="menu">
-          {{#my_profile role="menuitem"}}{{t 'profile'}}{{/my_profile}}
-          {{link "requests" role="menuitem"}}
-          {{#link "contributions" role="menuitem"}}{{t "activities"}}{{/link}}
-          {{link "approval_requests" role="menuitem"}}
-          {{contact_details role="menuitem"}}
-          {{change_password role="menuitem"}}
-          <div class="separator" role="separator"></div>
-          {{link "sign_out" role="menuitem"}}
         </div>
-      </div>
-    {{/if}}
-  </div>
-
-  <div class="nav-wrapper-mobile">
-    <button class="menu-button-mobile" aria-controls="user-nav-mobile" aria-expanded="false" aria-label="{{t 'toggle_navigation'}}">
-      {{#if signed_in}}
-        {{user_avatar class="user-avatar"}}
       {{/if}}
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-menu">
-        <path fill="none" stroke="currentColor" stroke-linecap="round" d="M1.5 3.5h13m-13 4h13m-13 4h13"/>
-      </svg>
-    </button>
-    <nav class="menu-list-mobile" id="user-nav-mobile" aria-expanded="false">
-      <ul class="menu-list-mobile-items">
-        {{#if signed_in}}
-          <li class="user-avatar-item item">
-            {{#my_profile class="my-profile"}}
-              {{user_avatar class="menu-profile-avatar"}}
-              <div class="menu-profile-name">
-                <div>{{user_name}}</div>
-                <div class="my-profile-tooltip">{{t 'profile'}}</div>
-              </div>
-            {{/my_profile}}
-          </li>
-          <li class="item">{{link "requests"}}</li>
-          <li class="item">{{#link "contributions"}}{{t "activities"}}{{/link}}</li>
-          <li class="item">{{link "approval_requests"}}</li>
-          <li class="item">{{contact_details}}</li>
-          <li class="item">{{change_password class='change-password'}}</li>
-          <li class="nav-divider"></li>
-        {{else}}
-          <li class="item">
-            {{#link "sign_in" role="link"}}
-              {{t 'sign_in'}}
-            {{/link}}
-          </li>
-          <li class="nav-divider"></li>
-        {{/if}}
-        <li class="item">{{link 'community'}}</li>
-        <li class="item">{{link 'new_request' class='submit-a-request'}}</li>
-        <li class="item">{{link 'service_catalog'}}</li>
-        <li class="nav-divider"></li>
-        {{#if signed_in}}
-          <li class="item">
-            {{link "sign_out"}}
-          </li>
-        {{/if}}
-      </ul>
-    </nav>
-  </div>
+      {{#unless signed_in}}
+        {{#link "sign_in" class="rm-header__sign-in" role="link"}}{{t 'sign_in'}}{{/link}}
+      {{/unless}}
+      {{#if signed_in}}
+        <div class="user-info dropdown">
+          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            {{user_avatar class="user-avatar"}}
+            <span>
+              {{user_name}}
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="dropdown-chevron-icon" aria-hidden="true">
+                <path fill="none" stroke="currentColor" stroke-linecap="round" d="M3 4.5l2.6 2.6c.2.2.5.2.7 0L9 4.5"/>
+              </svg>
+            </span>
+          </button>
+          <div class="dropdown-menu" role="menu">
+            {{link "requests" role="menuitem"}}
+            {{contact_details role="menuitem"}}
+            {{change_password role="menuitem"}}
+            <div class="separator" role="separator"></div>
+            <a href="/access/logout" role="menuitem">{{dc 'hdr_sign_out'}}</a>
+          </div>
+        </div>
+      {{/if}}
+      {{link 'new_request' class='rm-header__submit'}}
+    </div>
 
+    {{!-- Search overlay --}}
+    <div class="rm-header__search-overlay" id="rm-header-search-overlay" role="search" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="rm-header__search-overlay-icon" aria-hidden="true">
+        <circle cx="6.5" cy="6.5" r="4.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M11 11l3 3"/>
+      </svg>
+      <input type="search" id="rm-header-search-input" class="rm-header__search-overlay-input" placeholder="{{t 'search'}}" autocomplete="off" aria-label="{{t 'search'}}" />
+      <button class="rm-header__search-go" id="rm-header-search-go" type="button">{{t 'search'}} →</button>
+      <button class="rm-header__search-close" id="rm-header-search-close" type="button" aria-label="Close search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" focusable="false" viewBox="0 0 14 14" aria-hidden="true">
+          <path stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M2 2l10 10M12 2L2 12"/>
+        </svg>
+      </button>
+    </div>
+
+    {{!-- Mobile toggle --}}
+    <div class="nav-wrapper-mobile">
+      <button class="menu-button-mobile" aria-controls="user-nav-mobile" aria-expanded="false" aria-label="{{t 'toggle_navigation'}}">
+        {{#if signed_in}}{{user_avatar class="user-avatar"}}{{/if}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-menu">
+          <path fill="none" stroke="currentColor" stroke-linecap="round" d="M1.5 3.5h13m-13 4h13m-13 4h13"/>
+        </svg>
+      </button>
+      <nav class="menu-list-mobile" id="user-nav-mobile" aria-expanded="false">
+        <ul class="menu-list-mobile-items">
+          {{#if signed_in}}
+            <li class="item">{{link "requests"}}</li>
+            <li class="item">{{contact_details}}</li>
+            <li class="item">{{change_password class='change-password'}}</li>
+            <li class="nav-divider"></li>
+          {{else}}
+            <li class="item">
+              {{#link "sign_in" role="link"}}{{t 'sign_in'}}{{/link}}
+            </li>
+            <li class="nav-divider"></li>
+          {{/if}}
+          <li class="item">{{link 'new_request' class='submit-a-request'}}</li>
+          {{#if signed_in}}
+            <li class="nav-divider"></li>
+            <li class="item"><a href="/access/logout" role="menuitem">{{dc 'hdr_sign_out'}}</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+    </div>
+
+  </div>
 </header>
+<script>
+(function() {
+  var btn    = document.getElementById('rm-header-search-btn');
+  var overlay = document.getElementById('rm-header-search-overlay');
+  var input  = document.getElementById('rm-header-search-input');
+  var goBtn  = document.getElementById('rm-header-search-go');
+  var close  = document.getElementById('rm-header-search-close');
+  var inner  = document.querySelector('.rm-header__inner');
+  if (!btn || !overlay || !inner) return;
+
+  function open() {
+    inner.classList.add('search-open');
+    btn.classList.add('is-active');
+    setTimeout(function(){ if (input) input.focus(); }, 50);
+  }
+  function close_() {
+    inner.classList.remove('search-open');
+    btn.classList.remove('is-active');
+    if (input) input.value = '';
+    btn.focus();
+  }
+  function submit() {
+    if (!input || !input.value.trim()) return;
+    var m = location.pathname.match(/\/hc\/([^\/]+)/);
+    location.href = '/hc/' + (m ? m[1] : 'en-us') + '/search?utf8=%E2%9C%93&query=' + encodeURIComponent(input.value.trim());
+  }
+
+  btn.addEventListener('click', function() {
+    inner.classList.contains('search-open') ? close_() : open();
+  });
+  if (close)  close.addEventListener('click', close_);
+  if (goBtn)  goBtn.addEventListener('click', submit);
+  if (input)  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') submit(); });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && inner.classList.contains('search-open')) close_();
+  });
+}());
+</script>
