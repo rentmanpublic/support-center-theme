@@ -765,16 +765,30 @@
     });
   }());
 
-  // CKEditor mobile width fix — editor measures its container width at the
-  // moment the show button is clicked, before layout has settled. Fire a
-  // resize event after a short tick so CKEditor remeasures at the true width.
-  var ckShowBtn = document.querySelector('.comment-show-container');
-  if (ckShowBtn) {
-    ckShowBtn.addEventListener('click', function () {
-      setTimeout(function () {
-        window.dispatchEvent(new Event('resize'));
-      }, 50);
+  // CKEditor mobile width fix — CKEditor JS sets a fixed pixel width at init
+  // based on its container before the flex layout has settled. We watch for
+  // the editor appearing in the DOM and force a resize after it initialises.
+  if (document.querySelector('.request-container')) {
+    var ckObserver = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            var editor = node.classList && node.classList.contains('ck-editor')
+              ? node
+              : node.querySelector && node.querySelector('.ck-editor');
+            if (editor) {
+              setTimeout(function() {
+                window.dispatchEvent(new Event('resize'));
+              }, 100);
+            }
+          }
+        });
+      });
     });
+    var commentContainer = document.querySelector('.comment-container');
+    if (commentContainer) {
+      ckObserver.observe(commentContainer, { childList: true, subtree: true });
+    }
   }
 
 }());
