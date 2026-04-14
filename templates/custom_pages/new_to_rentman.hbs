@@ -1,0 +1,287 @@
+{{!-- ── ONBOARDING HUB ─────────────────────────────────────────── --}}
+
+{{!-- ── HERO ─────────────────────────────────────────────────── --}}
+<section class="rm-hero rm-onboard-hero">
+  <div class="rm-hero__inner">
+    <p class="rm-section__eyebrow" style="color: rgba(255,255,255,0.5);">GETTING STARTED</p>
+    <div class="rm-hero__heading" style="font-size: clamp(28px, 4vw, 48px);">
+      New to Rentman?<br>You're in the right place.
+    </div>
+    <p class="rm-onboard-hero__sub">
+      Follow our 5-part guide to get your equipment, projects, finances, and crew up and running — fast.
+    </p>
+  </div>
+</section>
+
+{{!-- ── PROGRESS STRIP ─────────────────────────────────────────── --}}
+<div class="rm-onboard-strip">
+  <div class="rm-onboard-strip__inner">
+    <a href="#step-1" class="rm-onboard-strip__item">
+      <span class="rm-onboard-strip__num">01</span>
+      <span class="rm-onboard-strip__label">Equipment</span>
+    </a>
+    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
+    <a href="#step-2" class="rm-onboard-strip__item">
+      <span class="rm-onboard-strip__num">02</span>
+      <span class="rm-onboard-strip__label">Crew</span>
+    </a>
+    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
+    <a href="#step-3" class="rm-onboard-strip__item">
+      <span class="rm-onboard-strip__num">03</span>
+      <span class="rm-onboard-strip__label">Projects</span>
+    </a>
+    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
+    <a href="#step-4" class="rm-onboard-strip__item">
+      <span class="rm-onboard-strip__num">04</span>
+      <span class="rm-onboard-strip__label">Quotes &amp; Invoicing</span>
+    </a>
+    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
+    <a href="#step-5" class="rm-onboard-strip__item">
+      <span class="rm-onboard-strip__num">05</span>
+      <span class="rm-onboard-strip__label">Logistics</span>
+    </a>
+  </div>
+</div>
+
+{{!-- ── STEP 0: PRE-FLIGHT ──────────────────────────────────────── --}}
+<div class="rm-onboard-preflight">
+  <div class="rm-onboard-preflight__inner">
+    <p class="rm-onboard-preflight__text">
+      <span class="rm-onboard-preflight__label">Before you begin —</span>
+      visit the <strong>Implementation Guide</strong> inside Rentman for key setup steps.
+    </p>
+    <div class="rm-onboard-preflight__actions">
+      <button class="rm-onboard-preflight__btn rm-onboard-preflight__btn--primary" onclick="document.getElementById('rm-impl-modal').classList.add('is-open')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Implementation Guide
+      </button>
+      {{!-- <a href="#" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--secondary">
+        Planning your implementation →
+      </a> --}}
+    </div>
+  </div>
+</div>
+
+{{!-- ── IMPLEMENTATION GUIDE MODAL ──────────────────────────────── --}}
+<div id="rm-impl-modal" class="rm-impl-modal" role="dialog" aria-modal="true" aria-labelledby="rm-impl-modal-title">
+  <div class="rm-impl-modal__backdrop" onclick="document.getElementById('rm-impl-modal').classList.remove('is-open')"></div>
+  <div class="rm-impl-modal__box">
+    <button class="rm-impl-modal__close" onclick="document.getElementById('rm-impl-modal').classList.remove('is-open')" aria-label="Close">✕</button>
+    <h2 class="rm-impl-modal__title" id="rm-impl-modal-title">Finding the Implementation Guide</h2>
+    <p class="rm-impl-modal__desc">The Implementation Guide is the first item in Rentman's left-hand navigation. It walks you through essential setup steps — configuration, your first project, equipment, and more. Log in to your account to get started.</p>
+    <div class="rm-impl-modal__img-wrap">
+      <img src="{{asset 'impl-guide-screenshot.png'}}" alt="Implementation Guide location in Rentman navigation" class="rm-impl-modal__img" />
+    </div>
+    <a href="https://rentmanapp.com" target="_blank" rel="noopener" class="rm-impl-modal__cta">Log in to Rentman →</a>
+  </div>
+</div>
+
+{{!-- ── GUIDE STEPS ─────────────────────────────────────────────── --}}
+<div class="rm-onboard-steps">
+
+  {{!-- STEP 1: Equipment --}}
+  <section class="rm-onboard-step" id="step-1">
+    <div class="rm-onboard-step__inner">
+      <div class="rm-onboard-step__meta">
+        <span class="rm-onboard-step__num">01</span>
+        <span class="rm-onboard-step__tag">Foundation</span>
+      </div>
+      <div class="rm-onboard-step__body">
+        <h2 class="rm-onboard-step__title">Gear Up — Managing your equipment</h2>
+        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge" target="_blank" rel="noopener">📦 Equipment Scheduling</a>
+        <p class="rm-onboard-step__desc">The secret to a smooth experience starts with how you organise your warehouse virtually. Get your gear into the system the right way from day one.</p>
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
+          <p>Use <strong>Physical Combinations</strong> for permanently bundled items (like a rack-mounted amp). Use <strong>Virtual Combinations</strong> for items often rented together but separable. Your warehouse team will always know exactly what to pack.</p>
+        </div>
+        <div class="rm-onboard-step__resources">
+          <div class="rm-onboard-step__articles">
+            <p class="rm-onboard-step__res-label">📄 Articles</p>
+            <ul>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014141299-Import-Your-Equipment">Import your Equipment via Excel/CSV</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013703140-Create-Equipment-Combinations">Create Equipment Combinations</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/4402870209682-Equipment-Combinations-and-How-to-Work-with-Them">Equipment Combinations and How to Work with Them</a></li>
+            </ul>
+          </div>
+          <div class="rm-onboard-step__video">
+            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
+            <a href="https://www.youtube.com/watch?v=Fm_bmQDHPew" class="rm-onboard-video-link" target="_blank" rel="noopener">
+              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+              How to import your equipment into Rentman
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- STEP 2: Crew (was step 5) --}}
+  <section class="rm-onboard-step rm-onboard-step--alt" id="step-2">
+    <div class="rm-onboard-step__inner">
+      <div class="rm-onboard-step__meta">
+        <span class="rm-onboard-step__num">02</span>
+        <span class="rm-onboard-step__tag">People</span>
+      </div>
+      <div class="rm-onboard-step__body">
+        <h2 class="rm-onboard-step__title">The Human Element — Mastering crew scheduling</h2>
+        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge" target="_blank" rel="noopener">👥 Crew Scheduling</a>
+        <p class="rm-onboard-step__desc">Your crew are central to everything you do. Get them into the system early — before you start planning projects — so you're ready to assign the right people from day one.</p>
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
+          <p>Tag crew members with skills and certifications (like <strong>#LeadTech</strong>, <strong>#A1</strong>, <strong>#TruckDriver</strong>) in their profiles. Filter by tag when planning to instantly see the most qualified people — no scrolling through your entire database.</p>
+        </div>
+        <div class="rm-onboard-step__resources">
+          <div class="rm-onboard-step__articles">
+            <p class="rm-onboard-step__res-label">📄 Articles</p>
+            <ul>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/14232209807506-Functions-What-are-they-and-how-to-create-them">Setting up Functions</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014610140-Crew-Planner-Module">Using the Crew Planner</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014672919-Communicate-the-Crew-Planning">Communicating the Crew Planning</a></li>
+            </ul>
+          </div>
+          <div class="rm-onboard-step__video">
+            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
+            <a href="https://support.rentman.io/hc/en-us/articles/360015581499-Video-Introduction-to-planning-your-crew-and-transport" class="rm-onboard-video-link" target="_blank" rel="noopener">
+              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+              Introduction to planning your crew and transport
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- STEP 3: Projects (was step 2) --}}
+  <section class="rm-onboard-step" id="step-3">
+    <div class="rm-onboard-step__inner">
+      <div class="rm-onboard-step__meta">
+        <span class="rm-onboard-step__num">03</span>
+        <span class="rm-onboard-step__tag">Planning</span>
+      </div>
+      <div class="rm-onboard-step__body">
+        <h2 class="rm-onboard-step__title">From Zero to Booked — Planning your first project</h2>
+        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge" target="_blank" rel="noopener">🔧 Rentman Platform</a>
+        <p class="rm-onboard-step__desc">Now that your gear is in the system, it's time to move from inventory to action. Build your first project and stop starting from scratch every time.</p>
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
+          <p>Always set your <strong>Planning period</strong> slightly longer than your <strong>Usage period</strong> to account for prep and load-out. This prevents ghost shortages where gear looks available but is still on a truck.</p>
+        </div>
+        <div class="rm-onboard-step__resources">
+          <div class="rm-onboard-step__articles">
+            <p class="rm-onboard-step__res-label">📄 Articles</p>
+            <ul>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013367659-Project-Templates">Using Project Templates</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360017700339-What-are-planning-and-usage-periods">Planning vs. Usage periods explained</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013730520-Plan-Equipment-on-a-Project">Planning equipment and crew on a project</a></li>
+            </ul>
+          </div>
+          <div class="rm-onboard-step__video">
+            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
+            <a href="https://support.rentman.io/hc/en-us/articles/360015575940-Video-Introduction-to-creating-managing-your-projects" class="rm-onboard-video-link" target="_blank" rel="noopener">
+              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+              Introduction to creating &amp; managing your projects
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- STEP 4: Quotes & Invoicing (was step 3) --}}
+  <section class="rm-onboard-step rm-onboard-step--alt" id="step-4">
+    <div class="rm-onboard-step__inner">
+      <div class="rm-onboard-step__meta">
+        <span class="rm-onboard-step__num">04</span>
+        <span class="rm-onboard-step__tag">Financials</span>
+      </div>
+      <div class="rm-onboard-step__body">
+        <h2 class="rm-onboard-step__title">The Money Talk — Quotes and invoices simplified</h2>
+        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge rm-onboard-plan-badge--addon" target="_blank" rel="noopener">➕ Quoting &amp; Invoicing add-on required</a>
+        <p class="rm-onboard-step__desc">Turn your hard work into revenue. Make sure your client-facing documents look as professional as your events — from first quote to final invoice.</p>
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
+          <p>Use Rentman's task system to set a reminder to follow up on unsigned quotes after 3 days. A gentle nudge often makes the difference between a "maybe" and a "confirmed".</p>
+        </div>
+        <div class="rm-onboard-step__resources">
+          <div class="rm-onboard-step__articles">
+            <p class="rm-onboard-step__res-label">📄 Articles</p>
+            <ul>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013503420-Document-Templates">Using the Document Template Editor</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360012594659-Create-a-Quotation-or-a-Contract">Create a Quotation or Contract</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360017648580-How-do-I-generate-invoices-in-Rentman">Invoicing your Client</a></li>
+            </ul>
+          </div>
+          <div class="rm-onboard-step__video">
+            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
+            <a href="https://support.rentman.io/hc/en-us/articles/360015729040-Video-Introduction-to-Financials" class="rm-onboard-video-link" target="_blank" rel="noopener">
+              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+              Introduction to Financials
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- STEP 5: Logistics (was step 4) --}}
+  <section class="rm-onboard-step" id="step-5">
+    <div class="rm-onboard-step__inner">
+      <div class="rm-onboard-step__meta">
+        <span class="rm-onboard-step__num">05</span>
+        <span class="rm-onboard-step__tag">Logistics</span>
+      </div>
+      <div class="rm-onboard-step__body">
+        <h2 class="rm-onboard-step__title">Logistics Masterclass — Managing shortages and returns</h2>
+        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge rm-onboard-plan-badge--addon" target="_blank" rel="noopener">➕ Equipment Tracking add-on required</a>
+        <p class="rm-onboard-step__desc">Equipment needs to be in two places at once and things don't always come back on time. Here's how Rentman helps you handle those moments before they become problems.</p>
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
+          <p>A red line in your timeline isn't a failure — it's a prompt. Use the <strong>Quick Subrental</strong> feature directly from the shortage view to track costs and prevent double-booking in seconds.</p>
+        </div>
+        <div class="rm-onboard-step__resources">
+          <div class="rm-onboard-step__articles">
+            <p class="rm-onboard-step__res-label">📄 Articles</p>
+            <ul>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013771040-Solve-Equipment-Shortages-with-Subrentals">Solve Equipment Shortages with Subrentals</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/13901986840082-Manually-Book-Equipment">The Equipment Return Process</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/17531415206418-How-to-Handle-Lost-or-Defective-Equipment-in-the-Warehouse">Handling lost or defective equipment</a></li>
+            </ul>
+          </div>
+          <div class="rm-onboard-step__video">
+            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
+            <a href="https://support.rentman.io/hc/en-us/articles/360015577120-Video-Introduction-into-planning-and-tracking-your-equipment" class="rm-onboard-video-link" target="_blank" rel="noopener">
+              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+              Introduction to planning and tracking your equipment
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{{!-- ── OFFICE HOURS CTA ─────────────────────────────────────────── --}}
+<section class="rm-section rm-section--cta">
+  <div class="container">
+    <div class="rm-cta-band">
+      <div class="rm-cta-band__text">
+        <h2 class="rm-cta-band__title">{{dc 'hp_cta_heading'}}</h2>
+        <p class="rm-cta-band__desc">{{dc 'hp_cta_desc'}}</p>
+      </div>
+      <div class="rm-cta-band__actions">
+        {{dc 'hp_cta_livechat'}}
+        {{dc 'hp_cta_submit'}}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- ── GRADUATION CLOSER ────────────────────────────────────────── --}}
+<section class="rm-onboard-grad">
+  <div class="rm-onboard-grad__inner">
+    <span class="rm-onboard-grad__icon" aria-hidden="true">🎓</span>
+    <h2 class="rm-onboard-grad__title">You're all set.</h2>
+    <p class="rm-onboard-grad__desc">You now have everything you need to manage equipment, projects, finances, logistics, and crew — all in one place. The Rentman support team is always here if you need us.</p>
+    <a href="/hc/en-us" class="rm-onboard-grad__link">Explore the full knowledge base →</a>
+  </div>
+</section>
