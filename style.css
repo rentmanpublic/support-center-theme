@@ -2419,11 +2419,21 @@ zd-autocomplete-breadcrumbs-multibrand {
   /* Prevent request-main from overflowing — flex-shrink:0 lets CKEditor force it wide */
   .request-main { min-width: 0 !important; max-width: 100% !important; overflow: hidden !important; }
   /* CKEditor toolbar: wrap buttons rather than overflow */
-  .ck-toolbar { flex-wrap: wrap !important; overflow: hidden !important; }
+  /* CKEditor toolbar — don't fight CKEditor's own overflow grouping, just clip cleanly */
+  .ck-toolbar { overflow: hidden !important; max-width: 100% !important; }
   .ck-editor,
   .ck-editor__main,
   .ck-editor__editable,
   .ck-content { max-width: 100% !important; box-sizing: border-box !important; }
+  /* Submit button — compact on mobile */
+  .comment-form-controls input[type="submit"],
+  .comment-form-controls button[type="submit"] {
+    line-height: 1.4 !important;
+    padding: 8px 20px !important;
+    min-width: 0 !important;
+    width: auto !important;
+    margin-top: 12px !important;
+  }
 }
 
 /* Details dl/dt/dd */
