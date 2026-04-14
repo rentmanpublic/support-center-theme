@@ -808,7 +808,7 @@ zd-summary-block { background: #f3f6f6; }
 .rm-header__actions .user-info .dropdown-menu [role="menuitem"]:focus { background: #f5f5f5; text-decoration: none; color: #202121 !important; }
 .rm-header__actions .user-info .dropdown-menu .separator { height: 1px; background: #e5e5e5; margin: 4px 0; }
 .rm-header__actions .user-info { position: relative; }
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .rm-header__nav { display: none; }
   .rm-header__actions .rm-header__sign-in,
   .rm-header__actions .rm-header__submit,
