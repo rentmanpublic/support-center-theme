@@ -1,6 +1,6 @@
 @charset "UTF-8";
-html { line-height: 1.15; -webkit-text-size-adjust: 100%; }
-body { margin: 0; }
+html { line-height: 1.15; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
+body { margin: 0; overflow-x: hidden; }
 main { display: block; }
 h1 { font-size: 2em; margin: 0.67em 0; }
 hr { box-sizing: content-box; height: 0; overflow: visible; }
@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Manrope', sans-serif; }
 
 /***** Mobile nav *****/
 @media (min-width: 1024px) { .nav-wrapper-mobile { display: none; } }
-.nav-wrapper-mobile .menu-button-mobile { background: none; border: 0; width: auto; min-width: 71px; cursor: pointer; }
+.nav-wrapper-mobile .menu-button-mobile { background: none; border: 0; width: auto; min-width: 0; cursor: pointer; }
 .nav-wrapper-mobile .menu-button-mobile .icon-menu { padding: 7px; vertical-align: middle; width: 30px; height: 30px; border-radius: 50%; }
 .nav-wrapper-mobile .menu-button-mobile[aria-expanded=true] .icon-menu { background: #f3f3f3; }
 .nav-wrapper-mobile .menu-list-mobile { position: absolute; background-color: #fff; box-shadow: 0 10px 10px 0 rgba(0,0,0,0.15); border-top: solid 1px #ddd; border-bottom: solid 1px #ddd; right: 0; left: 0; top: 71px; z-index: 2; }
@@ -779,6 +779,8 @@ zd-summary-block { background: #f3f6f6; }
 /* ── Header ─────────────────────────────────────────────────── */
 .rm-header { background: #fff; border-bottom: 1px solid #e5e5e5; position: sticky; top: 0; z-index: 100; }
 .rm-header__inner { max-width: 1160px; margin: 0 auto; padding: 0 5%; height: 56px; display: flex; align-items: center; gap: 32px; position: relative; }
+@media (max-width: 1023px) { .rm-header__inner { gap: 12px; } }
+@media (max-width: 479px) { .rm-header__label, .rm-header__divider { display: none; } }
 @media (min-width: 1160px) { .rm-header__inner { padding: 0; width: 90%; } }
 .rm-header__brand { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
 .rm-header__logo-link { display: flex; align-items: center; }
@@ -2414,16 +2416,14 @@ zd-autocomplete-breadcrumbs-multibrand {
   .request-sidebar { order: 2 !important; border-top: 1px solid #e5e5e5 !important; border-bottom: none !important; padding-top: 24px !important; }
   .request-sidebar .collapsible-sidebar-toggle { display: none !important; }
   .request-sidebar .collapsible-sidebar-body { display: block !important; }
-}
-
-/* CKEditor — prevent overflow on mobile */
-.comment-form { max-width: 100% !important; overflow: hidden !important; }
-.ck-editor,
-.ck-toolbar,
-.ck-editor__editable,
-.ck-content {
-  max-width: 100% !important;
-  box-sizing: border-box !important;
+  /* Prevent request-main from overflowing — flex-shrink:0 lets CKEditor force it wide */
+  .request-main { min-width: 0 !important; max-width: 100% !important; overflow: hidden !important; }
+  /* CKEditor toolbar: wrap buttons rather than overflow */
+  .ck-toolbar { flex-wrap: wrap !important; overflow: hidden !important; }
+  .ck-editor,
+  .ck-editor__main,
+  .ck-editor__editable,
+  .ck-content { max-width: 100% !important; box-sizing: border-box !important; }
 }
 
 /* Details dl/dt/dd */
