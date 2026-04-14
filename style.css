@@ -2418,6 +2418,13 @@ zd-autocomplete-breadcrumbs-multibrand {
   .request-sidebar .collapsible-sidebar-body { display: block !important; }
   /* Prevent request-main from overflowing — flex-shrink:0 lets CKEditor force it wide */
   .request-main { min-width: 0 !important; max-width: 100% !important; overflow: hidden !important; }
+  /* Tighter beige header on mobile */
+  .request-breadcrumbs { padding-top: 16px !important; margin-bottom: 8px !important; }
+  .request-title { font-size: 22px !important; padding-top: 4px !important; padding-bottom: 16px !important; }
+  /* Submit button — add breathing room above the sidebar divider */
+  .comment-form-controls input[type="submit"],
+  .comment-form-controls button[type="submit"] { margin-bottom: 32px !important; }
+}
   /* CKEditor toolbar: wrap buttons rather than overflow */
   /* CKEditor toolbar — don't fight CKEditor's own overflow grouping, just clip cleanly */
   .ck-toolbar { overflow: hidden !important; max-width: 100% !important; }
