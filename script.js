@@ -765,12 +765,15 @@
     });
   }());
 
-  // CKEditor mobile width fix — editor measures its container at init before
-  // the flex layout has fully settled, locking in an oversized pixel width.
-  // Firing a resize event after load forces CKEditor to remeasure correctly.
-  if (document.querySelector('.request-container')) {
-    window.addEventListener('load', function () {
-      window.dispatchEvent(new Event('resize'));
+  // CKEditor mobile width fix — editor measures its container width at the
+  // moment the show button is clicked, before layout has settled. Fire a
+  // resize event after a short tick so CKEditor remeasures at the true width.
+  var ckShowBtn = document.querySelector('.comment-show-container');
+  if (ckShowBtn) {
+    ckShowBtn.addEventListener('click', function () {
+      setTimeout(function () {
+        window.dispatchEvent(new Event('resize'));
+      }, 50);
     });
   }
 
