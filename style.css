@@ -1080,17 +1080,22 @@ zd-autocomplete-breadcrumbs-multibrand {
 
 /* ── Article main ───────────────────────────────────────────── */
 .rm-article-main { min-width: 0; }
-.rm-article-main .article-content { margin-top: 0 !important; }
+.rm-article-main .article-content { margin-top: 0 !important; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .rm-article-main .article-body { font-size: 15px !important; line-height: 1.7 !important; color: #202121 !important; }
 .rm-article-main .article-body h2 { font-size: 20px !important; font-weight: 700 !important; margin: 32px 0 12px !important; color: #202121 !important; }
 .rm-article-main .article-body h3 { font-size: 17px !important; font-weight: 700 !important; margin: 24px 0 8px !important; color: #202121 !important; }
 .rm-article-main .article-body img { max-width: 100% !important; border-radius: 4px; border: 1px solid #e5e5e5; }
-.rm-article-main .article-body td img, .rm-article-main .article-body th img { max-width: none !important; width: auto !important; height: auto !important; border: none; border-radius: 0; }
+.rm-article-main .article-body td img, .rm-article-main .article-body th img { max-width: 100% !important; width: auto !important; height: auto !important; border: none; border-radius: 0; }
 .rm-article-main .article-body a { color: #FF5E1D !important; text-decoration: underline; text-underline-offset: 2px; }
 .rm-article-main .article-body a:visited { color: #c44d1a !important; }
 .rm-article-main .article-body a:hover,
 .rm-article-main .article-body a:active,
 .rm-article-main .article-body a:focus { color: #c44d1a !important; }
+
+/* ── Article content tables ─────────────────────────────────── */
+.rm-article-main .article-body table:not(.licenses) { border-collapse: collapse; border: 1px solid #e5e5e5; }
+.rm-article-main .article-body table:not(.licenses) td,
+.rm-article-main .article-body table:not(.licenses) th { border: 1px solid #e5e5e5; }
 
 /* ── Article wysiwyg content components ─────────────────────── */
 /* Zendesk article editor injects wysiwyg-color-* spans for callout boxes,
