@@ -178,7 +178,7 @@
   if (yr) yr.textContent = new Date().getFullYear();
 
   // ── Category card icons (by position) ────────────────────────
-  var iconMap = ['inventory_2', 'warehouse', 'group', 'settings', 'code', 'help_outline'];
+  var iconMap = ['inventory_2', 'group', 'warehouse', 'settings', 'code', 'help_outline'];
   ['.rm-category-icon-', '.rm-section-icon-'].forEach(function(prefix) {
     iconMap.forEach(function(icon, i) {
       document.querySelectorAll('.' + prefix.replace('.', '') + i).forEach(function(el) {
