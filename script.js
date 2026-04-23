@@ -792,4 +792,148 @@
     }
   }
 
+  // ── Article TOC ─────────────────────────────────────────
+  // Builds a sticky table of contents from H1/H2 in .article-body.
+  // Injects clean slug-based anchors (e.g. #equipment-tab) before each heading
+  // so URLs are readable. Matches the old TableOfContents lib's slug algorithm
+  // for backwards compatibility with bookmarked URLs.
+  // Hidden by default; revealed only when 2+ headings exist.
+  (function initArticleTOC() {
+    var body = document.querySelector('[data-article] .article-body');
+    if (!body) return;
+
+    var headings = Array.prototype.slice
+      .call(body.querySelectorAll('h1[id], h2[id]'))
+      .filter(function (h) { return h.textContent.trim().length > 0; });
+    if (headings.length < 2) return;
+
+    var toc = document.querySelector('.rm-article-toc');
+    if (!toc) return;
+    var list = toc.querySelector('.rm-article-toc__list');
+    if (!list) return;
+
+    // Slug generator — matches old library's convertToSlug() exactly so
+    // existing bookmarked URLs keep working. Lowercase, strip non-word chars
+    // (keeping spaces), then spaces → hyphens.
+    function convertToSlug(s) {
+      return s.toLowerCase()
+        .replace(/[^\w ]+/g, '')
+        .replace(/ +/g, '-');
+    }
+
+    // Pre-populate used IDs to avoid collisions with existing page elements
+    var usedSlugs = {};
+    Array.prototype.slice.call(document.querySelectorAll('[id]')).forEach(function (el) {
+      usedSlugs[el.id] = true;
+    });
+
+    // Generate slugs and inject anchors
+    var slugByHeading = [];
+    headings.forEach(function (h) {
+      var base = convertToSlug(h.textContent.trim()) || 'section';
+      var slug = base;
+
+      // If the heading already has this exact ID (author-defined), reuse it — no injection needed
+      if (h.id === base) {
+        slugByHeading.push({ heading: h, slug: base });
+        return;
+      }
+
+      // Otherwise dedupe and inject a new anchor
+      var i = 2;
+      while (usedSlugs[slug]) {
+        slug = base + '-' + i;
+        i++;
+      }
+      usedSlugs[slug] = true;
+      slugByHeading.push({ heading: h, slug: slug });
+
+      var anchor = document.createElement('span');
+      anchor.id = slug;
+      anchor.className = 'rm-toc-anchor';
+      anchor.setAttribute('aria-hidden', 'true');
+      h.parentNode.insertBefore(anchor, h);
+    });
+
+    // Build TOC list
+    slugByHeading.forEach(function (entry) {
+      var h = entry.heading;
+      var slug = entry.slug;
+
+      var li = document.createElement('li');
+      li.className = 'rm-article-toc__item rm-article-toc__item--' + h.tagName.toLowerCase();
+      li.dataset.target = h.id;
+
+      var a = document.createElement('a');
+      a.href = '#' + slug;
+      a.className = 'rm-article-toc__link';
+      a.textContent = h.textContent.trim();
+
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        var target = document.getElementById(slug);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (history.pushState) {
+          history.pushState(null, '', '#' + slug);
+        } else {
+          location.hash = '#' + slug;
+        }
+      });
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+
+    // Reveal
+    toc.removeAttribute('hidden');
+
+    // Handle hash on initial load — browser tried to scroll before our anchors existed
+    if (location.hash) {
+      try {
+        var hashId = decodeURIComponent(location.hash.slice(1));
+        var hashTarget = document.getElementById(hashId);
+        if (hashTarget) {
+          requestAnimationFrame(function () {
+            hashTarget.scrollIntoView({ block: 'start' });
+          });
+        }
+      } catch (e) { /* malformed hash, ignore */ }
+    }
+
+    // Scroll-spy: topmost heading whose top is above the trigger line is active
+    var items = Array.prototype.slice.call(list.querySelectorAll('.rm-article-toc__item'));
+    var activeId = headings[0].id;
+    items[0].classList.add('is-active');
+
+    function setActive(id) {
+      if (id === activeId) return;
+      items.forEach(function (i) {
+        i.classList.toggle('is-active', i.dataset.target === id);
+      });
+      activeId = id;
+    }
+
+    var ticking = false;
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        var triggerY = 100; // ~80px header + 20px buffer
+        var current = headings[0].id;
+        for (var i = 0; i < headings.length; i++) {
+          if (headings[i].getBoundingClientRect().top <= triggerY) {
+            current = headings[i].id;
+          } else {
+            break;
+          }
+        }
+        setActive(current);
+        ticking = false;
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Set initial state in case page loaded mid-scroll or with #hash
+  })();
+
 }());
