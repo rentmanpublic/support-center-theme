@@ -145,25 +145,16 @@
 
     </article>
 
-    {{!-- Sidebar: articles in section --}}
-    {{#if settings.show_articles_in_section}}
-      <aside class="rm-article-sidebar" aria-label="Articles in this section">
-        <div class="rm-article-sidebar__inner">
-          <p class="rm-article-sidebar__title">In this section</p>
-          <ul class="rm-article-sidebar__list">
-            {{#each section.articles}}
-              <li class="rm-article-sidebar__item {{#is id ../article.id}}is-current{{/is}}">
-                <a href="{{url}}" class="rm-article-sidebar__link" {{#is id ../article.id}}aria-current="page"{{/is}}>{{title}}</a>
-              </li>
-            {{/each}}
-          </ul>
-          {{#if section.more_articles}}
-            <a href="{{section.url}}" class="rm-article-sidebar__more">See all articles →</a>
-          {{/if}}
-        </div>
-        <a href="#article-container" class="rm-article-sidebar__top">↑ Return to top</a>
-      </aside>
-    {{/if}}
+    {{!-- Sidebar: TOC + back to top --}}
+    <aside class="rm-article-sidebar" aria-label="Article navigation">
+      {{!-- Table of contents (revealed by JS when 2+ H1/H2 headings exist) --}}
+      <nav class="rm-article-toc" hidden aria-label="On this page">
+        <p class="rm-article-toc__title">{{dc 'sc_in_this_article'}}</p>
+        <ul class="rm-article-toc__list"></ul>
+      </nav>
+
+      <a href="#article-container" class="rm-article-sidebar__top">↑ {{dc 'sc_return_to_top'}}</a>
+    </aside>
 
   </div>
 </div>
