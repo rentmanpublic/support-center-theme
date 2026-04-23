@@ -1,6 +1,6 @@
 @charset "UTF-8";
-html { line-height: 1.15; -webkit-text-size-adjust: 100%; overflow-x: hidden; }
-body { margin: 0; overflow-x: hidden; }
+html { line-height: 1.15; -webkit-text-size-adjust: 100%; overflow-x: hidden; overflow-x: clip; }
+body { margin: 0; overflow-x: hidden; overflow-x: clip; }
 main { display: block; }
 h1 { font-size: 2em; margin: 0.67em 0; }
 hr { box-sizing: content-box; height: 0; overflow: visible; }
@@ -1075,7 +1075,7 @@ zd-autocomplete-breadcrumbs-multibrand {
 
 /* ── Article layout ─────────────────────────────────────────── */
 .rm-article-container { padding-top: 24px !important; padding-bottom: 64px !important; }
-.rm-article-layout { display: grid !important; grid-template-columns: 1fr 240px !important; gap: 56px !important; align-items: start !important; }
+.rm-article-layout { display: grid !important; grid-template-columns: 1fr 280px !important; gap: 56px !important; align-items: start !important; }
 @media (max-width: 900px) { .rm-article-layout { grid-template-columns: 1fr !important; } }
 
 /* ── Article main ───────────────────────────────────────────── */
@@ -1084,6 +1084,8 @@ zd-autocomplete-breadcrumbs-multibrand {
 .rm-article-main .article-body { font-size: 15px !important; line-height: 1.7 !important; color: #202121 !important; }
 .rm-article-main .article-body h2 { font-size: 20px !important; font-weight: 700 !important; margin: 32px 0 12px !important; color: #202121 !important; }
 .rm-article-main .article-body h3 { font-size: 17px !important; font-weight: 700 !important; margin: 24px 0 8px !important; color: #202121 !important; }
+.rm-article-main .article-body h1[id],
+.rm-article-main .article-body h2[id] { scroll-margin-top: 80px; }
 .rm-article-main .article-body img { max-width: 100% !important; border-radius: 4px; border: 1px solid #e5e5e5; }
 .rm-article-main .article-body td img, .rm-article-main .article-body th img { max-width: 100% !important; width: auto !important; height: auto !important; border: none; border-radius: 0; }
 .rm-article-main .article-body a { color: #FF5E1D !important; text-decoration: underline; text-underline-offset: 2px; }
@@ -1311,6 +1313,20 @@ zd-autocomplete-breadcrumbs-multibrand {
 .rm-article-recent .recent-articles li a:visited { display: block !important; font-size: 14px !important; font-weight: 500 !important; color: #202121 !important; text-decoration: none !important; padding: 4px 0 !important; border: none !important; background: none !important; }
 .rm-article-related .related-articles li a:hover,
 .rm-article-recent .recent-articles li a:hover { color: #FF5E1D !important; text-decoration: none !important; }
+
+/* ── Article TOC ────────────────────────────────────────────── */
+.rm-article-toc { border: 1px solid #e5e5e5; border-radius: 6px; overflow: hidden; background: #fff; }
+.rm-article-toc[hidden] { display: none !important; }
+.rm-article-toc__title { font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.1em; text-transform: uppercase; color: #6b7280 !important; margin: 0 !important; padding: 14px 16px !important; border-bottom: 1px solid #e5e5e5; background: #EEE9E1; display: block !important; }
+.rm-article-toc__list { list-style: none !important; margin: 0 !important; padding: 8px 0 !important; }
+.rm-article-toc__item { margin: 0 !important; border-bottom: none !important; }
+.rm-article-toc__link { display: block !important; padding: 6px 16px !important; font-size: 13px !important; line-height: 1.4 !important; color: #6b7280 !important; text-decoration: none !important; border-left: 3px solid transparent; transition: color 0.12s, background 0.12s, border-color 0.12s; }
+.rm-article-toc__link:hover { color: #202121 !important; background: #fafafa !important; text-decoration: none !important; }
+.rm-article-toc__item--h2 .rm-article-toc__link { padding-left: 28px !important; }
+.rm-article-toc__item.is-active > .rm-article-toc__link { color: #FF5E1D !important; font-weight: 600 !important; border-left-color: #FF5E1D; background: #fff4ef !important; }
+/* Slug anchors injected before headings — invisible but scroll-targetable */
+.rm-toc-anchor { display: block; height: 0; scroll-margin-top: 80px; }
+@media (max-width: 900px) { .rm-article-toc { display: none !important; } }
 
 /* ── Article sidebar ────────────────────────────────────────── */
 .rm-article-sidebar { position: sticky; top: 72px; display: flex !important; flex-direction: column !important; gap: 16px !important; }
