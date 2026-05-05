@@ -28,6 +28,9 @@
     <div class="rm-hero__bottom">
       <nav class="rm-hero__jumpto" aria-label="Quick links">
         {{dc 'hp_hero_jumpto'}}
+        {{#is help_center.locale 'en-us'}}
+          <a href="https://academy-rentman.talentlms.com/plus/" class="rm-hero__jumpto-link" target="_blank" rel="noopener">Academy <span class="rm-jumpto-beta">BETA</span></a>
+        {{/is}}
       </nav>
       {{dc 'hp_hero_onboarding'}}
     </div>
