@@ -2636,3 +2636,25 @@ zd-autocomplete-breadcrumbs-multibrand {
 .rm-error-page__btn { display: inline-flex; align-items: center; background: #202121; color: #fff !important; text-decoration: none !important; font-size: 14px; font-weight: 600; padding: 12px 24px; border-radius: 4px; transition: opacity 0.12s; width: auto; }
 .rm-error-page__btn:hover { opacity: 0.75; text-decoration: none !important; color: #fff !important; }
 .rm-error-page__btn * { color: #fff !important; }
+
+/* ── Spotlight (homepage promos: betas, events) ─────────────── */
+.rm-section--spotlight { background: #fff; border-top: 1px solid #e5e5e5; padding: 32px 0; margin-bottom: -56px; }
+.rm-spotlight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 768px) { .rm-spotlight-grid { grid-template-columns: 1fr; } }
+@media (min-width: 769px) and (max-width: 1023px) { .rm-spotlight-grid { grid-template-columns: repeat(2, 1fr); } }
+
+.rm-spotlight-card { display: flex; flex-direction: column; gap: 6px; border: 1px solid #e5e5e5; border-radius: 6px; padding: 18px; background: #fff; text-decoration: none; color: inherit; transition: box-shadow 0.15s; }
+.rm-spotlight-card:hover, .rm-spotlight-card:focus { box-shadow: 0 4px 16px rgba(0,0,0,0.08); text-decoration: none; }
+
+.rm-spotlight-tag { display: inline-block; width: fit-content; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+.rm-spotlight-tag--beta  { background: #FF5E1D; color: #fff; }
+.rm-spotlight-tag--event { background: #202121; color: #fff; }
+.rm-spotlight-tag--new   { background: transparent; color: #FF5E1D; border: 1px solid #FF5E1D; }
+
+.rm-spotlight-card__icon { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 8px; background: #F5F0EB; color: #202121; font-size: 19px; margin: 4px 0 2px; }
+.rm-spotlight-card__title { font-size: 16px; font-weight: 700; color: #202121; margin: 0; line-height: 1.25; }
+.rm-spotlight-card__blurb { font-size: 13px; color: #6b7280; margin: 0; line-height: 1.45; flex: 1; }
+.rm-spotlight-card__meta { font-size: 12px; font-weight: 500; color: #202121; margin: 0; }
+.rm-spotlight-card__cta { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 700; color: #FF5E1D; margin-top: 10px; }
+.rm-spotlight-card__arrow { transition: transform 0.15s; }
+.rm-spotlight-card:hover .rm-spotlight-card__arrow { transform: translateX(3px); }
