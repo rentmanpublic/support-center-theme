@@ -67,6 +67,15 @@
 </section>
 {{/if}}
 
+{{!-- ── SPOTLIGHT (promos: betas, events) — JS-populated from a DC JSON field ── --}}
+<script type="text/plain" id="rm-dc-spotlight">{{dc 'hp_spotlight_cards'}}</script>
+<section class="rm-section rm-section--spotlight" id="rm-spotlight-section" style="display:none">
+  <div class="container">
+    <p class="rm-section__eyebrow">{{dc 'hp_spotlight_eyebrow'}}</p>
+    <div class="rm-spotlight-grid" id="rm-spotlight-grid"></div>
+  </div>
+</section>
+
 {{!-- ── BROWSE BY TOPIC ─────────────────────────────────────── --}}
 {{#if categories}}
 <section class="rm-section rm-section--categories">
@@ -275,6 +284,35 @@
         if (dot) dot.className = 'rm-footer__status-dot rm-footer__status-dot--ok';
         if (stxt) stxt.textContent = 'All systems operational';
       });
+  }
+
+  // ── Spotlight promos (DC JSON → cards) ───────────────────────
+  var spotSection = document.getElementById('rm-spotlight-section');
+  var spotGrid    = document.getElementById('rm-spotlight-grid');
+  var spotDc      = document.getElementById('rm-dc-spotlight');
+  if (spotSection && spotGrid && spotDc) {
+    var spotRaw = (spotDc.textContent || '').trim();
+    if (spotRaw && spotRaw !== 'off') {
+      var spotCards = [];
+      try { spotCards = JSON.parse(spotRaw); } catch (e) { spotCards = []; }
+      if (Array.isArray(spotCards) && spotCards.length) {
+        spotGrid.innerHTML = spotCards.map(function (c) {
+          var tag  = (c.tag || 'new').toLowerCase();
+          var icon = c.icon ? '<span class="material-icons rm-spotlight-card__icon" aria-hidden="true">' + c.icon + '</span>' : '';
+          var meta = c.meta ? '<p class="rm-spotlight-card__meta">' + c.meta + '</p>' : '';
+          return '<a class="rm-spotlight-card" href="' + (c.url || '#') + '">'
+            +   '<span class="rm-spotlight-tag rm-spotlight-tag--' + tag + '">' + tag.toUpperCase() + '</span>'
+            +   icon
+            +   '<h3 class="rm-spotlight-card__title">' + (c.title || '') + '</h3>'
+            +   '<p class="rm-spotlight-card__blurb">' + (c.blurb || '') + '</p>'
+            +   meta
+            +   '<span class="rm-spotlight-card__cta">' + (c.cta || 'Learn more')
+            +     ' <span class="rm-spotlight-card__arrow" aria-hidden="true">&rarr;</span></span>'
+            + '</a>';
+        }).join('');
+        spotSection.style.display = '';
+      }
+    }
   }
 
 }());
