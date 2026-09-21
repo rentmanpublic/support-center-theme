@@ -68,6 +68,22 @@ Therefore:
 | Front-end behaviour | `script.js` (ES2015 only — no newer syntax) |
 | Theme settings exposed in Zendesk admin | `manifest.json` |
 
+### Content that is NOT in this repo
+
+Some visible text and links come from Zendesk **dynamic content** items, referenced in
+templates as `{{dc 'name'}}`. They are edited in Zendesk Guide admin, per locale — not
+here, and not by an agent. Known items:
+
+| Item | What it renders |
+|---|---|
+| `hp_hero_jumpto` | Every pill in the homepage hero row (Changelog, API Docs, Academy, Services, Community) |
+| `hp_hero_onboarding` | The "New to Rentman? Start here →" CTA beside the pills |
+| `support_center_notification` | The site-wide notification bar |
+
+Because each locale holds its own copy, these drift out of sync between languages. If a
+request is "change that link/label in the hero", the answer is usually a dynamic content
+edit, not a code change — say so rather than hardcoding it into the template.
+
 A feature usually touches all of the relevant files above — e.g. the Spotlight bar was
 `home_page.hbs` + `style.css` + `manifest.json`.
 
