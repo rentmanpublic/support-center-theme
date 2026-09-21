@@ -106,6 +106,15 @@ A feature usually touches all of the relevant files above — e.g. the Spotlight
 Zendesk admin UI instead of in code. Keep the template reading from the setting rather
 than hard-coding copy.
 
+**Version bump — required** — every functional change ends by incrementing the patch
+segment of `version` in `manifest.json` (`5.00.17` → `5.00.18`; the third segment is not
+zero-padded). **Zendesk will not pull a new version of the theme without it**, so a
+change without a bump silently never ships. Docs-only commits (e.g. `CLAUDE.md`) don't
+need one.
+
+**Branch or direct?** — state explicitly which one you're taking *before* making the
+change, and get agreement. Don't infer it from the size of the diff.
+
 **Commits** — one file per commit, message `Update <file> <what changed>`
 (e.g. `Update style.css Add Spotlight Bar`). This is a carry-over from editing via the
 GitHub web UI; keep it for a consistent history, but grouping one feature into a single
