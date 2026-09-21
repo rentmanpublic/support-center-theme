@@ -7,8 +7,37 @@ Guidance for AI agents working in **this fork**. Read this before `AGENTS.md`.
 A Rentman fork of [zendesk/copenhagen_theme](https://github.com/zendesk/copenhagen_theme),
 running the Rentman Zendesk Help Center (Support Center) theme.
 
-- Working branch: **`rentman2026`** — all Rentman work happens here.
-- `master` tracks the upstream Copenhagen theme. `rentman` is the previous generation.
+### Branches
+
+| Branch | What it is |
+|---|---|
+| **`rentman2026`** | **The live Support Center theme.** All work happens here. Treat it as production. |
+| `master` | A clean mirror of the upstream Zendesk Copenhagen theme — the source for pulling in Zendesk's own improvements. No Rentman code. |
+| `rentman` | The previous Support Center, replaced in early 2026. Historical reference only; don't commit to it. |
+
+Feature branches for larger work branch off `rentman2026` and merge back into it (see
+*Verifying changes*).
+
+### Pulling in Zendesk's upstream improvements
+
+`master` is refreshed from [zendesk/copenhagen_theme](https://github.com/zendesk/copenhagen_theme)
+(GitHub's "Sync fork" does it), then merged into `rentman2026`. A read-only `upstream`
+remote is configured locally for inspecting what's available.
+
+The catch: **upstream commits its built files too**, so an upstream merge touches
+`style.css` and `script.js` — exactly where the Rentman customizations live. Never
+resolve those conflicts by taking upstream's side wholesale; that's the same trap as
+running the build. Rentman's blocks are the `rm-`-prefixed rules at the end of
+`style.css` and must survive intact.
+
+Always dry-run before merging, which costs nothing and lists the conflicts:
+
+```bash
+git merge-tree --write-tree --name-only origin/rentman2026 upstream/master
+```
+
+An upstream sync is a deliberate project — propose it, don't fold it into unrelated work,
+and verify it via a test theme in Zendesk before it goes live.
 
 ## The one rule that matters: never run the build
 
