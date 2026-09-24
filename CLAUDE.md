@@ -78,11 +78,36 @@ here, and not by an agent. Known items:
 |---|---|
 | `hp_hero_jumpto` | Every pill in the homepage hero row (Changelog, API Docs, Academy, Services, Community) |
 | `hp_hero_onboarding` | The "New to Rentman? Start here →" CTA beside the pills |
+| `hp_cta_community` / `hp_cta_livechat` / `hp_cta_submit` | The three buttons in the "Still need help?" band. Each holds a full `<a class="rm-cta-band__btn ...">` including an inline Feather-style SVG icon — not the icon font. `hp_cta_livechat` is misnamed: it renders the *Call us* phone button. |
+| `hp_spotlight_cards` | The homepage Spotlight promos, as a **JSON array** (see below) |
+| `hp_spotlight_eyebrow` | The eyebrow above the Spotlight cards |
 | `support_center_notification` | The site-wide notification bar |
 
-Because each locale holds its own copy, these drift out of sync between languages. If a
-request is "change that link/label in the hero", the answer is usually a dynamic content
-edit, not a code change — say so rather than hardcoding it into the template.
+If a request is "change that link/label in the hero", the answer is usually a dynamic
+content edit, not a code change — say so rather than hardcoding it into the template.
+
+**Locale fallback.** A locale without its own variant inherits the item's default-language
+variant, so content added only in English renders in *every* locale rather than being
+absent. That is Zendesk behaviour, not a theme bug. It also means these items drift out of
+sync between languages once per-locale variants do exist.
+
+**The `off` switch.** The Spotlight and notification sections are rendered by inline JS
+that reads the DC item out of a `<script type="text/plain">` tag. A variant whose entire
+content is the word `off` hides that section for that locale:
+
+```js
+if (spotRaw && spotRaw !== 'off') { ... }
+```
+
+The value is trimmed and compared exactly — lowercase `off`, no surrounding markup. This
+is the supported way to hide a section per locale, or everywhere, without a code change or
+a theme deploy. Switching it back on means replacing `off` with the content again.
+
+**Debugging a section that won't appear.** Hidden has three indistinguishable causes: the
+variant is `off`, the variant is empty, or — for `hp_spotlight_cards` — the JSON failed to
+parse. The renderer swallows the parse error (`catch (e) { spotCards = []; }`) and logs
+nothing, so a stray smart quote from a rich-text editor silently hides the whole section.
+Validate the JSON before blaming the theme.
 
 A feature usually touches all of the relevant files above — e.g. the Spotlight bar was
 `home_page.hbs` + `style.css` + `manifest.json`.
