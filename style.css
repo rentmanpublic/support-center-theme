@@ -2701,11 +2701,6 @@ zd-autocomplete-breadcrumbs-multibrand {
 .rm-onboard-task__links a:hover { color: #FF5E1D; }
 .rm-onboard-step__note { font-size: 14px; color: #6b7280; margin: -12px 0 24px; line-height: 1.5; }
 
-/* Done when */
-.rm-onboard-step__done { border: 1px solid #e5e5e5; border-radius: 6px; background: #fff; padding: 14px 18px; margin-bottom: 24px; max-width: 720px; }
-.rm-onboard-step--alt .rm-onboard-step__done { border-color: #ddd9d0; }
-.rm-onboard-step__done-label { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #202121; margin-bottom: 6px; }
-.rm-onboard-step__done p { font-size: 14px; color: #202121; margin: 0; line-height: 1.6; }
 .rm-onboard-step__tip { max-width: 720px; }
 .rm-onboard-step .rm-onboard-step__res-label { margin-bottom: 14px; }
 

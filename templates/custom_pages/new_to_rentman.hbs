@@ -19,10 +19,10 @@
   <div class="rm-hero__inner">
     <p class="rm-section__eyebrow" style="color: rgba(255,255,255,0.5);">GETTING STARTED</p>
     <h1 class="rm-hero__heading" style="font-size: clamp(28px, 4vw, 48px);">
-      Set up Rentman for<br>the way you work
+      Get up and running<br>with Rentman
     </h1>
     <p class="rm-onboard-hero__sub">
-      Your setup depends on the products in your workspace. Select them below to see what to set up, and in which order.
+      Everything it takes to go live, in the order to do it.
     </p>
   </div>
 </section>
@@ -55,7 +55,6 @@
       <p class="rm-onboard-select__status" id="rm-onboard-status" aria-live="polite">Showing the setup for every product. Select yours to shorten the path.</p>
       <div class="rm-onboard-select__actions">
         <button type="button" class="rm-onboard-select__action" id="rm-onboard-reset" hidden>Show all products</button>
-        <button type="button" class="rm-onboard-select__action" id="rm-onboard-copy" hidden>Copy link to this path</button>
       </div>
     </div>
     <p class="rm-onboard-select__note">Not sure which products you have? A user who manages your license can check your plan in Rentman. See <a href="https://support.rentman.io/hc/en-us/articles/360015866540-Upgrade-or-Downgrade-Your-Plan">Upgrade or Downgrade Your Plan</a>.</p>
@@ -188,10 +187,6 @@
           <p>Start from the <strong>Document Template Library</strong> instead of building a template from scratch. Your quotes, invoices and packing slips all use these templates.</p>
         </div>
 
-        <div class="rm-onboard-step__done">
-          <span class="rm-onboard-step__done-label">Done when</span>
-          <p>You have created at least 5 projects and changed the status of at least 3 of them.</p>
-        </div>
 
         <div class="rm-onboard-step__video">
           <a href="https://support.rentman.io/hc/en-us/articles/360015575940-Video-Introduction-to-creating-managing-your-projects" class="rm-onboard-video-link">
@@ -258,10 +253,6 @@
           <p>A <strong>virtual combination</strong> cannot hold serialized equipment and has no QR code. If you need to know exactly which serial numbers go out, use a serialized <strong>physical combination</strong>. Import default content only after all your equipment is imported.</p>
         </div>
 
-        <div class="rm-onboard-step__done">
-          <span class="rm-onboard-step__done-label">Done when</span>
-          <p>Your catalog has at least 100 items or a completed import, you have planned equipment on 3 projects with at least 5 items each, and 3 combinations have default content.</p>
-        </div>
 
         <div class="rm-onboard-step__video">
           <a href="https://www.youtube.com/watch?v=Fm_bmQDHPew" class="rm-onboard-video-link" target="_blank" rel="noopener">
@@ -326,10 +317,6 @@
           <p>Crew rates cannot be imported. Enter them in the <strong>Configuration module</strong> &gt; <em>Financial &gt; Crew rates</em>, and use <strong>Link rates</strong> to apply one rate to many crew members at once.</p>
         </div>
 
-        <div class="rm-onboard-step__done">
-          <span class="rm-onboard-step__done-label">Done when</span>
-          <p>You have scheduled crew on at least 3 projects.</p>
-        </div>
 
         <div class="rm-onboard-step__video">
           <a href="https://support.rentman.io/hc/en-us/articles/360015581499-Video-Introduction-to-planning-your-crew-and-transport" class="rm-onboard-video-link">
@@ -388,10 +375,6 @@
           <p>If you use your own document templates, add the <em>Services</em> section to them yourself. Until you do, services from Organize do not appear on your quotes and invoices.</p>
         </div>
 
-        <div class="rm-onboard-step__done">
-          <span class="rm-onboard-step__done-label">Done when</span>
-          <p>You have created at least 5 quotations and 5 invoices, and sent or downloaded at least 5 of them.</p>
-        </div>
 
         <div class="rm-onboard-step__video">
           <a href="https://support.rentman.io/hc/en-us/articles/360015729040-Video-Introduction-to-Financials" class="rm-onboard-video-link">
@@ -451,10 +434,6 @@
           <p>Only physical combinations have a QR code, so a virtual combination cannot be scanned in the warehouse. Bulk items such as cables need one QR code per item, not one per serial number.</p>
         </div>
 
-        <div class="rm-onboard-step__done">
-          <span class="rm-onboard-step__done-label">Done when</span>
-          <p>You have changed the actual content of a combination, and booked equipment by scanning on at least 3 projects.</p>
-        </div>
 
         <div class="rm-onboard-step__video">
           <a href="https://support.rentman.io/hc/en-us/articles/360015577120-Video-Introduction-into-planning-and-tracking-your-equipment" class="rm-onboard-video-link">
@@ -525,11 +504,6 @@
           <p>Organize does not replace crew scheduling. Functions and shifts, and the hours registered on them, stay part of your crew plan.</p>
         </div>
 
-        {{!-- PENDING SIGN-OFF: Organize has no milestone in the onboarding graduation model yet. --}}
-        <div class="rm-onboard-step__done">
-          <span class="rm-onboard-step__done-label">Done when</span>
-          <p>Your team works from project task boards with your own task statuses on at least 3 projects.</p>
-        </div>
       </div>
     </div>
   </section>
@@ -544,6 +518,7 @@
     <div class="rm-onboard-next__links">
       <a href="https://support.rentman.io/hc/en-us/articles/35600301773970-How-to-Plan-Your-Rentman-Implementation" class="rm-onboard-next__link">How to Plan Your Rentman Implementation</a>
       <a href="https://rentman.io/services" class="rm-onboard-next__link" target="_blank" rel="noopener">Book a setup session with an expert</a>
+      <a href="https://community.rentman.io" class="rm-onboard-next__link" target="_blank" rel="noopener">Join the Rentman Community</a>
       <a href="/hc/en-us" class="rm-onboard-next__link">Browse the Support Center</a>
     </div>
   </div>
@@ -558,6 +533,7 @@
         <p class="rm-cta-band__desc">{{dc 'hp_cta_desc'}}</p>
       </div>
       <div class="rm-cta-band__actions">
+        {{dc 'hp_cta_community'}}
         {{dc 'hp_cta_livechat'}}
         {{dc 'hp_cta_submit'}}
       </div>
@@ -579,7 +555,6 @@
   var strip = document.getElementById('rm-onboard-strip');
   var status = document.getElementById('rm-onboard-status');
   var resetBtn = document.getElementById('rm-onboard-reset');
-  var copyBtn = document.getElementById('rm-onboard-copy');
   var selected = [];
 
   function has(list, key) { return list.indexOf(key) !== -1; }
@@ -681,7 +656,6 @@
         : 'Showing the setup for every product. Select yours to shorten the path.';
     }
     if (resetBtn) { resetBtn.hidden = !selected.length; }
-    if (copyBtn) { copyBtn.hidden = !selected.length; copyBtn.textContent = 'Copy link to this path'; }
   }
 
   function track(event, data) {
@@ -717,18 +691,6 @@
     });
   }
 
-  if (copyBtn) {
-    copyBtn.addEventListener('click', function () {
-      var url = window.location.origin + pathUrl();
-      var done = function () { copyBtn.textContent = 'Link copied'; };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link:', url); });
-      } else {
-        window.prompt('Copy this link:', url);
-      }
-      track('rm_onboarding_copy_link', { rm_products: selected.join(',') });
-    });
-  }
 
   // Article and video clicks, tagged with the block they sit in.
   document.addEventListener('click', function (e) {
