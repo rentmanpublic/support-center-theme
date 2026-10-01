@@ -2614,6 +2614,16 @@ zd-autocomplete-breadcrumbs-multibrand {
 .rm-onboard-preflight__btn--secondary { background: transparent; color: #6b7280; border: 1px solid #c8c3bb; }
 .rm-onboard-preflight__btn--secondary:hover { border-color: #202121; color: #202121; text-decoration: none; }
 
+/* Community band — sits under the preflight bar, lighter than a setup block */
+.rm-onboard-peers { background: #fff; border-bottom: 1px solid #e5e5e5; }
+.rm-onboard-peers__inner { max-width: 1160px; margin: 0 auto; padding: 14px 5%; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+@media (min-width: 1160px) { .rm-onboard-peers__inner { padding: 14px 0; width: 90%; } }
+.rm-onboard-peers__icon { color: #FF5E1D; display: inline-flex; flex-shrink: 0; }
+.rm-onboard-peers__text { font-size: 14px; color: #4b5563; margin: 0; line-height: 1.5; max-width: 640px; }
+.rm-onboard-peers__text strong { color: #202121; font-weight: 600; }
+.rm-onboard-peers__link { font-size: 14px; font-weight: 600; color: #202121; text-decoration: underline; text-underline-offset: 3px; margin-left: auto; white-space: nowrap; }
+.rm-onboard-peers__link:hover { color: #FF5E1D; }
+
 .rm-onboard-grad { background: #fff; border-top: 1px solid #e5e5e5; padding: 72px 0; text-align: center; }
 .rm-onboard-grad__inner { max-width: 560px; margin: 0 auto; padding: 0 5%; }
 .rm-onboard-grad__icon { font-size: 40px; display: block; margin-bottom: 16px; }
