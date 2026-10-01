@@ -82,7 +82,7 @@
     </p>
     <div class="rm-onboard-preflight__actions">
       <a href="https://support.rentman.io/hc/en-us/articles/35600301773970-How-to-Plan-Your-Rentman-Implementation" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--primary" data-rm-block-link="preflight">How to plan your implementation</a>
-      <button type="button" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--secondary" onclick="document.getElementById('rm-impl-modal').classList.add('is-open')">
+      <button type="button" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--secondary" id="rm-impl-open">
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         Find the Implementation Guide
       </button>
@@ -92,9 +92,9 @@
 
 {{!-- ── IMPLEMENTATION GUIDE MODAL ──────────────────────────────── --}}
 <div id="rm-impl-modal" class="rm-impl-modal" role="dialog" aria-modal="true" aria-labelledby="rm-impl-modal-title">
-  <div class="rm-impl-modal__backdrop" onclick="document.getElementById('rm-impl-modal').classList.remove('is-open')"></div>
-  <div class="rm-impl-modal__box">
-    <button type="button" class="rm-impl-modal__close" onclick="document.getElementById('rm-impl-modal').classList.remove('is-open')" aria-label="Close">✕</button>
+  <div class="rm-impl-modal__backdrop"></div>
+  <div class="rm-impl-modal__box" tabindex="-1">
+    <button type="button" class="rm-impl-modal__close" aria-label="Close">✕</button>
     <h2 class="rm-impl-modal__title" id="rm-impl-modal-title">Find the Implementation Guide</h2>
     <p class="rm-impl-modal__desc">The <strong>Implementation Guide</strong> is the first item in the left-hand navigation in Rentman. It lists the setup steps for your workspace and tracks which ones you have completed.</p>
     <div class="rm-impl-modal__img-wrap">
@@ -718,4 +718,57 @@
   if (fromUrl === null && selected.length) { writeUrl(); }
   if (fromUrl !== null) { writeStore(); }
 })();
+</script>
+
+{{!-- ── IMPLEMENTATION GUIDE MODAL (ES5, page-scoped) ──────────── --}}
+<script>
+(function () {
+  var modal = document.getElementById('rm-impl-modal');
+  if (!modal) { return; }
+  var opener   = document.getElementById('rm-impl-open');
+  var box      = modal.querySelector('.rm-impl-modal__box');
+  var backdrop = modal.querySelector('.rm-impl-modal__backdrop');
+  var closer   = modal.querySelector('.rm-impl-modal__close');
+  var lastFocus = null;
+
+  // Visible, focusable children of the dialog, in tab order.
+  function focusable() {
+    var all = box.querySelectorAll('a[href], button:not([disabled])');
+    var out = [];
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].offsetWidth || all[i].offsetHeight) { out.push(all[i]); }
+    }
+    return out;
+  }
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open');
+    box.focus();
+    document.addEventListener('keydown', onKey);
+  }
+
+  function close() {
+    if (!modal.classList.contains('is-open')) { return; }
+    modal.classList.remove('is-open');
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) { close(); return; }
+    if (e.key !== 'Tab' && e.keyCode !== 9) { return; }
+    var f = focusable();
+    if (!f.length) { e.preventDefault(); return; }
+    var first = f[0], last = f[f.length - 1], active = document.activeElement;
+    // Keep Tab inside the dialog while it is open.
+    if (!box.contains(active)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && (active === first || active === box)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
+  }
+
+  if (opener)   { opener.addEventListener('click', open); }
+  if (backdrop) { backdrop.addEventListener('click', close); }
+  if (closer)   { closer.addEventListener('click', close); }
+}());
 </script>
