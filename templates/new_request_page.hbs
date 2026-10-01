@@ -55,3 +55,40 @@
 
   renderNewRequestForm(settings, props, container);
 </script>
+
+{{!-- ── NOTIFICATION BAR SCRIPT (ES5, page-scoped) ──────────────
+  Same behaviour as the homepage: show the dynamic content message if
+  there is one, otherwise surface the first unresolved status incident.
+  The logic lives per template because script.js carries none of it.
+──────────────────────────────────────────────────────────────── --}}
+<script>
+(function () {
+  var bar  = document.getElementById('rm-notification-bar');
+  var text = document.getElementById('rm-notification-text');
+  var dcEl = document.getElementById('rm-dc-notification');
+  if (!bar || !text || !dcEl) { return; }
+
+  var msg = (dcEl.textContent || '').trim();
+  if (msg && msg !== 'off') {
+    text.innerHTML = msg;
+    bar.style.display = '';
+    return;
+  }
+
+  fetch('https://status.rentman.io/api/v2/incidents/unresolved.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      var incidents = (data.incidents || []);
+      if (!incidents.length) { return; }
+      var inc    = incidents[0];
+      var sev    = inc.impact || 'minor';
+      var update = inc.incident_updates && inc.incident_updates[0];
+      bar.classList.add(sev === 'critical' ? 'rm-notification-bar--critical' : 'rm-notification-bar--major');
+      text.innerHTML = '<strong>' + inc.name + '</strong>'
+        + (update ? ' — ' + update.body : '')
+        + ' <a href="https://status.rentman.io" target="_blank" rel="noopener">View status →</a>';
+      bar.style.display = '';
+    })
+    .catch(function () {});
+}());
+</script>
