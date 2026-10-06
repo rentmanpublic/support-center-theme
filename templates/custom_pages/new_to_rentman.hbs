@@ -1,266 +1,543 @@
-{{!-- ── ONBOARDING HUB ─────────────────────────────────────────── --}}
+{{!-- ── ONBOARDING HUB ─────────────────────────────────────────────
+  Modular setup path. The customer selects the products in their workspace;
+  the inline script at the bottom shows the matching blocks, numbers them,
+  and keeps the selection in the URL (?products=inventory,crew,qi).
+
+  Product keys: inventory, crew, organize, qi (Quoting & Invoicing),
+  tracking (Equipment Tracking, requires inventory). Platform is always shown.
+
+  Conditional content inside a block: data-rm-show="<expr>", where <expr> is
+  one or more product keys joined by & (and), each optionally prefixed with !
+  (not). Example: data-rm-show="inventory&!crew". With no selection, every
+  product counts as selected, so the page shows the full path.
+
+  Without JavaScript the page shows every block in the default order.
+──────────────────────────────────────────────────────────────── --}}
 
 {{!-- ── HERO ─────────────────────────────────────────────────── --}}
 <section class="rm-hero rm-onboard-hero">
   <div class="rm-hero__inner">
     <p class="rm-section__eyebrow" style="color: rgba(255,255,255,0.5);">GETTING STARTED</p>
-    <div class="rm-hero__heading" style="font-size: clamp(28px, 4vw, 48px);">
-      New to Rentman?<br>You're in the right place.
-    </div>
+    <h1 class="rm-hero__heading" style="font-size: clamp(28px, 4vw, 48px);">
+      Get up and running<br>with Rentman
+    </h1>
     <p class="rm-onboard-hero__sub">
-      Follow our 5-part guide to get your equipment, projects, finances, and crew up and running — fast.
+      From an empty workspace to your first live project.
     </p>
   </div>
 </section>
 
-{{!-- ── PROGRESS STRIP ─────────────────────────────────────────── --}}
-<div class="rm-onboard-strip">
-  <div class="rm-onboard-strip__inner">
-    <a href="#step-1" class="rm-onboard-strip__item">
-      <span class="rm-onboard-strip__num">01</span>
-      <span class="rm-onboard-strip__label">Equipment</span>
-    </a>
-    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
-    <a href="#step-2" class="rm-onboard-strip__item">
-      <span class="rm-onboard-strip__num">02</span>
-      <span class="rm-onboard-strip__label">Crew</span>
-    </a>
-    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
-    <a href="#step-3" class="rm-onboard-strip__item">
-      <span class="rm-onboard-strip__num">03</span>
-      <span class="rm-onboard-strip__label">Projects</span>
-    </a>
-    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
-    <a href="#step-4" class="rm-onboard-strip__item">
-      <span class="rm-onboard-strip__num">04</span>
-      <span class="rm-onboard-strip__label">Quotes &amp; Invoicing</span>
-    </a>
-    <span class="rm-onboard-strip__divider" aria-hidden="true">→</span>
-    <a href="#step-5" class="rm-onboard-strip__item">
-      <span class="rm-onboard-strip__num">05</span>
-      <span class="rm-onboard-strip__label">Logistics</span>
-    </a>
-  </div>
-</div>
+{{!-- ── PRODUCT SELECTOR ───────────────────────────────────────── --}}
+<section class="rm-onboard-select" id="rm-onboard-select" aria-labelledby="rm-onboard-select-title">
+  <div class="rm-onboard-select__inner">
+    <h2 class="rm-onboard-select__title" id="rm-onboard-select-title">Which products does your workspace have?</h2>
+    <p class="rm-onboard-select__hint">The Rentman Platform is part of every plan, so its setup is always included.</p>
 
-{{!-- ── STEP 0: PRE-FLIGHT ──────────────────────────────────────── --}}
+    <div class="rm-onboard-select__groups">
+      <div class="rm-onboard-select__group" role="group" aria-labelledby="rm-onboard-select-products">
+        <p class="rm-onboard-select__label" id="rm-onboard-select-products">Products</p>
+        <div class="rm-onboard-select__chips">
+          <button type="button" class="rm-onboard-chip" data-rm-product="inventory" aria-pressed="false">Inventory</button>
+          <button type="button" class="rm-onboard-chip" data-rm-product="crew" aria-pressed="false">Crew</button>
+          <button type="button" class="rm-onboard-chip" data-rm-product="organize" aria-pressed="false">Organize</button>
+        </div>
+      </div>
+      <div class="rm-onboard-select__group" role="group" aria-labelledby="rm-onboard-select-addons">
+        <p class="rm-onboard-select__label" id="rm-onboard-select-addons">Add-ons</p>
+        <div class="rm-onboard-select__chips">
+          <button type="button" class="rm-onboard-chip" data-rm-product="qi" aria-pressed="false">Quoting &amp; Invoicing</button>
+          <button type="button" class="rm-onboard-chip" data-rm-product="tracking" aria-pressed="false">Equipment Tracking</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rm-onboard-select__footer">
+      <p class="rm-onboard-select__status" id="rm-onboard-status" aria-live="polite">Showing every product. Select yours to shorten the path.</p>
+      <p class="rm-onboard-select__note">Not sure which products you have? <a href="https://support.rentman.io/hc/en-us/articles/360015866540-Upgrade-or-Downgrade-Your-Plan">Check your plan in Rentman</a>.</p>
+      <div class="rm-onboard-select__actions">
+        <button type="button" class="rm-onboard-select__action" id="rm-onboard-reset" hidden>Show all products</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{!-- ── PATH STRIP (filled by script; static fallback for no-JS) ── --}}
+<nav class="rm-onboard-strip" aria-label="Your setup path">
+  <div class="rm-onboard-strip__inner" id="rm-onboard-strip">
+    <a href="#rm-block-platform" class="rm-onboard-strip__item"><span class="rm-onboard-strip__num">01</span><span class="rm-onboard-strip__label">Platform</span></a>
+    <a href="#rm-block-inventory" class="rm-onboard-strip__item"><span class="rm-onboard-strip__num">02</span><span class="rm-onboard-strip__label">Inventory</span></a>
+    <a href="#rm-block-crew" class="rm-onboard-strip__item"><span class="rm-onboard-strip__num">03</span><span class="rm-onboard-strip__label">Crew</span></a>
+    <a href="#rm-block-qi" class="rm-onboard-strip__item"><span class="rm-onboard-strip__num">04</span><span class="rm-onboard-strip__label">Quoting &amp; Invoicing</span></a>
+    <a href="#rm-block-tracking" class="rm-onboard-strip__item"><span class="rm-onboard-strip__num">05</span><span class="rm-onboard-strip__label">Equipment Tracking</span></a>
+    <a href="#rm-block-organize" class="rm-onboard-strip__item"><span class="rm-onboard-strip__num">06</span><span class="rm-onboard-strip__label">Organize</span></a>
+  </div>
+</nav>
+
+{{!-- ── BEFORE YOU START ───────────────────────────────────────── --}}
 <div class="rm-onboard-preflight">
   <div class="rm-onboard-preflight__inner">
     <p class="rm-onboard-preflight__text">
-      <span class="rm-onboard-preflight__label">Before you begin —</span>
-      visit the <strong>Implementation Guide</strong> inside Rentman for key setup steps.
+      <span class="rm-onboard-preflight__label">Before you start:</span>
+      plan your implementation. Customers who set aside 8 to 12 hours per week typically go live within 6 to 10 weeks.
     </p>
     <div class="rm-onboard-preflight__actions">
-      <button class="rm-onboard-preflight__btn rm-onboard-preflight__btn--primary" onclick="document.getElementById('rm-impl-modal').classList.add('is-open')">
+      <a href="https://support.rentman.io/hc/en-us/articles/35600301773970-How-to-Plan-Your-Rentman-Implementation" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--primary" data-rm-block-link="preflight">How to plan your implementation</a>
+      <button type="button" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--secondary" id="rm-impl-open">
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-        Implementation Guide
+        Find the Implementation Guide
       </button>
-      {{!-- <a href="#" class="rm-onboard-preflight__btn rm-onboard-preflight__btn--secondary">
-        Planning your implementation →
-      </a> --}}
     </div>
+  </div>
+
+  {{!-- Community sits in the same band: both are things to know before you begin. --}}
+  <div class="rm-onboard-peers__inner">
+    <span class="rm-onboard-peers__icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+    <p class="rm-onboard-peers__text"><strong>Setting up right now?</strong> Ask your question in the Getting Started category of the Rentman Community and connect with other Rentman users.</p>
+    <a href="https://community.rentman.io/c/getting-started/14" class="rm-onboard-peers__link" target="_blank" rel="noopener" data-rm-block-link="community">Ask in the Community &rarr;</a>
   </div>
 </div>
 
 {{!-- ── IMPLEMENTATION GUIDE MODAL ──────────────────────────────── --}}
 <div id="rm-impl-modal" class="rm-impl-modal" role="dialog" aria-modal="true" aria-labelledby="rm-impl-modal-title">
-  <div class="rm-impl-modal__backdrop" onclick="document.getElementById('rm-impl-modal').classList.remove('is-open')"></div>
-  <div class="rm-impl-modal__box">
-    <button class="rm-impl-modal__close" onclick="document.getElementById('rm-impl-modal').classList.remove('is-open')" aria-label="Close">✕</button>
-    <h2 class="rm-impl-modal__title" id="rm-impl-modal-title">Finding the Implementation Guide</h2>
-    <p class="rm-impl-modal__desc">The Implementation Guide is the first item in Rentman's left-hand navigation. It walks you through essential setup steps — configuration, your first project, equipment, and more. Log in to your account to get started.</p>
+  <div class="rm-impl-modal__backdrop"></div>
+  <div class="rm-impl-modal__box" tabindex="-1">
+    <button type="button" class="rm-impl-modal__close" aria-label="Close">✕</button>
+    <h2 class="rm-impl-modal__title" id="rm-impl-modal-title">Find the Implementation Guide</h2>
+    <p class="rm-impl-modal__desc">The <strong>Implementation Guide</strong> is the first item in the left-hand navigation in Rentman. It lists the setup steps for your workspace and tracks which ones you have completed.</p>
     <div class="rm-impl-modal__img-wrap">
-      <img src="{{asset 'impl-guide-screenshot.png'}}" alt="Implementation Guide location in Rentman navigation" class="rm-impl-modal__img" />
+      <img src="{{asset 'impl-guide-screenshot.png'}}" alt="Implementation Guide location in the Rentman navigation" class="rm-impl-modal__img" />
     </div>
     <a href="https://rentmanapp.com" target="_blank" rel="noopener" class="rm-impl-modal__cta">Log in to Rentman →</a>
   </div>
 </div>
 
-{{!-- ── GUIDE STEPS ─────────────────────────────────────────────── --}}
-<div class="rm-onboard-steps">
+{{!-- ── SETUP BLOCKS ────────────────────────────────────────────
+  Order in the markup = order on the page. Each block: what you get,
+  set it up (ordered tasks + articles), watch out for, done when.
+──────────────────────────────────────────────────────────────── --}}
+<div class="rm-onboard-steps" id="rm-onboard-blocks">
 
-  {{!-- STEP 1: Equipment --}}
-  <section class="rm-onboard-step" id="step-1">
+  {{!-- PLATFORM (always) --}}
+  <section class="rm-onboard-step" id="rm-block-platform" data-rm-block="platform" data-rm-label="Platform">
     <div class="rm-onboard-step__inner">
       <div class="rm-onboard-step__meta">
         <span class="rm-onboard-step__num">01</span>
-        <span class="rm-onboard-step__tag">Foundation</span>
+        <span class="rm-onboard-step__tag">Every workspace</span>
       </div>
       <div class="rm-onboard-step__body">
-        <h2 class="rm-onboard-step__title">Gear Up — Managing your equipment</h2>
-        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge" target="_blank" rel="noopener">📦 Equipment Scheduling</a>
-        <p class="rm-onboard-step__desc">The secret to a smooth experience starts with how you organise your warehouse virtually. Get your gear into the system the right way from day one.</p>
-        <div class="rm-onboard-step__tip">
-          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
-          <p>Use <strong>Physical Combinations</strong> for permanently bundled items (like a rack-mounted amp). Use <strong>Virtual Combinations</strong> for items often rented together but separable. Your warehouse team will always know exactly what to pack.</p>
-        </div>
-        <div class="rm-onboard-step__resources">
-          <div class="rm-onboard-step__articles">
-            <p class="rm-onboard-step__res-label">📄 Articles</p>
-            <ul>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360014141299-Import-Your-Equipment">Import your Equipment via Excel/CSV</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360013703140-Create-Equipment-Combinations">Create Equipment Combinations</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/4402870209682-Equipment-Combinations-and-How-to-Work-with-Them">Equipment Combinations and How to Work with Them</a></li>
+        <h2 class="rm-onboard-step__title">Platform: set up your workspace</h2>
+        <span class="rm-onboard-plan-badge">Rentman Platform</span>
+        <p class="rm-onboard-step__desc">The Rentman Platform is part of every plan. It holds your company settings, users, contacts, crew members and projects. Set it up first, because every product builds on it.</p>
+
+        <p class="rm-onboard-step__res-label">Set it up</p>
+        <ol class="rm-onboard-tasks">
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Empty your trial database before you add your own data.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013982380-Empty-Your-Trial-Database">Empty Your Trial Database</a></li>
             </ul>
-          </div>
-          <div class="rm-onboard-step__video">
-            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
-            <a href="https://www.youtube.com/watch?v=Fm_bmQDHPew" class="rm-onboard-video-link" target="_blank" rel="noopener">
-              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
-              How to import your equipment into Rentman
-            </a>
-          </div>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Add your company details and logo.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014055700-Add-Company-Logo-and-Information-on-My-Documents">Add Company Logo and Information on My Documents</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up user roles, then invite your colleagues.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360012611160-Setting-Up-User-Roles">Setting Up User Roles</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/22185539659666-User-Role-Permissions-in-Rentman">User Role Permissions in Rentman</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360015898239-Managing-Power-Users">Managing Power Users</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set your email sender address and verify your domain.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360015717380-Change-the-Email-Sender-Address-and-Verify-a-Domain">Change the Email Sender Address and Verify a Domain</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Import your contacts and add your crew members.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013553000-Import-your-Contacts">Import your Contacts</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014366299-Import-Your-Crew-Members">Import Your Crew Members</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up your document templates.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/23413689614226-The-Document-Template-Library">The Document Template Library</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014232559-Customize-Document-Templates">Customize Document Templates</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/17707866444178-Variables-and-How-They-Work">Variables and How They Work</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Create project templates for the work you repeat.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013367659-Project-Templates">Project Templates</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Create your first project.</p>
+            <ul class="rm-onboard-task__links">
+              <li data-rm-show="inventory&amp;crew"><a href="https://support.rentman.io/hc/en-us/articles/14829964454546-Create-Basic-Rental-Project-Crew-and-Equipment">Create Basic Rental Project (Crew and Equipment)</a></li>
+              <li data-rm-show="inventory&amp;!crew"><a href="https://support.rentman.io/hc/en-us/articles/13793720770194-Create-an-Equipment-only-Project">Create an Equipment-only Project</a></li>
+              <li data-rm-show="crew&amp;!inventory"><a href="https://support.rentman.io/hc/en-us/articles/13724369155218-Create-a-Crew-only-Project">Create a Crew-only Project</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013590720-Create-or-Duplicate-a-Project">Create or Duplicate a Project</a></li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">Watch out for</span>
+          <p>Start from the <strong>Document Template Library</strong> instead of building a template from scratch. Your quotes, invoices and packing slips all use these templates.</p>
+        </div>
+
+
+        <div class="rm-onboard-step__video">
+          <a href="https://support.rentman.io/hc/en-us/articles/360015575940-Video-Introduction-to-creating-managing-your-projects" class="rm-onboard-video-link">
+            <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+            Video: Introduction to creating and managing your projects
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  {{!-- STEP 2: Crew (was step 5) --}}
-  <section class="rm-onboard-step rm-onboard-step--alt" id="step-2">
+  {{!-- INVENTORY --}}
+  <section class="rm-onboard-step" id="rm-block-inventory" data-rm-block="inventory" data-rm-label="Inventory">
     <div class="rm-onboard-step__inner">
       <div class="rm-onboard-step__meta">
         <span class="rm-onboard-step__num">02</span>
-        <span class="rm-onboard-step__tag">People</span>
+        <span class="rm-onboard-step__tag">Product</span>
       </div>
       <div class="rm-onboard-step__body">
-        <h2 class="rm-onboard-step__title">The Human Element — Mastering crew scheduling</h2>
-        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge" target="_blank" rel="noopener">👥 Crew Scheduling</a>
-        <p class="rm-onboard-step__desc">Your crew are central to everything you do. Get them into the system early — before you start planning projects — so you're ready to assign the right people from day one.</p>
-        <div class="rm-onboard-step__tip">
-          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
-          <p>Tag crew members with skills and certifications (like <strong>#LeadTech</strong>, <strong>#A1</strong>, <strong>#TruckDriver</strong>) in their profiles. Filter by tag when planning to instantly see the most qualified people — no scrolling through your entire database.</p>
-        </div>
-        <div class="rm-onboard-step__resources">
-          <div class="rm-onboard-step__articles">
-            <p class="rm-onboard-step__res-label">📄 Articles</p>
-            <ul>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/14232209807506-Functions-What-are-they-and-how-to-create-them">Setting up Functions</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360014610140-Crew-Planner-Module">Using the Crew Planner</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360014672919-Communicate-the-Crew-Planning">Communicating the Crew Planning</a></li>
+        <h2 class="rm-onboard-step__title">Inventory: add and plan your equipment</h2>
+        <span class="rm-onboard-plan-badge">Inventory</span>
+        <p class="rm-onboard-step__desc">Inventory adds the <strong>Equipment</strong>, <strong>Shortages</strong> and <strong>Maintenance</strong> modules, and the <em>Equipment</em> and <em>Subrent</em> tabs in your projects.</p>
+
+        <p class="rm-onboard-step__res-label">Set it up</p>
+        <ol class="rm-onboard-tasks">
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Decide which items are bulk and which are serialized, and which combinations you need.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/24338169105298-Equipment-Import-How-do-I-Format-my-Import-File-for-Bulk-Equipment">Format your import file for bulk equipment</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/24320695034642-Equipment-Import-How-do-I-Format-my-Import-File-for-Serialized-Equipment">Format your import file for serialized equipment</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/19886981689362-Insights-into-Default-Actual-and-Planned-Content">Insights into Default, Actual and Planned Content</a></li>
             </ul>
-          </div>
-          <div class="rm-onboard-step__video">
-            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
-            <a href="https://support.rentman.io/hc/en-us/articles/360015581499-Video-Introduction-to-planning-your-crew-and-transport" class="rm-onboard-video-link" target="_blank" rel="noopener">
-              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
-              Introduction to planning your crew and transport
-            </a>
-          </div>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Import your individual equipment items first.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014141299-Import-Your-Equipment">Import Your Equipment</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Add your combinations, then import their default content.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/20045646271250-Equipment-Import-Import-default-content">Equipment Import: Import default content</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Plan equipment on a project.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013730520-Plan-Equipment-on-a-Project">Plan Equipment on a Project</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360017700339-What-are-planning-and-usage-periods">What are planning and usage periods?</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Solve shortages, for example with a subrental.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013836939-Guide-to-Solving-Equipment-Shortages">Guide to Solving Equipment Shortages</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013771040-Solve-Equipment-Shortages-with-Subrentals">Solve Equipment Shortages with Subrentals</a></li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">Watch out for</span>
+          <p>A <strong>virtual combination</strong> cannot hold serialized equipment and has no QR code. If you need to know exactly which serial numbers go out, use a serialized <strong>physical combination</strong>. Import default content only after all your equipment is imported.</p>
+        </div>
+
+
+        <div class="rm-onboard-step__video">
+          <a href="https://www.youtube.com/watch?v=Fm_bmQDHPew" class="rm-onboard-video-link" target="_blank" rel="noopener">
+            <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+            Video: How to import your equipment into Rentman
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  {{!-- STEP 3: Projects (was step 2) --}}
-  <section class="rm-onboard-step" id="step-3">
+  {{!-- CREW --}}
+  <section class="rm-onboard-step" id="rm-block-crew" data-rm-block="crew" data-rm-label="Crew">
     <div class="rm-onboard-step__inner">
       <div class="rm-onboard-step__meta">
         <span class="rm-onboard-step__num">03</span>
-        <span class="rm-onboard-step__tag">Planning</span>
+        <span class="rm-onboard-step__tag">Product</span>
       </div>
       <div class="rm-onboard-step__body">
-        <h2 class="rm-onboard-step__title">From Zero to Booked — Planning your first project</h2>
-        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge" target="_blank" rel="noopener">🔧 Rentman Platform</a>
-        <p class="rm-onboard-step__desc">Now that your gear is in the system, it's time to move from inventory to action. Build your first project and stop starting from scratch every time.</p>
-        <div class="rm-onboard-step__tip">
-          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
-          <p>Always set your <strong>Planning period</strong> slightly longer than your <strong>Usage period</strong> to account for prep and load-out. This prevents ghost shortages where gear looks available but is still on a truck.</p>
-        </div>
-        <div class="rm-onboard-step__resources">
-          <div class="rm-onboard-step__articles">
-            <p class="rm-onboard-step__res-label">📄 Articles</p>
-            <ul>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360013367659-Project-Templates">Using Project Templates</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360017700339-What-are-planning-and-usage-periods">Planning vs. Usage periods explained</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360013730520-Plan-Equipment-on-a-Project">Planning equipment and crew on a project</a></li>
+        <h2 class="rm-onboard-step__title">Crew: schedule your people</h2>
+        <span class="rm-onboard-plan-badge">Crew</span>
+        <p class="rm-onboard-step__desc">Crew adds the <strong>Crew planner</strong>, <strong>Vehicles</strong> and <strong>Time registration</strong> modules, and crew scheduling and transport planning in your projects.</p>
+
+        <p class="rm-onboard-step__res-label">Set it up</p>
+        <ol class="rm-onboard-tasks">
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Decide how to plan each kind of work.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/38421818533522-How-to-Plan-Work-in-Rentman">How to Plan Work in Rentman</a></li>
             </ul>
-          </div>
-          <div class="rm-onboard-step__video">
-            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
-            <a href="https://support.rentman.io/hc/en-us/articles/360015575940-Video-Introduction-to-creating-managing-your-projects" class="rm-onboard-video-link" target="_blank" rel="noopener">
-              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
-              Introduction to creating &amp; managing your projects
-            </a>
-          </div>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Create functions for the roles you plan.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/14232209807506-Functions-What-Are-They-and-How-to-Create-Them">Functions: What Are They and How to Create Them</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up your crew rates.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/7191443180562-Crew-Rates-and-Overtime-Calculation">Crew Rates and Overtime Calculation</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Plan crew on a project.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014594620-Plan-Crew-from-within-a-Project">Plan Crew from within a Project</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014610140-Crew-Planner-Module">Crew Planner Module</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Invite your crew and share the schedule.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/17080436056978-Invite-Crew-Members-and-Invitation-Types">Invite Crew Members and Invitation Types</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360014672919-Communicate-the-Crew-Planning-Schedule">Communicate the Crew Planning Schedule</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up time registration.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360015498439-Time-Registration-Module">Time Registration Module</a></li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">Watch out for</span>
+          <p>Crew rates cannot be imported. Enter them in the <strong>Configuration module</strong> &gt; <em>Financial &gt; Crew rates</em>, and use <strong>Link rates</strong> to apply one rate to many crew members at once.</p>
+        </div>
+
+
+        <div class="rm-onboard-step__video">
+          <a href="https://support.rentman.io/hc/en-us/articles/360015581499-Video-Introduction-to-planning-your-crew-and-transport" class="rm-onboard-video-link">
+            <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+            Video: Introduction to planning your crew and transport
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  {{!-- STEP 4: Quotes & Invoicing (was step 3) --}}
-  <section class="rm-onboard-step rm-onboard-step--alt" id="step-4">
+  {{!-- QUOTING & INVOICING --}}
+  <section class="rm-onboard-step" id="rm-block-qi" data-rm-block="qi" data-rm-label="Quoting &amp; Invoicing">
     <div class="rm-onboard-step__inner">
       <div class="rm-onboard-step__meta">
         <span class="rm-onboard-step__num">04</span>
-        <span class="rm-onboard-step__tag">Financials</span>
+        <span class="rm-onboard-step__tag">Add-on</span>
       </div>
       <div class="rm-onboard-step__body">
-        <h2 class="rm-onboard-step__title">The Money Talk — Quotes and invoices simplified</h2>
-        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge rm-onboard-plan-badge--addon" target="_blank" rel="noopener">➕ Quoting &amp; Invoicing add-on required</a>
-        <p class="rm-onboard-step__desc">Turn your hard work into revenue. Make sure your client-facing documents look as professional as your events — from first quote to final invoice.</p>
-        <div class="rm-onboard-step__tip">
-          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
-          <p>Use Rentman's task system to set a reminder to follow up on unsigned quotes after 3 days. A gentle nudge often makes the difference between a "maybe" and a "confirmed".</p>
-        </div>
-        <div class="rm-onboard-step__resources">
-          <div class="rm-onboard-step__articles">
-            <p class="rm-onboard-step__res-label">📄 Articles</p>
-            <ul>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360013503420-Document-Templates">Using the Document Template Editor</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360012594659-Create-a-Quotation-or-a-Contract">Create a Quotation or Contract</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360017648580-How-do-I-generate-invoices-in-Rentman">Invoicing your Client</a></li>
+        <h2 class="rm-onboard-step__title">Quoting &amp; Invoicing: quote, invoice and get paid</h2>
+        <span class="rm-onboard-plan-badge rm-onboard-plan-badge--addon">Quoting &amp; Invoicing add-on</span>
+        <p class="rm-onboard-step__desc">Quoting &amp; Invoicing adds the <strong>Financial</strong> module and purchase orders to your projects. Your quotes and invoices use the document templates from the Platform block, so finish those first.</p>
+
+        <p class="rm-onboard-step__res-label">Set it up</p>
+        <ol class="rm-onboard-tasks">
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up your invoicing process.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013628279-Set-Up-your-Invoicing-Process-and-Get-Paid">Set Up your Invoicing Process and Get Paid</a></li>
             </ul>
-          </div>
-          <div class="rm-onboard-step__video">
-            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
-            <a href="https://support.rentman.io/hc/en-us/articles/360015729040-Video-Introduction-to-Financials" class="rm-onboard-video-link" target="_blank" rel="noopener">
-              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
-              Introduction to Financials
-            </a>
-          </div>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Create and send a quotation.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360012594659-Create-a-Quotation-or-a-Contract">Create a Quotation or a Contract</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Create an invoice and register the payment.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013965120-Create-an-Invoice">Create an Invoice</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/18560784878610-Marking-an-Invoice-as-Paid">Marking an Invoice as Paid</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Connect your accounting software or online payments.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013973240-Connect-your-Accounting-Software-to-Rentman">Connect your Accounting Software to Rentman</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/18536074243474-Set-Up-and-Get-Paid-VIA-Digital-Payment-with-Mollie-or-Stripe">Get Paid via Digital Payment with Mollie or Stripe</a></li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="rm-onboard-step__tip" data-rm-show="organize">
+          <span class="rm-onboard-step__tip-label">Watch out for</span>
+          <p>If you use your own document templates, add the <em>Services</em> section to them yourself. Until you do, services from Organize do not appear on your quotes and invoices.</p>
+        </div>
+
+
+        <div class="rm-onboard-step__video">
+          <a href="https://support.rentman.io/hc/en-us/articles/360015729040-Video-Introduction-to-Financials" class="rm-onboard-video-link">
+            <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+            Video: Introduction to Financials
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  {{!-- STEP 5: Logistics (was step 4) --}}
-  <section class="rm-onboard-step" id="step-5">
+  {{!-- EQUIPMENT TRACKING (requires Inventory) --}}
+  <section class="rm-onboard-step" id="rm-block-tracking" data-rm-block="tracking" data-rm-label="Equipment Tracking">
     <div class="rm-onboard-step__inner">
       <div class="rm-onboard-step__meta">
         <span class="rm-onboard-step__num">05</span>
-        <span class="rm-onboard-step__tag">Logistics</span>
+        <span class="rm-onboard-step__tag">Add-on</span>
       </div>
       <div class="rm-onboard-step__body">
-        <h2 class="rm-onboard-step__title">Logistics Masterclass — Managing shortages and returns</h2>
-        <a href="https://support.rentman.io/hc/en-us/articles/360014710799-Explore-Our-Plans" class="rm-onboard-plan-badge rm-onboard-plan-badge--addon" target="_blank" rel="noopener">➕ Equipment Tracking add-on required</a>
-        <p class="rm-onboard-step__desc">Equipment needs to be in two places at once and things don't always come back on time. Here's how Rentman helps you handle those moments before they become problems.</p>
-        <div class="rm-onboard-step__tip">
-          <span class="rm-onboard-step__tip-label">💡 Best practice</span>
-          <p>A red line in your timeline isn't a failure — it's a prompt. Use the <strong>Quick Subrental</strong> feature directly from the shortage view to track costs and prevent double-booking in seconds.</p>
-        </div>
-        <div class="rm-onboard-step__resources">
-          <div class="rm-onboard-step__articles">
-            <p class="rm-onboard-step__res-label">📄 Articles</p>
-            <ul>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/360013771040-Solve-Equipment-Shortages-with-Subrentals">Solve Equipment Shortages with Subrentals</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/13901986840082-Manually-Book-Equipment">The Equipment Return Process</a></li>
-              <li><a href="https://support.rentman.io/hc/en-us/articles/17531415206418-How-to-Handle-Lost-or-Defective-Equipment-in-the-Warehouse">Handling lost or defective equipment</a></li>
+        <h2 class="rm-onboard-step__title">Equipment Tracking: book and scan in the warehouse</h2>
+        <span class="rm-onboard-plan-badge rm-onboard-plan-badge--addon">Equipment Tracking add-on · requires Inventory</span>
+        <p class="rm-onboard-step__desc">Equipment Tracking adds the <strong>Warehouse</strong> module, where you book equipment out for a project and back in when it returns.</p>
+
+        <p class="rm-onboard-step__res-label">Set it up</p>
+        <ol class="rm-onboard-tasks">
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up QR codes and barcodes, and print your labels.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013101260-Set-up-QR-Codes-and-Barcodes">Set up QR Codes and Barcodes</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/20257253618322-Customize-Your-Equipment-Slips-and-Labels">Customize Your Equipment Slips and Labels</a></li>
             </ul>
-          </div>
-          <div class="rm-onboard-step__video">
-            <p class="rm-onboard-step__res-label">🎬 Watch on demand</p>
-            <a href="https://support.rentman.io/hc/en-us/articles/360015577120-Video-Introduction-into-planning-and-tracking-your-equipment" class="rm-onboard-video-link" target="_blank" rel="noopener">
-              <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
-              Introduction to planning and tracking your equipment
-            </a>
-          </div>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Book equipment out for a project.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/13901986840082-Manually-Book-Equipment">Manually Book Equipment</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/20895544793490-Booking-out-Combinations-in-the-Warehouse-Preferred-Flow-Web-and-App">Booking out Combinations in the Warehouse</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Return equipment with Scan Return.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/13959262021394-Equipment-Returns-with-the-Scan-Return-Feature">Equipment Returns with the Scan Return Feature</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/27954393425042-Scan-Return-with-Rentman-Mobile-App">Scan Return with Rentman Mobile App</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Handle lost or defective equipment.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/17531415206418-How-to-Handle-Lost-or-Defective-Equipment-in-the-Warehouse">How to Handle Lost or Defective Equipment in the Warehouse</a></li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">Watch out for</span>
+          <p>Only physical combinations have a QR code, so a virtual combination cannot be scanned in the warehouse. Bulk items such as cables need one QR code per item, not one per serial number.</p>
         </div>
+
+
+        <div class="rm-onboard-step__video">
+          <a href="https://support.rentman.io/hc/en-us/articles/360015577120-Video-Introduction-into-planning-and-tracking-your-equipment" class="rm-onboard-video-link">
+            <span class="rm-onboard-video-link__play" aria-hidden="true">▶</span>
+            Video: Introduction to planning and tracking your equipment
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {{!-- ORGANIZE (can run alongside the other blocks) --}}
+  <section class="rm-onboard-step" id="rm-block-organize" data-rm-block="organize" data-rm-label="Organize">
+    <div class="rm-onboard-step__inner">
+      <div class="rm-onboard-step__meta">
+        <span class="rm-onboard-step__num">06</span>
+        <span class="rm-onboard-step__tag">Product · any time after Platform</span>
+      </div>
+      <div class="rm-onboard-step__body">
+        <h2 class="rm-onboard-step__title">Organize: plan pre- and post-production work</h2>
+        <span class="rm-onboard-plan-badge">Organize</span>
+        <p class="rm-onboard-step__desc">Organize adds task statuses, task boards, teams, time tracking on tasks and services to the <strong>Tasks</strong> module and your projects. You can set it up alongside your other products once the Platform block is done.</p>
+
+        <p class="rm-onboard-step__res-label">Set it up</p>
+        <ol class="rm-onboard-tasks">
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Review the user role permissions for tasks.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/22185539659666-User-Role-Permissions-in-Rentman#tasks">User Role Permissions in Rentman: Tasks</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Set up your task statuses.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/38421530397202-Rentman-Organize">Rentman Organize</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Create teams and link your crew members to them.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/38422973173266-Teams-and-Team-Task-Boards">Teams and Team Task Boards</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Add standard tasks to your project templates, then open your first project task board.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/360013367659-Project-Templates">Project Templates</a></li>
+              <li><a href="https://support.rentman.io/hc/en-us/articles/38422661951506-Task-Boards-Views-Grouping-and-Sharing">Task Boards: Views, Grouping, and Sharing</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task">
+            <p class="rm-onboard-task__title">Track time on tasks.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/38423178380050-Track-Time-on-Tasks">Track Time on Tasks</a></li>
+            </ul>
+          </li>
+          <li class="rm-onboard-task" data-rm-show="qi">
+            <p class="rm-onboard-task__title">Set up the services you sell most often.</p>
+            <ul class="rm-onboard-task__links">
+              <li><a href="https://support.rentman.io/hc/en-us/articles/38423504883858-Services">Services</a></li>
+            </ul>
+          </li>
+        </ol>
+        <p class="rm-onboard-step__note" data-rm-show="!qi">To put services on your quotes and invoices, you also need the Quoting &amp; Invoicing add-on.</p>
+
+        <div class="rm-onboard-step__tip">
+          <span class="rm-onboard-step__tip-label">Watch out for</span>
+          <p>Organize does not replace crew scheduling. Functions and shifts, and the hours registered on them, stay part of your crew plan.</p>
+        </div>
+
       </div>
     </div>
   </section>
 
 </div>
-{{!-- ── OFFICE HOURS CTA ─────────────────────────────────────────── --}}
+
+{{!-- ── NEXT STEP ──────────────────────────────────────────────── --}}
+<section class="rm-onboard-next">
+  <div class="rm-onboard-next__inner">
+    <h2 class="rm-onboard-next__title">Finished your setup?</h2>
+    <p class="rm-onboard-next__desc">Run one test project through your full workflow. When it works, enter your active projects and go live.</p>
+    <div class="rm-onboard-next__links">
+      <a href="https://support.rentman.io/hc/en-us/articles/35600301773970-How-to-Plan-Your-Rentman-Implementation" class="rm-onboard-next__link">How to Plan Your Rentman Implementation</a>
+      <a href="https://rentman.io/services" class="rm-onboard-next__link" target="_blank" rel="noopener">Book a setup session with an expert</a>
+      <a href="https://community.rentman.io" class="rm-onboard-next__link" target="_blank" rel="noopener">Join the Rentman Community</a>
+      <a href="/hc/en-us" class="rm-onboard-next__link">Browse the Support Center</a>
+    </div>
+  </div>
+</section>
+
+{{!-- ── STILL NEED HELP ────────────────────────────────────────── --}}
 <section class="rm-section rm-section--cta">
   <div class="container">
     <div class="rm-cta-band">
@@ -269,6 +546,7 @@
         <p class="rm-cta-band__desc">{{dc 'hp_cta_desc'}}</p>
       </div>
       <div class="rm-cta-band__actions">
+        {{dc 'hp_cta_community'}}
         {{dc 'hp_cta_livechat'}}
         {{dc 'hp_cta_submit'}}
       </div>
@@ -276,12 +554,234 @@
   </div>
 </section>
 
-{{!-- ── GRADUATION CLOSER ────────────────────────────────────────── --}}
-<section class="rm-onboard-grad">
-  <div class="rm-onboard-grad__inner">
-    <span class="rm-onboard-grad__icon" aria-hidden="true">🎓</span>
-    <h2 class="rm-onboard-grad__title">You're all set.</h2>
-    <p class="rm-onboard-grad__desc">You now have everything you need to manage equipment, projects, finances, logistics, and crew — all in one place. The Rentman support team is always here if you need us.</p>
-    <a href="/hc/en-us" class="rm-onboard-grad__link">Explore the full knowledge base →</a>
-  </div>
-</section>
+{{!-- ── SELECTOR SCRIPT (ES5, page-scoped) ─────────────────────── --}}
+<script>
+(function () {
+  var KEYS = ['inventory', 'crew', 'organize', 'qi', 'tracking'];
+  var STORE = 'rm-onboard-products';
+  var root = document.getElementById('rm-onboard-blocks');
+  if (!root) { return; }
+
+  var chips = document.querySelectorAll('.rm-onboard-chip');
+  var blocks = root.querySelectorAll('[data-rm-block]');
+  var conditionals = root.querySelectorAll('[data-rm-show]');
+  var strip = document.getElementById('rm-onboard-strip');
+  var status = document.getElementById('rm-onboard-status');
+  var resetBtn = document.getElementById('rm-onboard-reset');
+  var selected = [];
+
+  function has(list, key) { return list.indexOf(key) !== -1; }
+
+  function clean(list) {
+    var out = [];
+    for (var i = 0; i < KEYS.length; i++) { if (has(list, KEYS[i])) { out.push(KEYS[i]); } }
+    if (has(out, 'tracking') && !has(out, 'inventory')) { out.unshift('inventory'); }
+    return clean2(out);
+  }
+  function clean2(list) {
+    var out = [];
+    for (var i = 0; i < KEYS.length; i++) { if (has(list, KEYS[i])) { out.push(KEYS[i]); } }
+    return out;
+  }
+
+  function readUrl() {
+    var m = /[?&]products=([^&#]*)/.exec(window.location.search);
+    if (!m) { return null; }
+    var raw = decodeURIComponent(m[1]).toLowerCase();
+    return raw ? clean(raw.split(',')) : [];
+  }
+  function readStore() {
+    try { var v = window.localStorage.getItem(STORE); return v ? clean(v.split(',')) : null; } catch (e) { return null; }
+  }
+  function writeStore() {
+    try {
+      if (selected.length) { window.localStorage.setItem(STORE, selected.join(',')); }
+      else { window.localStorage.removeItem(STORE); }
+    } catch (e) { /* storage unavailable */ }
+  }
+  function pathUrl() {
+    var base = window.location.pathname;
+    var query = window.location.search.replace(/[?&]products=[^&#]*/, '').replace(/^&/, '?');
+    if (selected.length) { query += (query ? '&' : '?') + 'products=' + selected.join(','); }
+    return base + query;
+  }
+  function writeUrl() {
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', pathUrl() + window.location.hash);
+    }
+  }
+
+  // With no selection, every product counts as selected (full path).
+  function active() { return selected.length ? selected : KEYS; }
+
+  function matches(expr, list) {
+    var parts = expr.split('&');
+    for (var i = 0; i < parts.length; i++) {
+      var p = parts[i].replace(/\s/g, '');
+      if (!p) { continue; }
+      var neg = p.charAt(0) === '!';
+      var key = neg ? p.slice(1) : p;
+      if (neg === has(list, key)) { return false; }
+    }
+    return true;
+  }
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function render() {
+    var list = active();
+    var visible = [];
+    var i;
+
+    for (i = 0; i < blocks.length; i++) {
+      var b = blocks[i];
+      var key = b.getAttribute('data-rm-block');
+      var show = key === 'platform' || has(list, key);
+      b.hidden = !show;
+      if (show) { visible.push(b); }
+    }
+    for (i = 0; i < conditionals.length; i++) {
+      conditionals[i].hidden = !matches(conditionals[i].getAttribute('data-rm-show'), list);
+    }
+
+    var html = '';
+    for (i = 0; i < visible.length; i++) {
+      var num = pad(i + 1);
+      var numEl = visible[i].querySelector('.rm-onboard-step__num');
+      if (numEl) { numEl.textContent = num; }
+      if (i % 2 === 1) { visible[i].classList.add('rm-onboard-step--alt'); }
+      else { visible[i].classList.remove('rm-onboard-step--alt'); }
+      html += '<a href="#' + visible[i].id + '" class="rm-onboard-strip__item">' +
+        '<span class="rm-onboard-strip__num">' + num + '</span>' +
+        '<span class="rm-onboard-strip__label">' + visible[i].getAttribute('data-rm-label') + '</span></a>';
+      if (i < visible.length - 1) { html += '<span class="rm-onboard-strip__divider" aria-hidden="true">→</span>'; }
+    }
+    if (strip) { strip.innerHTML = html; }
+
+    for (i = 0; i < chips.length; i++) {
+      var k = chips[i].getAttribute('data-rm-product');
+      chips[i].setAttribute('aria-pressed', has(selected, k) ? 'true' : 'false');
+    }
+
+    if (status) {
+      status.textContent = selected.length
+        ? 'Your setup path has ' + visible.length + ' blocks.'
+        : 'Showing every product. Select yours to shorten the path.';
+    }
+    if (resetBtn) { resetBtn.hidden = !selected.length; }
+  }
+
+  function track(event, data) {
+    window.dataLayer = window.dataLayer || [];
+    data.event = event;
+    window.dataLayer.push(data);
+  }
+
+  function toggle(key) {
+    var next = selected.slice();
+    if (has(next, key)) {
+      next.splice(next.indexOf(key), 1);
+      if (key === 'inventory' && has(next, 'tracking')) { next.splice(next.indexOf('tracking'), 1); }
+    } else {
+      next.push(key);
+    }
+    selected = clean(next);
+    render();
+    writeUrl();
+    writeStore();
+    track('rm_onboarding_selection', { rm_products: selected.join(',') || 'all', rm_toggled: key });
+  }
+
+  for (var c = 0; c < chips.length; c++) {
+    chips[c].addEventListener('click', function () { toggle(this.getAttribute('data-rm-product')); });
+  }
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', function () {
+      selected = [];
+      render(); writeUrl(); writeStore();
+      track('rm_onboarding_selection', { rm_products: 'all', rm_toggled: 'reset' });
+    });
+  }
+
+
+  // Article and video clicks, tagged with the block they sit in.
+  document.addEventListener('click', function (e) {
+    var a = e.target;
+    while (a && a.tagName !== 'A') { a = a.parentNode; }
+    if (!a || !a.getAttribute) { return; }
+    var block = a.getAttribute('data-rm-block-link');
+    if (!block) {
+      var p = a;
+      while (p && p !== document && !(p.getAttribute && p.getAttribute('data-rm-block'))) { p = p.parentNode; }
+      block = p && p.getAttribute ? p.getAttribute('data-rm-block') : null;
+    }
+    if (!block) { return; }
+    track('rm_onboarding_article_click', {
+      rm_block: block,
+      rm_article: a.getAttribute('href'),
+      rm_products: selected.join(',') || 'all'
+    });
+  });
+
+  // Initial state: URL wins, then the remembered selection, then the full path.
+  var fromUrl = readUrl();
+  selected = fromUrl !== null ? fromUrl : (readStore() || []);
+  render();
+  if (fromUrl === null && selected.length) { writeUrl(); }
+  if (fromUrl !== null) { writeStore(); }
+})();
+</script>
+
+{{!-- ── IMPLEMENTATION GUIDE MODAL (ES5, page-scoped) ──────────── --}}
+<script>
+(function () {
+  var modal = document.getElementById('rm-impl-modal');
+  if (!modal) { return; }
+  var opener   = document.getElementById('rm-impl-open');
+  var box      = modal.querySelector('.rm-impl-modal__box');
+  var backdrop = modal.querySelector('.rm-impl-modal__backdrop');
+  var closer   = modal.querySelector('.rm-impl-modal__close');
+  var lastFocus = null;
+
+  // Visible, focusable children of the dialog, in tab order.
+  function focusable() {
+    var all = box.querySelectorAll('a[href], button:not([disabled])');
+    var out = [];
+    for (var i = 0; i < all.length; i++) {
+      if (all[i].offsetWidth || all[i].offsetHeight) { out.push(all[i]); }
+    }
+    return out;
+  }
+
+  function open() {
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open');
+    box.focus();
+    document.addEventListener('keydown', onKey);
+  }
+
+  function close() {
+    if (!modal.classList.contains('is-open')) { return; }
+    modal.classList.remove('is-open');
+    document.removeEventListener('keydown', onKey);
+    if (lastFocus && lastFocus.focus) { lastFocus.focus(); }
+  }
+
+  function onKey(e) {
+    if (e.key === 'Escape' || e.key === 'Esc' || e.keyCode === 27) { close(); return; }
+    if (e.key !== 'Tab' && e.keyCode !== 9) { return; }
+    var f = focusable();
+    if (!f.length) { e.preventDefault(); return; }
+    var first = f[0], last = f[f.length - 1], active = document.activeElement;
+    // Keep Tab inside the dialog while it is open.
+    if (!box.contains(active)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && (active === first || active === box)) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && active === last) { e.preventDefault(); first.focus(); }
+  }
+
+  if (opener)   { opener.addEventListener('click', open); }
+  if (backdrop) { backdrop.addEventListener('click', close); }
+  if (closer)   { closer.addEventListener('click', close); }
+}());
+</script>
