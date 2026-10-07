@@ -1,0 +1,772 @@
+{
+ "generated": "2026-10-07",
+ "locales": [
+  "nl",
+  "de",
+  "fr",
+  "es",
+  "it"
+ ],
+ "en_only": [
+  "page.preflight.btn.how_to_plan_your",
+  "page.next.link.how_to_plan_your"
+ ],
+ "strings": {
+  "page.hero.title.get_up_and_runningwith": {
+   "nl": "Aan de slag<br>met Rentman",
+   "de": "Startklar<br>mit Rentman",
+   "fr": "Bien démarrer<br>avec Rentman",
+   "es": "Pon Rentman<br>en marcha",
+   "it": "Inizia<br>con Rentman"
+  },
+  "page.hero.sub.from_an_empty_workspace": {
+   "nl": "Van lege omgeving naar je eerste live project.",
+   "de": "Von der leeren Umgebung zum ersten Live-Projekt.",
+   "fr": "D'un espace vide à votre premier projet live.",
+   "es": "De un espacio vacío a tu primer proyecto real.",
+   "it": "Da uno spazio vuoto al tuo primo progetto live."
+  },
+  "page.eyebrow.getting_started": {
+   "nl": "AAN DE SLAG",
+   "de": "ERSTE SCHRITTE",
+   "fr": "PREMIERS PAS",
+   "es": "PRIMEROS PASOS",
+   "it": "PRIMI PASSI"
+  },
+  "page.selector.title.which_products_does_your": {
+   "nl": "Welke producten heeft jouw werkomgeving?",
+   "de": "Welche Produkte hat deine Umgebung?",
+   "fr": "Quels produits votre espace contient-il ?",
+   "es": "¿Qué productos tiene tu espacio de trabajo?",
+   "it": "Quali prodotti hai nel tuo spazio di lavoro?"
+  },
+  "page.selector.hint.the_rentman_platform_is": {
+   "nl": "Het Rentman Platform zit in elk plan, dus die stappen horen er altijd bij.",
+   "de": "Das Rentman Platform ist in jedem Tarif enthalten, seine Einrichtung also immer dabei.",
+   "fr": "Le Rentman Platform fait partie de chaque formule : sa configuration est toujours incluse.",
+   "es": "El Rentman Platform está en todos los planes, así que su configuración siempre se incluye.",
+   "it": "Il Rentman Platform è incluso in ogni piano, quindi la sua configurazione c'è sempre."
+  },
+  "page.selector.group.products": {
+   "nl": "Producten",
+   "de": "Produkte",
+   "fr": "Produits",
+   "es": "Productos",
+   "it": "Prodotti"
+  },
+  "page.selector.group.addons": {
+   "nl": "Add-ons",
+   "de": "Add-ons",
+   "fr": "Extensions",
+   "es": "Complementos",
+   "it": "Add-on"
+  },
+  "page.selector.chip.quoting_invoicing": {
+   "nl": "Offertes &amp; Facturatie",
+   "de": "Angebote &amp; Rechnungen",
+   "fr": "Devis &amp; facturation",
+   "es": "Sistema de cotización y finanzas",
+   "it": "Preventivi e fatture"
+  },
+  "page.selector.chip.equipment_tracking": {
+   "nl": "Materiaaltracking",
+   "de": "Materialtracking",
+   "fr": "Gestion &amp; Suivi du matériel",
+   "es": "Sistema de inventarios QR",
+   "it": "Tracciamento del materiale"
+  },
+  "page.selector.status.showing_every_product_select": {
+   "nl": "Je ziet alle producten. Kies de jouwe voor een korter pad.",
+   "de": "Du siehst alle Produkte. Wähle deine aus, um den Pfad zu kürzen.",
+   "fr": "Tous les produits sont affichés. Sélectionnez les vôtres pour raccourcir le parcours.",
+   "es": "Se muestran todos los productos. Elige los tuyos para acortar la ruta.",
+   "it": "Vedi tutti i prodotti. Seleziona i tuoi per accorciare il percorso."
+  },
+  "page.selector.note.not_sure_which_products": {
+   "nl": "Weet je niet welke producten je hebt? <a href=\"https://support.rentman.io/hc/{{help_center.locale}}/articles/360015866540\">Bekijk je plan in Rentman</a>.",
+   "de": "Du weißt nicht, welche Produkte du hast? <a href=\"https://support.rentman.io/hc/{{help_center.locale}}/articles/360015866540\">Sieh dir deinen Tarif in Rentman an</a>.",
+   "fr": "Vous ne savez pas quels produits vous avez ? <a href=\"https://support.rentman.io/hc/{{help_center.locale}}/articles/360015866540\">Consultez votre formule dans Rentman</a>.",
+   "es": "¿No sabes qué productos tienes? <a href=\"https://support.rentman.io/hc/{{help_center.locale}}/articles/360015866540\">Consulta tu plan en Rentman</a>.",
+   "it": "Non sai quali prodotti hai? <a href=\"https://support.rentman.io/hc/{{help_center.locale}}/articles/360015866540\">Controlla il tuo piano in Rentman</a>."
+  },
+  "page.selector.action.show_all_products": {
+   "nl": "Toon alle producten",
+   "de": "Alle Produkte anzeigen",
+   "fr": "Afficher tous les produits",
+   "es": "Mostrar todos los productos",
+   "it": "Mostra tutti i prodotti"
+  },
+  "page.preflight.text.before_you_start_plan": {
+   "nl": "<span class=\"rm-onboard-preflight__label\">Voordat je begint:</span> plan je implementatie. Wie 8 tot 12 uur per week vrijmaakt, gaat meestal binnen 6 tot 10 weken live.",
+   "de": "<span class=\"rm-onboard-preflight__label\">Bevor du startest:</span> plane deine Implementierung. Wer 8 bis 12 Stunden pro Woche einplant, geht meist in 6 bis 10 Wochen live.",
+   "fr": "<span class=\"rm-onboard-preflight__label\">Avant de commencer :</span> planifiez votre implémentation. Les clients qui y consacrent 8 à 12 heures par semaine passent en production en 6 à 10 semaines.",
+   "es": "<span class=\"rm-onboard-preflight__label\">Antes de empezar:</span> planifica tu implementación. Quien dedica de 8 a 12 horas por semana suele estar en marcha en 6 a 10 semanas.",
+   "it": "<span class=\"rm-onboard-preflight__label\">Prima di iniziare:</span> pianifica la tua implementazione. Chi dedica dalle 8 alle 12 ore a settimana va live in 6-10 settimane."
+  },
+  "page.preflight.btn.find_the_implementation_guide": {
+   "nl": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11l3 3L22 4\"></path><path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> Waar vind ik de Implementation Guide?",
+   "de": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11l3 3L22 4\"></path><path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> Wo finde ich den Implementation Guide?",
+   "fr": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11l3 3L22 4\"></path><path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> Où trouver l'Implementation Guide ?",
+   "es": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11l3 3L22 4\"></path><path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> Dónde está la Implementation Guide",
+   "it": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M9 11l3 3L22 4\"></path><path d=\"M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11\"></path></svg> Dove trovare l'Implementation Guide"
+  },
+  "page.community.text.setting_up_right_now": {
+   "nl": "<strong>Ben je nu aan het inrichten?</strong> Stel je vraag in de Getting Started-categorie van de Rentman Community en leer van andere Rentman-gebruikers.",
+   "de": "<strong>Richtest du gerade ein?</strong> Stell deine Frage in der Kategorie Getting Started der Rentman Community und tausch dich mit anderen Rentman-Nutzern aus.",
+   "fr": "<strong>Vous configurez en ce moment ?</strong> Posez votre question dans la catégorie Getting Started de la Rentman Community et échangez avec d'autres utilisateurs Rentman.",
+   "es": "<strong>¿Estás configurando ahora mismo?</strong> Haz tu pregunta en la categoría Getting Started de la Rentman Community y conecta con otros usuarios de Rentman.",
+   "it": "<strong>Stai configurando proprio ora?</strong> Fai la tua domanda nella categoria Getting Started della Rentman Community e confrontati con altri utenti Rentman."
+  },
+  "page.community.link.ask_in_the_community": {
+   "nl": "Vraag de Community →",
+   "de": "Frag die Community →",
+   "fr": "Demandez à la Community →",
+   "es": "Pregunta a la Community →",
+   "it": "Chiedi alla Community →"
+  },
+  "page.modal.title.find_the_implementation_guide": {
+   "nl": "Waar vind ik de Implementation Guide?",
+   "de": "Wo finde ich den Implementation Guide?",
+   "fr": "Où trouver l'Implementation Guide ?",
+   "es": "Dónde está la Implementation Guide",
+   "it": "Dove trovare l'Implementation Guide"
+  },
+  "page.modal.desc.the_implementation_guide_is": {
+   "nl": "De <strong>Implementation Guide</strong> staat bovenaan het linkermenu in Rentman. Hij toont de inrichtingsstappen voor jouw omgeving en houdt bij welke je al hebt gedaan.",
+   "de": "Der <strong>Implementation Guide</strong> steht ganz oben in der linken Navigation in Rentman. Er listet die Einrichtungsschritte für deine Umgebung auf und zeigt, welche du schon erledigt hast.",
+   "fr": "L'<strong>Implementation Guide</strong> est le premier élément de la navigation de gauche dans Rentman. Il liste les étapes de configuration de votre espace et suit celles que vous avez terminées.",
+   "es": "La <strong>Implementation Guide</strong> es el primer elemento del menú lateral izquierdo en Rentman. Enumera los pasos de configuración de tu espacio y registra los que ya has completado.",
+   "it": "L'<strong>Implementation Guide</strong> è la prima voce nel menu di sinistra in Rentman. Elenca i passaggi di configurazione del tuo spazio e tiene traccia di quelli completati."
+  },
+  "page.modal.cta.log_in_to_rentman": {
+   "nl": "Inloggen bij Rentman →",
+   "de": "Bei Rentman anmelden →",
+   "fr": "Se connecter à Rentman →",
+   "es": "Inicia sesión en Rentman →",
+   "it": "Accedi a Rentman →"
+  },
+  "page.next.title.finished_your_setup": {
+   "nl": "Klaar met inrichten?",
+   "de": "Einrichtung fertig?",
+   "fr": "Configuration terminée ?",
+   "es": "¿Has terminado la configuración?",
+   "it": "Configurazione completata?"
+  },
+  "page.next.desc.run_one_test_project": {
+   "nl": "Draai één testproject door je hele werkwijze heen. Werkt dat, voer dan je lopende projecten in en ga live.",
+   "de": "Lass ein Testprojekt einmal durch deinen kompletten Ablauf laufen. Wenn das klappt, trag deine laufenden Projekte ein und geh live.",
+   "fr": "Faites passer un projet test par l'ensemble de votre flux de travail. Si tout fonctionne, saisissez vos projets en cours et passez en production.",
+   "es": "Pasa un proyecto de prueba por todo tu flujo de trabajo. Si funciona, introduce tus proyectos activos y ponlo en marcha.",
+   "it": "Fai passare un progetto di prova per l'intero flusso di lavoro. Se funziona, inserisci i progetti attivi e vai live."
+  },
+  "page.next.link.book_a_setup_session": {
+   "nl": "Boek een inrichtingssessie met een expert",
+   "de": "Einrichtungstermin mit einem Experten buchen",
+   "fr": "Réserver une session de configuration avec un expert",
+   "es": "Reserva una sesión de configuración con un experto",
+   "it": "Prenota una sessione di configurazione con un esperto"
+  },
+  "page.next.link.join_the_rentman_community": {
+   "nl": "Praat mee in de Rentman Community",
+   "de": "Werde Teil der Rentman Community",
+   "fr": "Rejoignez la Rentman Community",
+   "es": "Únete a la Rentman Community",
+   "it": "Entra nella Rentman Community"
+  },
+  "page.next.link.browse_the_support_center": {
+   "nl": "Bekijk het Support Center",
+   "de": "Zum Support Center",
+   "fr": "Parcourir le Support Center",
+   "es": "Explora el Support Center",
+   "it": "Esplora il Support Center"
+  },
+  "attr.aria-label.your_setup_path": {
+   "nl": "Jouw inrichtingspad",
+   "de": "Dein Einrichtungspfad",
+   "fr": "Votre parcours de configuration",
+   "es": "Tu ruta de configuración",
+   "it": "Il tuo percorso di configurazione"
+  },
+  "attr.aria-label.close": {
+   "nl": "Sluiten",
+   "de": "Schließen",
+   "fr": "Fermer",
+   "es": "Cerrar",
+   "it": "Chiudi"
+  },
+  "attr.alt.implementation_guide_location_in": {
+   "nl": "Locatie van de Implementation Guide in de Rentman-navigatie",
+   "de": "Position des Implementation Guide in der Rentman-Navigation",
+   "fr": "Emplacement de l'Implementation Guide dans la navigation Rentman",
+   "es": "Ubicación de la Implementation Guide en la navegación de Rentman",
+   "it": "Posizione dell'Implementation Guide nella navigazione di Rentman"
+  },
+  "js.status.count": {
+   "nl": "Jouw pad telt {n} stappen.",
+   "de": "Dein Pfad hat {n} Schritte.",
+   "fr": "Votre parcours compte {n} étapes.",
+   "es": "Tu ruta tiene {n} pasos.",
+   "it": "Il tuo percorso ha {n} passaggi."
+  },
+  "platform.tag.every_workspace": {
+   "nl": "Elke omgeving",
+   "de": "Jede Umgebung",
+   "fr": "Tous les espaces",
+   "es": "Todos los espacios",
+   "it": "Ogni spazio di lavoro"
+  },
+  "platform.title.platform_set_up_your": {
+   "nl": "Platform: richt je omgeving in",
+   "de": "Platform: richte deine Umgebung ein",
+   "fr": "Platform : configurez votre espace",
+   "es": "Platform: configura tu espacio",
+   "it": "Platform: configura il tuo spazio"
+  },
+  "platform.planbadge.rentman_platform": {
+   "nl": "Rentman Platform",
+   "de": "Rentman Platform",
+   "fr": "Rentman Platform",
+   "es": "Rentman Platform",
+   "it": "Rentman Platform"
+  },
+  "platform.desc.the_rentman_platform_is": {
+   "nl": "Het Rentman Platform zit in elk plan. Hier staan je bedrijfsinstellingen, gebruikers, contactpersonen, crewleden en projecten. Richt dit als eerste in, want elk product bouwt erop voort.",
+   "de": "Das Rentman Platform ist in jedem Tarif enthalten. Hier liegen deine Unternehmenseinstellungen, Benutzer, Kontakte, Crewmitglieder und Projekte. Richte es zuerst ein, denn jedes Produkt baut darauf auf.",
+   "fr": "Le Rentman Platform fait partie de chaque formule. Il contient les paramètres de votre entreprise, les utilisateurs, les contacts, les membres d'équipe et les projets. Configurez-le en premier : tous les produits s'appuient dessus.",
+   "es": "El Rentman Platform está en todos los planes. Contiene la configuración de tu empresa, los usuarios, los contactos, el personal y los proyectos. Configúralo primero, porque todos los productos se apoyan en él.",
+   "it": "Il Rentman Platform è incluso in ogni piano. Contiene le impostazioni aziendali, gli utenti, i contatti, il personale e i progetti. Configuralo per primo, perché ogni prodotto si basa su di esso."
+  },
+  "platform.reslabel.set_it_up": {
+   "nl": "Zo stel je het in",
+   "de": "So richtest du es ein",
+   "fr": "Mise en place",
+   "es": "Cómo configurarlo",
+   "it": "Come configurarlo"
+  },
+  "platform.task.empty_your_trial_database": {
+   "nl": "Leeg je proefdatabase voordat je eigen gegevens toevoegt.",
+   "de": "Leere deine Testdatenbank, bevor du eigene Daten hinzufügst.",
+   "fr": "Videz votre base de données d'essai avant d'ajouter vos propres données.",
+   "es": "Vacía tu base de datos de prueba antes de añadir tus propios datos.",
+   "it": "Svuota il database di prova prima di inserire i tuoi dati."
+  },
+  "platform.task.add_your_company_details": {
+   "nl": "Vul je bedrijfsgegevens en logo in.",
+   "de": "Trag deine Firmendaten und dein Logo ein.",
+   "fr": "Renseignez les informations et le logo de votre entreprise.",
+   "es": "Añade los datos y el logotipo de tu empresa.",
+   "it": "Inserisci i dati aziendali e il logo."
+  },
+  "platform.task.set_up_user_roles": {
+   "nl": "Stel gebruikersrollen in en nodig daarna je collega's uit.",
+   "de": "Richte Benutzerrollen ein und lade dann deine Kollegen ein.",
+   "fr": "Configurez les rôles utilisateurs, puis invitez vos collègues.",
+   "es": "Configura los roles de usuario y después invita a tus compañeros.",
+   "it": "Imposta i ruoli utente, poi invita i tuoi colleghi."
+  },
+  "platform.task.set_your_email_sender": {
+   "nl": "Stel je afzenderadres in en verifieer je domein.",
+   "de": "Lege deine Absenderadresse fest und verifiziere deine Domain.",
+   "fr": "Définissez votre adresse d'expéditeur et vérifiez votre domaine.",
+   "es": "Configura tu dirección de envío y verifica tu dominio.",
+   "it": "Imposta l'indirizzo del mittente e verifica il dominio."
+  },
+  "platform.task.import_your_contacts_and": {
+   "nl": "Importeer je contactpersonen en voeg je crewleden toe.",
+   "de": "Importiere deine Kontakte und füge deine Crewmitglieder hinzu.",
+   "fr": "Importez vos contacts et ajoutez les membres de votre équipe.",
+   "es": "Importa tus contactos y añade a tu personal.",
+   "it": "Importa i contatti e aggiungi il personale."
+  },
+  "platform.task.set_up_your_document": {
+   "nl": "Richt je documentsjablonen in.",
+   "de": "Richte deine Dokumentvorlagen ein.",
+   "fr": "Configurez vos modèles de documents.",
+   "es": "Configura tus plantillas de documentos.",
+   "it": "Configura i modelli di documento."
+  },
+  "platform.task.create_project_templates_for": {
+   "nl": "Maak projectsjablonen voor werk dat terugkomt.",
+   "de": "Lege Projektvorlagen für wiederkehrende Arbeiten an.",
+   "fr": "Créez des modèles de projet pour le travail récurrent.",
+   "es": "Crea plantillas de proyecto para el trabajo que se repite.",
+   "it": "Crea modelli di progetto per il lavoro ricorrente."
+  },
+  "platform.task.create_your_first_project": {
+   "nl": "Maak je eerste project aan.",
+   "de": "Lege dein erstes Projekt an.",
+   "fr": "Créez votre premier projet.",
+   "es": "Crea tu primer proyecto.",
+   "it": "Crea il tuo primo progetto."
+  },
+  "platform.tiplabel.watch_out_for": {
+   "nl": "Let op",
+   "de": "Achtung",
+   "fr": "Attention",
+   "es": "Ojo con esto",
+   "it": "Attenzione"
+  },
+  "platform.tip.body": {
+   "nl": "Begin in de <strong>Document Template Bibliotheek</strong> in plaats van een sjabloon vanaf nul te bouwen. Je offertes, facturen en pakbonnen gebruiken allemaal deze sjablonen.",
+   "de": "Starte in der <strong>Dokumentvorlagenbibliothek</strong>, statt eine Vorlage von Grund auf zu bauen. Deine Angebote, Rechnungen und Lieferscheine nutzen alle diese Vorlagen.",
+   "fr": "Partez de la <strong>bibliothèque de modèles de documents</strong> plutôt que de créer un modèle de zéro. Vos devis, factures et bons de livraison utilisent tous ces modèles.",
+   "es": "Empieza por la <strong>Biblioteca de plantillas de documentos</strong> en lugar de crear una plantilla desde cero. Tus presupuestos, facturas y albaranes usan todos estas plantillas.",
+   "it": "Parti dalla <strong>Raccolta dei modelli di documento</strong> invece di creare un modello da zero. Preventivi, fatture e documenti di trasporto usano tutti questi modelli."
+  },
+  "platform.video.video_introduction_to_creating": {
+   "nl": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: projecten maken en beheren",
+   "de": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: Projekte anlegen und verwalten",
+   "fr": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vidéo : créer et gérer vos projets",
+   "es": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vídeo: crear y gestionar tus proyectos",
+   "it": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: creare e gestire i progetti"
+  },
+  "inventory.tag.product": {
+   "nl": "Product",
+   "de": "Produkt",
+   "fr": "Produit",
+   "es": "Producto",
+   "it": "Prodotto"
+  },
+  "inventory.title.inventory_add_and_plan": {
+   "nl": "Inventory: materiaal toevoegen en inplannen",
+   "de": "Inventory: Material anlegen und einplanen",
+   "fr": "Inventory : ajoutez et planifiez votre matériel",
+   "es": "Inventory: añade y planifica tu material",
+   "it": "Inventory: aggiungi e pianifica il materiale"
+  },
+  "inventory.desc.inventory_adds_the_equipment": {
+   "nl": "Inventory voegt de modules <strong>Materiaal</strong>, <strong>Tekorten</strong> en <strong>Onderhoud</strong> toe, plus de tabbladen <em>Materiaal</em> en <em>Subverhuur</em> in je projecten.",
+   "de": "Inventory ergänzt die Module <strong>Material</strong>, <strong>Engpässe</strong> und <strong>Wartung</strong> sowie die Reiter <em>Material</em> und <em>Submiete</em> in deinen Projekten.",
+   "fr": "Inventory ajoute les modules <strong>Matériel</strong>, <strong>Pénuries</strong> et <strong>Maintenance</strong>, ainsi que les onglets <em>Matériel</em> et <em>Sous-location</em> dans vos projets.",
+   "es": "Inventory añade los módulos <strong>Material</strong>, <strong>Escasez</strong> y <strong>Mantenimiento</strong>, además de las pestañas <em>Material</em> y <em>Subalquiler</em> en tus proyectos.",
+   "it": "Inventory aggiunge i moduli <strong>Materiale</strong>, <strong>Carenze</strong> e <strong>Manutenzione</strong>, più le schede <em>Materiale</em> e <em>Subnoleggio</em> nei tuoi progetti."
+  },
+  "inventory.reslabel.set_it_up": {
+   "nl": "Zo stel je het in",
+   "de": "So richtest du es ein",
+   "fr": "Mise en place",
+   "es": "Cómo configurarlo",
+   "it": "Come configurarlo"
+  },
+  "inventory.task.decide_which_items_are": {
+   "nl": "Bepaal welke items bulk zijn en welke serieel, en welke combinaties je nodig hebt.",
+   "de": "Entscheide, welche Artikel Bulk und welche serialisiert sind und welche Kombinationen du brauchst.",
+   "fr": "Déterminez quels articles sont en vrac, lesquels sont sérialisés, et quelles combinaisons vous faut-il.",
+   "es": "Decide qué artículos son a granel y cuáles serializados, y qué combinaciones necesitas.",
+   "it": "Decidi quali articoli sono bulk e quali serializzati, e di quali combinazioni hai bisogno."
+  },
+  "inventory.task.import_your_individual_equipment": {
+   "nl": "Importeer eerst je losse materiaalitems.",
+   "de": "Importiere zuerst deine einzelnen Materialartikel.",
+   "fr": "Importez d'abord vos articles de matériel individuels.",
+   "es": "Importa primero tus artículos de material individuales.",
+   "it": "Importa prima i singoli articoli di materiale."
+  },
+  "inventory.task.add_your_combinations_then": {
+   "nl": "Voeg je combinaties toe en importeer daarna hun standaardinhoud.",
+   "de": "Lege deine Kombinationen an und importiere danach ihren Standardinhalt.",
+   "fr": "Ajoutez vos combinaisons, puis importez leur contenu par défaut.",
+   "es": "Añade tus combinaciones y después importa su contenido predeterminado.",
+   "it": "Aggiungi le combinazioni, poi importa il loro contenuto predefinito."
+  },
+  "inventory.task.plan_equipment_on_a": {
+   "nl": "Plan materiaal in op een project.",
+   "de": "Plane Material für ein Projekt ein.",
+   "fr": "Planifiez du matériel sur un projet.",
+   "es": "Planifica material en un proyecto.",
+   "it": "Pianifica il materiale su un progetto."
+  },
+  "inventory.task.solve_shortages_for_example": {
+   "nl": "Los tekorten op, bijvoorbeeld met subverhuur.",
+   "de": "Behebe Engpässe, zum Beispiel mit einer Submiete.",
+   "fr": "Résolvez les pénuries, par exemple avec une sous-location.",
+   "es": "Resuelve la escasez, por ejemplo con un subalquiler.",
+   "it": "Risolvi le carenze, ad esempio con un subnoleggio."
+  },
+  "inventory.tiplabel.watch_out_for": {
+   "nl": "Let op",
+   "de": "Achtung",
+   "fr": "Attention",
+   "es": "Ojo con esto",
+   "it": "Attenzione"
+  },
+  "inventory.tip.body": {
+   "nl": "Een <strong>virtuele combinatie</strong> kan geen serieel materiaal bevatten en heeft geen QR-code. Moet je precies weten welke serienummers de deur uit gaan, gebruik dan een seriële <strong>fysieke combinatie</strong>. Importeer standaardinhoud pas als al je materiaal geïmporteerd is.",
+   "de": "Eine <strong>virtuelle Kombination</strong> kann kein serialisiertes Material enthalten und hat keinen QR-Code. Wenn du genau wissen musst, welche Seriennummern rausgehen, nimm eine serialisierte <strong>physische Kombination</strong>. Importiere Standardinhalte erst, wenn dein gesamtes Material importiert ist.",
+   "fr": "Une <strong>combinaison virtuelle</strong> ne peut pas contenir de matériel sérialisé et n'a pas de code QR. Si vous devez savoir exactement quels numéros de série partent, utilisez une <strong>combinaison physique</strong> sérialisée. N'importez le contenu par défaut qu'une fois tout votre matériel importé.",
+   "es": "Una <strong>combinación virtual</strong> no puede contener material serializado y no tiene código QR. Si necesitas saber exactamente qué números de serie salen, usa una <strong>combinación física</strong> serializada. Importa el contenido predeterminado solo cuando todo tu material esté importado.",
+   "it": "Una <strong>combinazione virtuale</strong> non può contenere materiale serializzato e non ha un codice QR. Se devi sapere esattamente quali numeri di serie escono, usa una <strong>combinazione fisica</strong> serializzata. Importa il contenuto predefinito solo dopo aver importato tutto il materiale."
+  },
+  "inventory.video.video_how_to_import": {
+   "nl": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: je materiaal importeren in Rentman",
+   "de": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: Material in Rentman importieren",
+   "fr": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vidéo : importer votre matériel dans Rentman",
+   "es": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vídeo: importar tu material en Rentman",
+   "it": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: importare il materiale in Rentman"
+  },
+  "crew.tag.product": {
+   "nl": "Product",
+   "de": "Produkt",
+   "fr": "Produit",
+   "es": "Producto",
+   "it": "Prodotto"
+  },
+  "crew.title.crew_schedule_your_people": {
+   "nl": "Crew: plan je mensen in",
+   "de": "Crew: plane dein Personal",
+   "fr": "Crew : planifiez vos équipes",
+   "es": "Crew: planifica a tu personal",
+   "it": "Crew: pianifica il personale"
+  },
+  "crew.desc.crew_adds_the_crew": {
+   "nl": "Crew voegt de modules <strong>Personeelsplanner</strong>, <strong>Voertuigen</strong> en <strong>Tijdregistratie</strong> toe, plus personeelsplanning en transportplanning in je projecten.",
+   "de": "Crew ergänzt die Module <strong>Personalplaner</strong>, <strong>Fahrzeuge</strong> und <strong>Stundenerfassung</strong> sowie Personal- und Transportplanung in deinen Projekten.",
+   "fr": "Crew ajoute les modules <strong>Planificateur d'équipes</strong>, <strong>Véhicules</strong> et <strong>Enregistrement horaire</strong>, ainsi que la planification des équipes et du transport dans vos projets.",
+   "es": "Crew añade los módulos <strong>Planificación de personal</strong>, <strong>Vehículos</strong> y <strong>Registro de tiempo</strong>, además de la planificación de personal y transporte en tus proyectos.",
+   "it": "Crew aggiunge i moduli <strong>Pianificazione risorse</strong>, <strong>Veicoli</strong> e <strong>Registrazione orari</strong>, più la pianificazione del personale e dei trasporti nei tuoi progetti."
+  },
+  "crew.reslabel.set_it_up": {
+   "nl": "Zo stel je het in",
+   "de": "So richtest du es ein",
+   "fr": "Mise en place",
+   "es": "Cómo configurarlo",
+   "it": "Come configurarlo"
+  },
+  "crew.task.decide_how_to_plan": {
+   "nl": "Bepaal hoe je elk soort werk inplant.",
+   "de": "Entscheide, wie du welche Art von Arbeit planst.",
+   "fr": "Déterminez comment planifier chaque type de travail.",
+   "es": "Decide cómo vas a planificar cada tipo de trabajo.",
+   "it": "Decidi come pianificare ogni tipo di lavoro."
+  },
+  "crew.task.create_functions_for_the": {
+   "nl": "Maak functies aan voor de rollen die je inplant.",
+   "de": "Lege Funktionen für die Rollen an, die du planst.",
+   "fr": "Créez des fonctions pour les rôles que vous planifiez.",
+   "es": "Crea funciones para los roles que planificas.",
+   "it": "Crea le funzioni per i ruoli che pianifichi."
+  },
+  "crew.task.set_up_your_crew": {
+   "nl": "Stel je personeelstarieven in.",
+   "de": "Lege deine Mitarbeitertarife fest.",
+   "fr": "Configurez vos tarifs du personnel.",
+   "es": "Configura las tarifas de tu personal.",
+   "it": "Imposta le tariffe del personale."
+  },
+  "crew.task.plan_crew_on_a": {
+   "nl": "Plan personeel in op een project.",
+   "de": "Plane Personal für ein Projekt ein.",
+   "fr": "Planifiez une équipe sur un projet.",
+   "es": "Planifica personal en un proyecto.",
+   "it": "Pianifica il personale su un progetto."
+  },
+  "crew.task.invite_your_crew_and": {
+   "nl": "Nodig je crew uit en deel het rooster.",
+   "de": "Lade deine Crew ein und teile den Plan.",
+   "fr": "Invitez votre équipe et partagez le planning.",
+   "es": "Invita a tu personal y comparte el horario.",
+   "it": "Invita il personale e condividi la pianificazione."
+  },
+  "crew.task.set_up_time_registration": {
+   "nl": "Richt tijdregistratie in.",
+   "de": "Richte die Stundenerfassung ein.",
+   "fr": "Configurez l'enregistrement horaire.",
+   "es": "Configura el registro de tiempo.",
+   "it": "Configura la registrazione degli orari."
+  },
+  "crew.tiplabel.watch_out_for": {
+   "nl": "Let op",
+   "de": "Achtung",
+   "fr": "Attention",
+   "es": "Ojo con esto",
+   "it": "Attenzione"
+  },
+  "crew.tip.body": {
+   "nl": "Personeelstarieven kun je niet importeren. Voer ze in via de <strong>Configuratiemodule</strong> &gt; <em>Financieel &gt; Personeelstarieven</em> en gebruik <strong>Tarieven koppelen</strong> om één tarief op veel crewleden tegelijk toe te passen.",
+   "de": "Mitarbeitertarife lassen sich nicht importieren. Trag sie im <strong>Konfigurationsmodul</strong> &gt; <em>Finanzen &gt; Mitarbeitertarife</em> ein und nutze <strong>Sätze verknüpfen</strong>, um einen Satz auf viele Crewmitglieder gleichzeitig anzuwenden.",
+   "fr": "Les tarifs du personnel ne peuvent pas être importés. Saisissez-les dans le <strong>module Configuration</strong> &gt; <em>Financier &gt; Tarifs du personnel</em>, et utilisez <strong>Lier les tarifs</strong> pour appliquer un tarif à plusieurs membres d'un coup.",
+   "es": "Las tarifas del personal no se pueden importar. Introdúcelas en el <strong>módulo de Configuración</strong> &gt; <em>Financiero &gt; Tarifas del personal</em> y usa <strong>Vincular tarifas</strong> para aplicar una tarifa a varias personas a la vez.",
+   "it": "Le tariffe del personale non si possono importare. Inseriscile nel <strong>modulo Configurazione</strong> &gt; <em>Finanze &gt; Tariffe personale</em> e usa <strong>Collega tariffe</strong> per applicare una tariffa a più persone in una volta."
+  },
+  "crew.video.video_introduction_to_planning": {
+   "nl": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: je personeel en transport plannen",
+   "de": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: Personal- und Transportplanung",
+   "fr": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vidéo : planifier vos équipes et le transport",
+   "es": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vídeo: planificar tu personal y el transporte",
+   "it": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: pianificare personale e trasporti"
+  },
+  "qi.striplabel": {
+   "nl": "Offertes &amp; Facturatie",
+   "de": "Angebote &amp; Rechnungen",
+   "fr": "Devis &amp; facturation",
+   "es": "Sistema de cotización y finanzas",
+   "it": "Preventivi e fatture"
+  },
+  "qi.tag.addon": {
+   "nl": "Add-on",
+   "de": "Add-on",
+   "fr": "Extension",
+   "es": "Complemento",
+   "it": "Add-on"
+  },
+  "qi.title.quoting_invoicing_quote_invoice": {
+   "nl": "Offertes &amp; Facturatie: offreren, factureren en betaald worden",
+   "de": "Angebote &amp; Rechnungen: anbieten, abrechnen und bezahlt werden",
+   "fr": "Devis &amp; facturation : devis, factures et paiements",
+   "es": "Sistema de cotización y finanzas: cotiza, factura y cobra",
+   "it": "Preventivi e fatture: preventiva, fattura e incassa"
+  },
+  "qi.planbadge.quoting_invoicing_addon": {
+   "nl": "Add-on Offertes &amp; Facturatie",
+   "de": "Add-on Angebote &amp; Rechnungen",
+   "fr": "Extension Devis &amp; facturation",
+   "es": "Complemento Sistema de cotización y finanzas",
+   "it": "Add-on Preventivi e fatture"
+  },
+  "qi.desc.quoting_invoicing_adds_the": {
+   "nl": "Offertes &amp; Facturatie voegt de module <strong>Financieel</strong> en inkooporders toe aan je projecten. Je offertes en facturen gebruiken de documentsjablonen uit het Platform-blok, dus maak die eerst af.",
+   "de": "Angebote &amp; Rechnungen ergänzt das Modul <strong>Finanzen</strong> und Bestellungen in deinen Projekten. Deine Angebote und Rechnungen nutzen die Dokumentvorlagen aus dem Platform-Block, mach die also zuerst fertig.",
+   "fr": "Devis &amp; facturation ajoute le module <strong>Financier</strong> et les bons de commande à vos projets. Vos devis et factures utilisent les modèles de documents du bloc Platform : terminez-les d'abord.",
+   "es": "El Sistema de cotización y finanzas añade el módulo <strong>Financiero</strong> y las órdenes de compra a tus proyectos. Tus presupuestos y facturas usan las plantillas del bloque Platform, así que termínalas primero.",
+   "it": "Preventivi e fatture aggiunge il modulo <strong>Finanze</strong> e gli ordini d'acquisto ai tuoi progetti. Preventivi e fatture usano i modelli di documento del blocco Platform, quindi completali prima."
+  },
+  "qi.reslabel.set_it_up": {
+   "nl": "Zo stel je het in",
+   "de": "So richtest du es ein",
+   "fr": "Mise en place",
+   "es": "Cómo configurarlo",
+   "it": "Come configurarlo"
+  },
+  "qi.task.set_up_your_invoicing": {
+   "nl": "Richt je factuurproces in.",
+   "de": "Richte deinen Rechnungsprozess ein.",
+   "fr": "Configurez votre processus de facturation.",
+   "es": "Configura tu proceso de facturación.",
+   "it": "Imposta il processo di fatturazione."
+  },
+  "qi.task.create_and_send_a": {
+   "nl": "Maak een offerte en verstuur hem.",
+   "de": "Erstelle ein Angebot und verschick es.",
+   "fr": "Créez et envoyez un devis.",
+   "es": "Crea y envía un presupuesto.",
+   "it": "Crea e invia un preventivo."
+  },
+  "qi.task.create_an_invoice_and": {
+   "nl": "Maak een factuur en registreer de betaling.",
+   "de": "Erstelle eine Rechnung und erfasse die Zahlung.",
+   "fr": "Créez une facture et enregistrez le paiement.",
+   "es": "Crea una factura y registra el pago.",
+   "it": "Crea una fattura e registra il pagamento."
+  },
+  "qi.task.connect_your_accounting_software": {
+   "nl": "Koppel je boekhoudsoftware of online betalingen.",
+   "de": "Verbinde deine Buchhaltungssoftware oder Online-Zahlungen.",
+   "fr": "Connectez votre logiciel comptable ou les paiements en ligne.",
+   "es": "Conecta tu software de contabilidad o los pagos online.",
+   "it": "Collega il software di contabilità o i pagamenti online."
+  },
+  "qi.tiplabel.watch_out_for": {
+   "nl": "Let op",
+   "de": "Achtung",
+   "fr": "Attention",
+   "es": "Ojo con esto",
+   "it": "Attenzione"
+  },
+  "qi.tip.body": {
+   "nl": "Gebruik je eigen documentsjablonen? Voeg het onderdeel <em>Services</em> er zelf aan toe. Tot die tijd verschijnen services uit Organize niet op je offertes en facturen.",
+   "de": "Wenn du eigene Dokumentvorlagen nutzt, füge den Abschnitt <em>Services</em> selbst hinzu. Bis dahin erscheinen Services aus Organize nicht auf deinen Angeboten und Rechnungen.",
+   "fr": "Si vous utilisez vos propres modèles de documents, ajoutez-y vous-même la section <em>Services</em>. Tant que ce n'est pas fait, les services d'Organize n'apparaissent pas sur vos devis et factures.",
+   "es": "Si usas tus propias plantillas de documentos, añade tú mismo la sección <em>Services</em>. Hasta entonces, los servicios de Organize no aparecen en tus presupuestos ni facturas.",
+   "it": "Se usi modelli di documento tuoi, aggiungi tu la sezione <em>Services</em>. Fino ad allora i servizi di Organize non compaiono su preventivi e fatture."
+  },
+  "qi.video.video_introduction_to_financials": {
+   "nl": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: introductie tot Financieel",
+   "de": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: Einführung in Finanzen",
+   "fr": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vidéo : introduction au module Financier",
+   "es": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vídeo: introducción al módulo Financiero",
+   "it": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: introduzione a Finanze"
+  },
+  "tracking.striplabel": {
+   "nl": "Materiaaltracking",
+   "de": "Materialtracking",
+   "fr": "Gestion &amp; Suivi du matériel",
+   "es": "Sistema de inventarios QR",
+   "it": "Tracciamento del materiale"
+  },
+  "tracking.tag.addon": {
+   "nl": "Add-on",
+   "de": "Add-on",
+   "fr": "Extension",
+   "es": "Complemento",
+   "it": "Add-on"
+  },
+  "tracking.title.equipment_tracking_book_and": {
+   "nl": "Materiaaltracking: uitgeven en scannen in het magazijn",
+   "de": "Materialtracking: im Lager ausgeben und scannen",
+   "fr": "Gestion &amp; Suivi du matériel : sortie et scan en entrepôt",
+   "es": "Sistema de inventarios QR: entrega y escanea en el almacén",
+   "it": "Tracciamento del materiale: consegna e scansiona in magazzino"
+  },
+  "tracking.planbadge.equipment_tracking_addon_requires": {
+   "nl": "Add-on Materiaaltracking · vereist Inventory",
+   "de": "Add-on Materialtracking · erfordert Inventory",
+   "fr": "Extension Gestion &amp; Suivi du matériel · nécessite Inventory",
+   "es": "Complemento Sistema de inventarios QR · requiere Inventory",
+   "it": "Add-on Tracciamento del materiale · richiede Inventory"
+  },
+  "tracking.desc.equipment_tracking_adds_the": {
+   "nl": "Materiaaltracking voegt de module <strong>Magazijn</strong> toe, waar je materiaal uitgeeft voor een project en weer inneemt als het terugkomt.",
+   "de": "Materialtracking ergänzt das Modul <strong>Lager</strong>, in dem du Material für ein Projekt ausgibst und bei der Rückkehr wieder einbuchst.",
+   "fr": "Gestion &amp; Suivi du matériel ajoute le module <strong>Entrepôt</strong>, où vous sortez le matériel pour un projet et le rentrez à son retour.",
+   "es": "El Sistema de inventarios QR añade el módulo <strong>Almacén</strong>, donde entregas material para un proyecto y lo devuelves cuando vuelve.",
+   "it": "Tracciamento del materiale aggiunge il modulo <strong>Magazzino</strong>, dove consegni il materiale per un progetto e lo riprendi al rientro."
+  },
+  "tracking.reslabel.set_it_up": {
+   "nl": "Zo stel je het in",
+   "de": "So richtest du es ein",
+   "fr": "Mise en place",
+   "es": "Cómo configurarlo",
+   "it": "Come configurarlo"
+  },
+  "tracking.task.set_up_qr_codes": {
+   "nl": "Stel QR-codes en barcodes in en print je labels.",
+   "de": "Richte QR-Codes und Barcodes ein und drucke deine Etiketten.",
+   "fr": "Configurez les codes QR et les codes-barres, puis imprimez vos étiquettes.",
+   "es": "Configura códigos QR y de barras e imprime tus etiquetas.",
+   "it": "Imposta codici QR e codici a barre e stampa le etichette."
+  },
+  "tracking.task.book_equipment_out_for": {
+   "nl": "Geef materiaal uit voor een project.",
+   "de": "Gib Material für ein Projekt aus.",
+   "fr": "Sortez du matériel pour un projet.",
+   "es": "Entrega material para un proyecto.",
+   "it": "Consegna il materiale per un progetto."
+  },
+  "tracking.task.return_equipment_with_scan": {
+   "nl": "Neem materiaal in met Retour scannen.",
+   "de": "Nimm Material mit Retour scannen zurück.",
+   "fr": "Rentrez le matériel avec Numérisation retour.",
+   "es": "Devuelve material con Escanear devolución.",
+   "it": "Rientra il materiale con Scansiona rientro."
+  },
+  "tracking.task.handle_lost_or_defective": {
+   "nl": "Handel verloren of defect materiaal af.",
+   "de": "Behandle verlorenes oder defektes Material.",
+   "fr": "Traitez le matériel perdu ou défectueux.",
+   "es": "Gestiona el material perdido o defectuoso.",
+   "it": "Gestisci il materiale perso o difettoso."
+  },
+  "tracking.tiplabel.watch_out_for": {
+   "nl": "Let op",
+   "de": "Achtung",
+   "fr": "Attention",
+   "es": "Ojo con esto",
+   "it": "Attenzione"
+  },
+  "tracking.tip.body": {
+   "nl": "Alleen fysieke combinaties hebben een QR-code, dus een virtuele combinatie kun je niet scannen in het magazijn. Bulkartikelen zoals kabels krijgen één QR-code per stuk, niet één per serienummer.",
+   "de": "Nur physische Kombinationen haben einen QR-Code, eine virtuelle Kombination lässt sich im Lager also nicht scannen. Bulk-Artikel wie Kabel brauchen einen QR-Code pro Artikel, nicht pro Seriennummer.",
+   "fr": "Seules les combinaisons physiques ont un code QR : une combinaison virtuelle ne peut donc pas être scannée en entrepôt. Les articles en vrac comme les câbles nécessitent un code QR par article, pas un par numéro de série.",
+   "es": "Solo las combinaciones físicas tienen código QR, así que una combinación virtual no se puede escanear en el almacén. Los artículos a granel como los cables necesitan un código QR por artículo, no uno por número de serie.",
+   "it": "Solo le combinazioni fisiche hanno un codice QR, quindi una combinazione virtuale non si può scansionare in magazzino. Gli articoli bulk come i cavi richiedono un codice QR per articolo, non uno per numero di serie."
+  },
+  "tracking.video.video_introduction_to_planning": {
+   "nl": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: materiaal plannen en tracken",
+   "de": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: Material planen und tracken",
+   "fr": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vidéo : planifier et suivre votre matériel",
+   "es": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Vídeo: planificar y rastrear tu material",
+   "it": "<span class=\"rm-onboard-video-link__play\" aria-hidden=\"true\">▶</span> Video: pianificare e tracciare il materiale"
+  },
+  "organize.tag.product_any_time_after": {
+   "nl": "Product · wanneer je wilt na Platform",
+   "de": "Produkt · jederzeit nach Platform",
+   "fr": "Produit · à tout moment après Platform",
+   "es": "Producto · cuando quieras después de Platform",
+   "it": "Prodotto · quando vuoi dopo Platform"
+  },
+  "organize.title.organize_plan_pre_and": {
+   "nl": "Organize: plan voor- en nawerk",
+   "de": "Organize: Vor- und Nachbereitung planen",
+   "fr": "Organize : planifiez la pré- et la post-production",
+   "es": "Organize: planifica el trabajo previo y posterior",
+   "it": "Organize: pianifica pre- e post-produzione"
+  },
+  "organize.desc.organize_adds_task_statuses": {
+   "nl": "Organize voegt taakstatussen, taakborden, teams, tijdregistratie op taken en services toe aan de module <strong>Taken</strong> en aan je projecten. Je kunt het naast je andere producten inrichten zodra het Platform-blok klaar is.",
+   "de": "Organize ergänzt Aufgabenstatus, Aufgabenboards, Teams, Zeiterfassung auf Aufgaben und Services im Modul <strong>Aufgaben</strong> und in deinen Projekten. Du kannst es parallel zu deinen anderen Produkten einrichten, sobald der Platform-Block fertig ist.",
+   "fr": "Organize ajoute les statuts de tâches, les tableaux de tâches, les équipes, le suivi du temps sur les tâches et les services au module <strong>Tâches</strong> et à vos projets. Vous pouvez le configurer en parallèle de vos autres produits une fois le bloc Platform terminé.",
+   "es": "Organize añade estados de tarea, tableros de tareas, equipos, registro de tiempo en tareas y servicios al módulo <strong>Tareas</strong> y a tus proyectos. Puedes configurarlo junto a tus otros productos en cuanto termines el bloque Platform.",
+   "it": "Organize aggiunge stati delle attività, bacheche, team, registrazione del tempo sulle attività e servizi al modulo <strong>Attività</strong> e ai tuoi progetti. Puoi configurarlo insieme agli altri prodotti una volta completato il blocco Platform."
+  },
+  "organize.reslabel.set_it_up": {
+   "nl": "Zo stel je het in",
+   "de": "So richtest du es ein",
+   "fr": "Mise en place",
+   "es": "Cómo configurarlo",
+   "it": "Come configurarlo"
+  },
+  "organize.task.review_the_user_role": {
+   "nl": "Loop de gebruikersrechten voor taken na.",
+   "de": "Prüfe die Benutzerrechte für Aufgaben.",
+   "fr": "Vérifiez les autorisations des rôles pour les tâches.",
+   "es": "Revisa los permisos de rol para las tareas.",
+   "it": "Controlla i permessi dei ruoli per le attività."
+  },
+  "organize.task.set_up_your_task": {
+   "nl": "Stel je taakstatussen in.",
+   "de": "Lege deine Aufgabenstatus fest.",
+   "fr": "Configurez vos statuts de tâches.",
+   "es": "Configura tus estados de tarea.",
+   "it": "Imposta gli stati delle attività."
+  },
+  "organize.task.create_teams_and_link": {
+   "nl": "Maak teams aan en koppel je crewleden eraan.",
+   "de": "Lege Teams an und ordne deine Crewmitglieder zu.",
+   "fr": "Créez des équipes et rattachez-y vos membres.",
+   "es": "Crea equipos y vincula a tu personal con ellos.",
+   "it": "Crea i team e collega il personale."
+  },
+  "organize.task.add_standard_tasks_to": {
+   "nl": "Voeg standaardtaken toe aan je projectsjablonen en open daarna je eerste projecttaakbord.",
+   "de": "Füge Standardaufgaben zu deinen Projektvorlagen hinzu und öffne dann dein erstes Projekt-Aufgabenboard.",
+   "fr": "Ajoutez des tâches standard à vos modèles de projet, puis ouvrez votre premier tableau de tâches.",
+   "es": "Añade tareas estándar a tus plantillas de proyecto y abre tu primer tablero de tareas.",
+   "it": "Aggiungi attività standard ai modelli di progetto, poi apri la tua prima bacheca."
+  },
+  "organize.task.track_time_on_tasks": {
+   "nl": "Registreer tijd op taken.",
+   "de": "Erfasse Zeit auf Aufgaben.",
+   "fr": "Suivez le temps passé sur les tâches.",
+   "es": "Registra el tiempo en las tareas.",
+   "it": "Registra il tempo sulle attività."
+  },
+  "organize.task.set_up_the_services": {
+   "nl": "Richt de services in die je het vaakst verkoopt.",
+   "de": "Richte die Services ein, die du am häufigsten verkaufst.",
+   "fr": "Configurez les services que vous vendez le plus souvent.",
+   "es": "Configura los servicios que más vendes.",
+   "it": "Configura i servizi che vendi più spesso."
+  },
+  "organize.tiplabel.watch_out_for": {
+   "nl": "Let op",
+   "de": "Achtung",
+   "fr": "Attention",
+   "es": "Ojo con esto",
+   "it": "Attenzione"
+  },
+  "organize.note.to_put_services_on": {
+   "nl": "Wil je services op je offertes en facturen? Dan heb je ook de add-on Offertes &amp; Facturatie nodig.",
+   "de": "Für Services auf deinen Angeboten und Rechnungen brauchst du zusätzlich das Add-on Angebote &amp; Rechnungen.",
+   "fr": "Pour faire figurer les services sur vos devis et factures, il vous faut aussi l'extension Devis &amp; facturation.",
+   "es": "Para incluir servicios en tus presupuestos y facturas necesitas también el complemento Sistema de cotización y finanzas.",
+   "it": "Per mettere i servizi su preventivi e fatture ti serve anche l'add-on Preventivi e fatture."
+  },
+  "organize.tip.body": {
+   "nl": "Organize vervangt je personeelsplanning niet. Functies en diensten, en de uren die daarop staan, blijven onderdeel van je personeelsplan.",
+   "de": "Organize ersetzt die Personalplanung nicht. Funktionen und Schichten und die darauf erfassten Stunden bleiben Teil deiner Personalplanung.",
+   "fr": "Organize ne remplace pas la planification des équipes. Les fonctions, les shifts et les heures qui y sont enregistrées restent dans votre planning d'équipe.",
+   "es": "Organize no sustituye la planificación de personal. Las funciones y los turnos, y las horas registradas en ellos, siguen formando parte de tu plan de personal.",
+   "it": "Organize non sostituisce la pianificazione del personale. Funzioni e turni, e le ore registrate su di essi, restano parte del tuo piano del personale."
+  }
+ }
+}
