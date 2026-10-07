@@ -1,0 +1,52 @@
+{
+ "source": "rentman.io pricing pages, add-on sections, 2026-10-06",
+ "locales": [
+  "en-us",
+  "nl",
+  "de",
+  "fr",
+  "es",
+  "it"
+ ],
+ "never_translated": {
+  "products": [
+   "Inventory",
+   "Crew",
+   "Organize"
+  ],
+  "tiers": [
+   "Essential",
+   "Standard",
+   "Pro"
+  ],
+  "designations": [
+   "Platform"
+  ]
+ },
+ "translated": {
+  "Quoting & Invoicing": {
+   "nl": "Offertes & Facturatie",
+   "de": "Angebote & Rechnungen",
+   "fr": "Devis & facturation",
+   "es": "Sistema de cotización y finanzas",
+   "it": "Preventivi e fatture"
+  },
+  "Equipment Tracking": {
+   "nl": "Materiaaltracking",
+   "de": "Materialtracking",
+   "fr": "Gestion & Suivi du matériel",
+   "es": "Sistema de inventarios QR",
+   "it": "Tracciamento del materiale"
+  },
+  "Add-ons": {
+   "nl": "Add-ons",
+   "de": "Add-ons",
+   "fr": "Extensions",
+   "es": "Complementos",
+   "it": "Add-on"
+  }
+ },
+ "decided": {
+  "Platform": "English in every locale, per Kenneth 2026-10-06 — it designates the core, and Dutch already did this."
+ }
+}
