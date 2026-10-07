@@ -524,11 +524,11 @@
    "it": "Add-on Preventivi e fatture"
   },
   "qi.desc.quoting_invoicing_adds_the": {
-   "nl": "Offertes &amp; Facturatie voegt de module <strong>Financieel</strong> en inkooporders toe aan je projecten. Je offertes en facturen gebruiken de documentsjablonen uit het Platform-blok, dus maak die eerst af.",
-   "de": "Angebote &amp; Rechnungen ergänzt das Modul <strong>Finanzen</strong> und Bestellungen in deinen Projekten. Deine Angebote und Rechnungen nutzen die Dokumentvorlagen aus dem Platform-Block, mach die also zuerst fertig.",
-   "fr": "Devis &amp; facturation ajoute le module <strong>Financier</strong> et les bons de commande à vos projets. Vos devis et factures utilisent les modèles de documents du bloc Platform : terminez-les d'abord.",
-   "es": "El Sistema de cotización y finanzas añade el módulo <strong>Financiero</strong> y las órdenes de compra a tus proyectos. Tus presupuestos y facturas usan las plantillas del bloque Platform, así que termínalas primero.",
-   "it": "Preventivi e fatture aggiunge il modulo <strong>Finanze</strong> e gli ordini d'acquisto ai tuoi progetti. Preventivi e fatture usano i modelli di documento del blocco Platform, quindi completali prima."
+   "nl": "Offertes &amp; Facturatie voegt de module <strong>Financieel</strong> en inkooporders toe aan je projecten. Je offertes en facturen gebruiken de documentsjablonen uit de Platform-stap, dus maak die eerst af.",
+   "de": "Angebote &amp; Rechnungen ergänzt das Modul <strong>Finanzen</strong> und Bestellungen in deinen Projekten. Deine Angebote und Rechnungen nutzen die Dokumentvorlagen aus dem Platform-Schritt, mach die also zuerst fertig.",
+   "fr": "Devis &amp; facturation ajoute le module <strong>Financier</strong> et les bons de commande à vos projets. Vos devis et factures utilisent les modèles de documents de l'étape Platform : terminez-les d'abord.",
+   "es": "El Sistema de cotización y finanzas añade el módulo <strong>Financiero</strong> y las órdenes de compra a tus proyectos. Tus presupuestos y facturas usan las plantillas del paso Platform, así que termínalas primero.",
+   "it": "Preventivi e fatture aggiunge il modulo <strong>Finanze</strong> e gli ordini d'acquisto ai tuoi progetti. Preventivi e fatture usano i modelli di documento del passaggio Platform, quindi completali prima."
   },
   "qi.reslabel.set_it_up": {
    "nl": "Zo stel je het in",
@@ -692,11 +692,11 @@
    "it": "Organize: pianifica pre- e post-produzione"
   },
   "organize.desc.organize_adds_task_statuses": {
-   "nl": "Organize voegt taakstatussen, taakborden, teams, tijdregistratie op taken en services toe aan de module <strong>Taken</strong> en aan je projecten. Je kunt het naast je andere producten inrichten zodra het Platform-blok klaar is.",
-   "de": "Organize ergänzt Aufgabenstatus, Aufgabenboards, Teams, Zeiterfassung auf Aufgaben und Services im Modul <strong>Aufgaben</strong> und in deinen Projekten. Du kannst es parallel zu deinen anderen Produkten einrichten, sobald der Platform-Block fertig ist.",
-   "fr": "Organize ajoute les statuts de tâches, les tableaux de tâches, les équipes, le suivi du temps sur les tâches et les services au module <strong>Tâches</strong> et à vos projets. Vous pouvez le configurer en parallèle de vos autres produits une fois le bloc Platform terminé.",
-   "es": "Organize añade estados de tarea, tableros de tareas, equipos, registro de tiempo en tareas y servicios al módulo <strong>Tareas</strong> y a tus proyectos. Puedes configurarlo junto a tus otros productos en cuanto termines el bloque Platform.",
-   "it": "Organize aggiunge stati delle attività, bacheche, team, registrazione del tempo sulle attività e servizi al modulo <strong>Attività</strong> e ai tuoi progetti. Puoi configurarlo insieme agli altri prodotti una volta completato il blocco Platform."
+   "nl": "Organize voegt taakstatussen, taakborden, teams, tijdregistratie op taken en services toe aan de module <strong>Taken</strong> en aan je projecten. Je kunt het naast je andere producten inrichten zodra de Platform-stap klaar is.",
+   "de": "Organize ergänzt Aufgabenstatus, Aufgabenboards, Teams, Zeiterfassung auf Aufgaben und Services im Modul <strong>Aufgaben</strong> und in deinen Projekten. Du kannst es parallel zu deinen anderen Produkten einrichten, sobald der Platform-Schritt fertig ist.",
+   "fr": "Organize ajoute les statuts de tâches, les tableaux de tâches, les équipes, le suivi du temps sur les tâches et les services au module <strong>Tâches</strong> et à vos projets. Vous pouvez le configurer en parallèle de vos autres produits une fois l'étape Platform terminé.",
+   "es": "Organize añade estados de tarea, tableros de tareas, equipos, registro de tiempo en tareas y servicios al módulo <strong>Tareas</strong> y a tus proyectos. Puedes configurarlo junto a tus otros productos en cuanto termines el paso Platform.",
+   "it": "Organize aggiunge stati delle attività, bacheche, team, registrazione del tempo sulle attività e servizi al modulo <strong>Attività</strong> e ai tuoi progetti. Puoi configurarlo insieme agli altri prodotti una volta completato il passaggio Platform."
   },
   "organize.reslabel.set_it_up": {
    "nl": "Zo stel je het in",
