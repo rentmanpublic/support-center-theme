@@ -47,11 +47,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" focusable="false" viewBox="0 0 16 16" aria-hidden="true">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM1.5 8h13M8 1c-2 2-3 4.5-3 7s1 5 3 7M8 1c2 2 3 4.5 3 7s-1 5-3 7"/>
             </svg>
-            {{current_locale.name}}
+            {{!-- Zendesk names en-us "English (United States)"; this help centre serves more than the US --}}
+            {{#is help_center.locale 'en-us'}}English{{else}}{{current_locale.name}}{{/is}}
           </a>
           <span class="dropdown-menu" role="menu">
             {{#each alternative_locales}}
-              <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">{{name}}</a>
+              <a href="{{url}}" dir="{{direction}}" rel="nofollow" role="menuitem">{{#contains url 'en-us'}}English{{else}}{{name}}{{/contains}}</a>
             {{/each}}
           </span>
         </div>
