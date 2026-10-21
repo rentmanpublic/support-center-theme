@@ -269,22 +269,6 @@
       .catch(function() {});
   }
 
-  // ── System status dot ─────────────────────────────────────────
-  var dot  = document.getElementById('rm-status-dot');
-  var stxt = document.getElementById('rm-status-text');
-  if (dot && stxt) {
-    fetch('https://status.rentman.io/api/v2/status.json')
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        var ok = d.status && d.status.indicator === 'none';
-        dot.className = 'rm-footer__status-dot ' + (ok ? 'rm-footer__status-dot--ok' : 'rm-footer__status-dot--issue');
-        stxt.textContent = ok ? 'All systems operational' : (d.status.description || 'Some systems affected');
-      })
-      .catch(function() {
-        if (dot) dot.className = 'rm-footer__status-dot rm-footer__status-dot--ok';
-        if (stxt) stxt.textContent = 'All systems operational';
-      });
-  }
 
   // ── Spotlight promos (DC JSON → cards) ───────────────────────
   var spotSection = document.getElementById('rm-spotlight-section');

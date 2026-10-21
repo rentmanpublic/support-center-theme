@@ -72,17 +72,29 @@
   var dot  = document.getElementById('rm-status-dot');
   var stxt = document.getElementById('rm-status-text');
   if (dot && stxt) {
-    fetch('https://status.rentman.io/api/v2/status.json')
-      .then(function(r) { return r.json(); })
-      .then(function(d) {
-        var ok = d.status && d.status.indicator === 'none';
-        dot.className = 'rm-footer__status-dot ' + (ok ? 'rm-footer__status-dot--ok' : 'rm-footer__status-dot--issue');
-        stxt.textContent = ok ? 'All systems operational' : (d.status.description || 'Some systems affected');
-      })
-      .catch(function() {
-        if (dot) dot.className = 'rm-footer__status-dot rm-footer__status-dot--ok';
-        if (stxt) stxt.textContent = 'All systems operational';
-      });
+    // Statuspage's own description says "Partial System Outage" whenever the
+    // indicator is 'major', which understates a critical incident. Derive the
+    // wording here instead, and take the worse of the overall indicator and any
+    // unresolved incident so the footer never contradicts the notification bar.
+    var RANK  = { none: 0, minor: 1, major: 2, critical: 3 };
+    var LABEL = ['All systems operational', 'Degraded performance', 'Partial outage', 'Major outage'];
+    var CLASS = ['ok', 'minor', 'major', 'critical'];
+    var show = function (level) {
+      dot.className = 'rm-footer__status-dot rm-footer__status-dot--' + CLASS[level];
+      stxt.textContent = LABEL[level];
+    };
+    Promise.all([
+      fetch('https://status.rentman.io/api/v2/status.json').then(function (r) { return r.json(); }),
+      fetch('https://status.rentman.io/api/v2/incidents/unresolved.json').then(function (r) { return r.json(); })
+    ]).then(function (res) {
+      var level = RANK[res[0].status && res[0].status.indicator] || 0;
+      var list  = res[1].incidents || [];
+      for (var i = 0; i < list.length; i++) {
+        var r = RANK[list[i].impact] || 0;
+        if (r > level) { level = r; }
+      }
+      show(level);
+    }).catch(function () { show(0); });
   }
 }());
 </script>
